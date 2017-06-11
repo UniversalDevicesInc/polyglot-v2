@@ -1,0 +1,37 @@
+{
+  "name": "polyglot-v2",
+  "version": "2.0.0",
+  "description": "UDI Polyglot Version 2",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app",
+    "start:prod": "NODE_ENV=production npm start",
+    "start:dev": "NODE_ENV=development nodemon ."
+  },
+  "dependencies": {
+    "async": "^2.4.1",
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "cors": "*",
+    "express": "*",
+    "jsonwebtoken": "*",
+    "mongoose": "*",
+    "mqtt": "^2.7.2",
+    "passport": "*",
+    "passport-jwt": "*",
+    "request": "^2.81.0",
+    "winston": "^2.3.1",
+    "xml2json": "^0.11.0"
+  },
+  "keywords": [
+    "udi",
+    "polyglot",
+    "nodeserver"
+  ],
+  "author": "Einstein.42 (milne.james@gmail.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "@angular/cli": "^1.0.4"
+  }
+}
