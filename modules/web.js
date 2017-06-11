@@ -52,10 +52,12 @@ module.exports = {
       })
 
       // Import SSL keys
+      /*
       const ssl_options = {
         key: fs.readFileSync('./ssl/polyglot.key'),
         cert: fs.readFileSync('./ssl/polyglot.crt')
       }
+      */
 
       // ForceSSL on every page.
       // app.use(forceSSL)
