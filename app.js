@@ -14,7 +14,6 @@ logger.info('Starting Polyglot version 2.0')
 const CONCURRENCY = process.env.WEB_CONCURRENCY || 1
 
 function main() {
-
   db.startService(() => {
     web.startService()
     mqtt.startService()
