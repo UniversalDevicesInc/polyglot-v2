@@ -2,9 +2,13 @@
 Instantiate the logger for all modules
 */
 
-var logLevel = 'debug';
-var winston = require('winston');
-var tsFormat = () => (new Date()).toLocaleString();
+var logLevel = 'info'
+if (process.env.NODE_ENV === 'development') {
+		logLevel = 'debug'
+}
+
+var winston = require('winston')
+var tsFormat = () => (new Date()).toLocaleString()
 var winston = new (winston.Logger)({
 	transports: [
 		// TODO: remove console before dist
@@ -27,5 +31,5 @@ var winston = new (winston.Logger)({
 			json: false
 		})
 	]
-});
-module.exports = winston;
+})
+module.exports = winston

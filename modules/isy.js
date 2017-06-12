@@ -14,7 +14,7 @@ module.exports = {
     },
 
     makeApiUrl(api, path_args = null) {
-      url = `${config.settings.isyhttps ? 'https://' : 'http://'}${config.settings.isyaddress}:${config.settings.isyport}/rest/${api}/`
+      url = `${process.env.ISY_HTTPS ? 'https://' : 'http://'}${process.env.ISY_HOST}:${process.env.ISY_PORT}/rest/${api}/`
       if (path_args) {
         url += '?' + querystring.stringify(path_args)
       }
@@ -23,7 +23,7 @@ module.exports = {
     },
 
     makeNodeUrl(profileNum, path, path_args) {
-      url = `${config.settings.isyhttps ? 'https://' : 'http://'}${config.settings.isyaddress}:${config.settings.isyport}/rest/ns/${profileNum}/${path.join('/')}`
+      url = `${process.env.ISY_HTTPS ? 'https://' : 'http://'}${process.env.ISY_HOST}:${process.env.ISY_PORT}/rest/ns/${profileNum}/${path.join('/')}`
       if (path_args) {
         url += '?' + querystring.stringify(path_args).trim()
       }
@@ -52,7 +52,9 @@ module.exports = {
           profileNum: profileNum
         }
         return callback(null, result)
-      }).auth(config.settings.isyusername, encrypt.decryptText(config.settings.isypassword))
+      }).auth(process.env.ISY_USERNAME, process.env.ISY_PASSWORD)
+      // Find a way to encrypt the password easily for users.
+      //.auth(process.env.ISY_USERNAME, encrypt.decryptText(process.env.ISY_PASSWORD))
     },
 
     handleRequest(profileNum, data, command, gettext = false, callback){
@@ -144,8 +146,8 @@ module.exports = {
       var url = this.restcall(0, data, 'getVersion')
       this.getIsy(0, url, false, true, (err, result) => {
         try {
-          config.settings.isyversion = result.isyresponse.configuration.app_version
-          logger.info(`ISY: Got Version ${config.settings.isyversion}`)
+          config.isyVersion = result.isyresponse.configuration.app_version
+          logger.info(`ISY: Got Version ${config.isyVersion}`)
         } catch (e) {
           logger.error(`ISY: Failed to get version. Error: ${e}`)
           return callback(e)

@@ -63,3 +63,5 @@ angular-src/
 # Project Specific
 ssl/
 test/
+.env
+.env-dev

@@ -20,8 +20,7 @@ module.exports = {
       const frontend = require('../routes/frontend')
       const rest = require('../routes/rest')
       // Port Number
-      const port = 3000
-      config.polyglotPort = port
+      const port = process.env.LISTEN_PORT
       // Compression to gzip
       app.use(compression())
       // CORS Middleware
@@ -70,7 +69,7 @@ module.exports = {
       //require('../sockets/nodeserver').startService(io)
 
       // Start Server
-      this.Server.listen(port, () => {
+      this.Server.listen(port, process.env.LISTEN_IP, () => {
         logger.info('Secure Server started on port ' + port)
       })
     }

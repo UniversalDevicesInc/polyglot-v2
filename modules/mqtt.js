@@ -5,7 +5,9 @@ const config = require('../config/config')
 module.exports = {
 		Client: null,
 		clientId: null,
+
 		startService(callback) {
+			if (this.Client) { if (callback) return callback() }
 			var options = {
 				keepalive: 60,
 				clean: true,
@@ -13,7 +15,7 @@ module.exports = {
 				reconnectPeriod: 5000,
 				will: {retain: true}
 			}
-			if(!config.settings.mqttaddress || !config.settings.mqttport) {
+			if(!process.env.MQTT_HOST || !process.env.MQTT_PORT) {
 				logger.error('MQTT Address or Port not set... Check your Settings.')
 				return
 			}
@@ -27,7 +29,7 @@ module.exports = {
 			*/
 			options['will']['topic'] = 'udi/polyglot/connections/polyglot'
 			options['will']['payload'] = new Buffer(JSON.stringify({node: this.clientId, 'connected': false}))
-			this.Client = mqtt.connect('mqtt://'+ config.settings.mqttaddress + ':' + config.settings.mqttport, options)
+			this.Client = mqtt.connect('mqtt://'+ process.env.MQTT_HOST + ':' + process.env.MQTT_PORT, options)
 
 			this.Client.on('connect', () => {
 				this.addSubscriptions()
@@ -43,7 +45,7 @@ module.exports = {
 			})
 
 			this.Client.on('reconnect', () => {
-				config.settings.mqttConnected = false
+				config.mqttConnected = false
 				logger.info('MQTT attempting reconnection to broker...')
 			})
 
@@ -61,7 +63,7 @@ module.exports = {
 					logger.error('Error: ' + err.toString())
 					return
 				}
-				config.settings.mqttConnected = true
+				config.mqttConnected = true
 				logger.info('MQTT: Subscribe Successful ' + granted[0]['topic'] + " QoS: " + granted[0]['qos'])
 				this.publish('udi/polyglot/connections/polyglot', {node: this.clientId, 'connected': true}, { retain: true })
 			})

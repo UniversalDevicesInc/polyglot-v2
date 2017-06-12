@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const UserModel = require('../models/user')
 const SettingsModel = require('../models/settings')
 const NodeServerModel = require('../models/nodeserver')
-const db = require('../modules/db')
+//const db = require('../modules/db')
 const config = require('../config/config')
 const helpers = require('../modules/helpers')
 const logger = require('../modules/logger')
@@ -15,36 +15,36 @@ const mqtt = require('../modules/mqtt')
 // Register route (unused currently)
 /*
 router.post('/register', (req, res, next) => {
-	let newUser = new User({
+	let newUser = new UserModel({
 		username: req.body.username,
 		password: req.body.password
 	})
 
-	User.addUser(newUser, (err, user) => {
+	UserModel.addUser(newUser, (err, user) => {
 		if(err) {
 			res.json({success: false, msg: 'Failed to register user' + err})
 		} else {
 			res.json({success: true, msg: 'User registered'})
 		}
 	})
-})
-*/
+}) */
+
 
 // Authenticate Route
 router.post('/authenticate', (req, res, next) => {
 	const username = req.body.username
 	const password = req.body.password
 
-	db.getUserByUsername(username, (err, user) => {
-	  if (err) { return next(err); }
+	UserModel.getUserByUsername(username, (err, user) => {
+	  if (err) { return next(err) }
 		if (!user) {
 			return res.json({success: false, msg: 'User not found'})
 		}
-		db.comparePassword(password, user.password, (err, isMatch) => {
+		UserModel.comparePassword(password, user.password, (err, isMatch) => {
 			if (err) { return next(err) }
 			if (isMatch) {
 				logger.info('Successful login by ' + user.username)
-				const token = jwt.sign(user, config.secret, {
+				const token = jwt.sign(user, process.env.SECRET, {
 					expiresIn: 604800 // 1 week
 				})
 				res.json({
@@ -100,9 +100,10 @@ router.post('/addns', passport.authenticate('jwt', {session: false}), (req, res,
 		})
 
 // Settings routes
+/*
 	router.post('/settings', passport.authenticate('jwt', {session: false}), (req, res, next) => {
-		let newSettings = req.body
-		db.updateSettings(newSettings, (err, settings) => {
+		let newSettings = {updatesettings: req.body}
+		SettingsModel.updateSettings(newSettings, (err, settings) => {
 			if (err) { return next(err) }
 			settings._id = undefined
 			settings.name = undefined
@@ -118,8 +119,7 @@ router.post('/addns', passport.authenticate('jwt', {session: false}), (req, res,
 	})
 
 	router.get('/settings/reset', passport.authenticate('jwt', {session: false}), (req, res, next) => {
-		let newSettings = new Settings()
-		db.resetToDefault(newSettings, (err, settings) => {
+		SettingsModel.resetToDefault(newSettings, (err, settings) => {
 			if (err) { return next(err) }
 			if (settings) {
 				helpers.restartServices()
@@ -136,10 +136,10 @@ router.post('/addns', passport.authenticate('jwt', {session: false}), (req, res,
 		cleanSettings._id = undefined
 		cleanSettings.name = undefined
 		return res.json(cleanSettings)
-	})
+	}) */
 
 	router.get('/nodeservers', passport.authenticate('jwt', {session: false}), (req, res, next) => {
-		db.getAllNodeServers((err, docs) => {
+		NodeServerModel.getAllNodeServers((err, docs) => {
 			res.json(JSON.parse(JSON.stringify(docs)))
 		})
 

@@ -22,7 +22,6 @@ const DriverSchema = mongoose.Schema({
 			default: null
 		}
 })
-//const DriverModel = mongoose.model('Driver', DriverSchema)
 
 // Nodes Child Schema
 const NodeSchema = mongoose.Schema({
@@ -60,8 +59,6 @@ const NodeSchema = mongoose.Schema({
 		},
 		drivers: [DriverSchema]
 })
-
-//const NodeModel = mongoose.model('Node', NodeSchema)
 
 // NodeServer Parent Schema
 const NodeServerSchema = mongoose.Schema({
@@ -197,8 +194,38 @@ NodeServerSchema.statics = {
 				logger.error('MQTT: Received Delete NodeServer command. profileNum was missing.')
 			}
 		}
+	},
 
-	}
+	getAllNodeServers(callback) {
+		return NodeServerModel.find({}, null, {sort: {'profileNum': 1}}, callback)
+	},
+
+	getNodeByName(name, callback) {
+		let query = {name: name}
+		return NodeServerModel.findOne(query, callback)
+	},
+
+	getNodeByProfileNum(num, callback) {
+		const query = {profileNum: num}
+		return NodeServerModel.findOne(query, callback)
+	},
+
+	loadNodeServers(callback) {
+		NodeServerModel.getAllNodeServers((err, nodes) => {
+			if(nodes) {
+				nodes.forEach((nodeServer) => {
+					if(config.nodeServers.filter((ns) => { return ns.profileNum === nodeServer.profileNum })) {
+						logger.debug(`NodeServer ${nodeServer.name} [${nodeServer.profileNum}] added to running config.`)
+						config.nodeServers[nodeServer.profileNum] = nodeServer
+					}
+				})
+				logger.debug('MongoDB: NodeServers retrieved from database')
+			} else {
+				logger.debug('MongoDB: No NodeServers found in database')
+			}
+			if(callback) { return callback(err) }
+		})
+	},
 
 }
 
@@ -214,7 +241,7 @@ NodeServerSchema.methods = {
 
 	checkCommand(data){
 		//if (this.isConnected) {
-		let validCommands = ['status', 'addnode','removenode', 'restcall', 'request', 'config', 'install', 'connected', 'command']
+		let validCommands = ['status', 'addnode','removenode', 'restcall', 'request', 'config', 'connected', 'command']
 			for (var prop in data) {
 				if (prop === 'node') { continue }
 				if (validCommands.indexOf(prop) < 0) {
@@ -546,15 +573,15 @@ NodeServerSchema.methods = {
 		isy.handleRequest(this.profileNum, {api: 'profiles/ns/' + this.profileNum + '/connection'}, 'restcall', true, (results) => {
 			if (!results.isyresponse.connections.connection && results.statusCode === 200){
 				let args = {
-					ip: config.polyglotIP,
+					ip: process.env.LISTEN_IP,
 					baseurl: '/ns/' + this.profileNum,
 					name: this.name,
 					nsuser: 'polyglot',
 					nspwd: 'gTmZznSGe9Es6FTJ',
 					isyusernum: 0,
-					port: config.polyglotPort,
+					port: process.env.LISTEN_PORT,
 					timeout: 0,
-					ssl: false,
+					ssl: process.env.USE_HTTPS,
 					enabled: true
 				}
 				isy.handleRequest(this.profileNum, {api: 'profiles/ns/' + this.profileNum + '/connection/set/network', args: args}, 'restcall', true, (results) => {
@@ -662,18 +689,14 @@ NodeServerSchema.methods = {
 	config(data, command) {
 		// Hack to deepcopy this.nodes
 		var parseConfig = this.toJSON()
-		delete parseConfig._id
+		parseConfig._id = undefined
 		parseConfig.nodes.forEach((node) => {
-			delete node._id
+			node._id = undefined
 			node.drivers.forEach((driver) => {
-				delete driver._id
+				driver._id = undefined
 			})
 		})
 		mqtt.makeResponse(this.profileNum, 'manifest', parseConfig)
-	},
-
-	install(data, command) {
-
 	},
 
 	connected(data, command) {

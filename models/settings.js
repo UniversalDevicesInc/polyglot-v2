@@ -1,3 +1,4 @@
+/*
 const mongoose = require('mongoose')
 const encrypt = require('../modules/encryption')
 const logger = require('../modules/logger')
@@ -81,8 +82,24 @@ SettingsSchema.statics = {
 			this.sendUpdate()
 			if (callback) callback(err, doc)
 		})
+	},
+
+	getSettings (callback){
+		const query = {name: 'polyglot'}
+		return SettingsModel.findOne(query, callback)
+	},
+
+	resetToDefault (callback){
+		const newSettings = new SettingsModel()
+		const query = {name: 'polyglot'}
+		const options = {overwrite: true, new: true, upsert: true}
+		var upsertData = newSettings.toObject()
+		delete upsertData._id
+		SettingsModel.findOneAndUpdate(query, upsertData, options, callback)
 	}
+
 }
 
 SettingsModel = mongoose.model('Setting', SettingsSchema)
 module.exports = SettingsModel
+*/

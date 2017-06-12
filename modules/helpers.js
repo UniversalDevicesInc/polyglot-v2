@@ -9,6 +9,7 @@ const async = require('async')
 
 
 module.exports = {
+  /*
   checkServices() {
     if (!mqtt.Client) {
       mqtt.startService(() => {
@@ -17,7 +18,7 @@ module.exports = {
     } else {
       mqtt.stopService()
     }
-  },
+  }, */
 
   resyncNodesToISY(callback=null) {
     logger.info(`ReSyncing NodeServers with ISY...`)

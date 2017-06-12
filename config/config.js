@@ -1,12 +1,6 @@
 module.exports = {
   dbConnected: false,
   mqttConnected: false,
-  settings: null,
+  isyVersion: '',
   nodeServers: new Array(11),
-  frontends: [],
-  isyversion: '',
-  database: 'mongodb://mongo:27017/polyglot',
-  secret: 'udi-polyglot',
-  polyglotIP: require('os').networkInterfaces().eth0[0].address,
-  polyglotPort: null,
 }
