@@ -20,7 +20,7 @@ module.exports = {
       const frontend = require('../routes/frontend')
       const rest = require('../routes/rest')
       // Port Number
-      const port = process.env.LISTEN_PORT
+      const port = process.env.HOST_PORT
       // Compression to gzip
       app.use(compression())
       // CORS Middleware
