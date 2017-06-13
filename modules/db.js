@@ -27,6 +27,7 @@ module.exports = {
 				this.Server.connection.on('connected', () => {
 					logger.info('MongoDB: Connected')
 					config.dbConnected = true
+					isy.getVersion()
 					/* SettingsModel.getSettings((err, data) => {
 							logger.debug('MongoDB: Config received from database')
 							config.settings = data

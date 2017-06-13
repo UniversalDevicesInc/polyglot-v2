@@ -69,7 +69,7 @@ module.exports = {
       //require('../sockets/nodeserver').startService(io)
 
       // Start Server
-      this.Server.listen(port, process.env.LISTEN_IP, () => {
+      this.Server.listen(port, '0.0.0.0', () => {
         logger.info('Secure Server started on port ' + port)
       })
     }

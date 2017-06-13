@@ -217,6 +217,7 @@ NodeServerSchema.statics = {
 					if(config.nodeServers.filter((ns) => { return ns.profileNum === nodeServer.profileNum })) {
 						logger.debug(`NodeServer ${nodeServer.name} [${nodeServer.profileNum}] added to running config.`)
 						config.nodeServers[nodeServer.profileNum] = nodeServer
+						nodeServer.getNodesFromISY()
 					}
 				})
 				logger.debug('MongoDB: NodeServers retrieved from database')
@@ -573,7 +574,7 @@ NodeServerSchema.methods = {
 		isy.handleRequest(this.profileNum, {api: 'profiles/ns/' + this.profileNum + '/connection'}, 'restcall', true, (results) => {
 			if (!results.isyresponse.connections.connection && results.statusCode === 200){
 				let args = {
-					ip: process.env.LISTEN_IP,
+					ip: process.env.HOST_IP,
 					baseurl: '/ns/' + this.profileNum,
 					name: this.name,
 					nsuser: 'polyglot',

@@ -13,6 +13,7 @@
     "async": "^2.4.1",
     "bcryptjs": "*",
     "body-parser": "*",
+    "compression": "*",
     "cors": "*",
     "dotenv": "4.0.0",
     "express": "*",
@@ -23,7 +24,7 @@
     "passport-jwt": "*",
     "request": "^2.81.0",
     "winston": "^2.3.1",
-    "xml2json": "^0.11.0"
+    "xml2json-light": "1.0.4"
   },
   "keywords": [
     "udi",

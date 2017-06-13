@@ -3,7 +3,7 @@ const config = require('../config/config')
 require('http').globalAgent.maxSockets = Infinity
 const request = require('request')
 const encrypt = require('./encryption')
-const xmlparser = require('xml2json')
+const xmlparser = require('xml2json-light')
 const querystring = require('querystring')
 const mqtt = require('./mqtt')
 
@@ -14,7 +14,7 @@ module.exports = {
     },
 
     makeApiUrl(api, path_args = null) {
-      url = `${process.env.ISY_HTTPS ? 'https://' : 'http://'}${process.env.ISY_HOST}:${process.env.ISY_PORT}/rest/${api}/`
+      url = `${process.env.ISY_HTTPS === 'true' ? 'https://' : 'http://'}${process.env.ISY_HOST}:${process.env.ISY_PORT}/rest/${api}/`
       if (path_args) {
         url += '?' + querystring.stringify(path_args)
       }
@@ -23,7 +23,7 @@ module.exports = {
     },
 
     makeNodeUrl(profileNum, path, path_args) {
-      url = `${process.env.ISY_HTTPS ? 'https://' : 'http://'}${process.env.ISY_HOST}:${process.env.ISY_PORT}/rest/ns/${profileNum}/${path.join('/')}`
+      url = `${process.env.ISY_HTTPS === 'true' ? 'https://' : 'http://'}${process.env.ISY_HOST}:${process.env.ISY_PORT}/rest/ns/${profileNum}/${path.join('/')}`
       if (path_args) {
         url += '?' + querystring.stringify(path_args).trim()
       }
@@ -39,10 +39,11 @@ module.exports = {
       request.get(options, (err, res, body) => {
         if (err) return callback(err)
         var text=''
-        var xmlOptions = {object: true}
+        //var xmlOptions = {object: true}
         logger.debug(`ISY: ${res.statusCode} - ${url}`)
         if (getText) {
-          text = JSON.parse(xmlparser.toJson(body))
+          console.log()
+          text = xmlparser.xml2json(body)
         }
         result = {
           isyresponse: text,
@@ -150,7 +151,7 @@ module.exports = {
           logger.info(`ISY: Got Version ${config.isyVersion}`)
         } catch (e) {
           logger.error(`ISY: Failed to get version. Error: ${e}`)
-          return callback(e)
+          if (callback) return callback(e)
         }
         if (callback) return callback()
       })
