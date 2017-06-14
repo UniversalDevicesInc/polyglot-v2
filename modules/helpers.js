@@ -4,7 +4,7 @@ const SettingsModel = require('../models/settings')
 const NodeServerModel = require('../models/nodeserver')
 const db = require('../modules/db')
 const mqtt = require('../modules/mqtt')
-const web = require('../modules/web')
+const weB = require('../modules/web')
 const async = require('async')
 
 
@@ -52,7 +52,7 @@ module.exports = {
   shutdown() {
     async.series([
       this.saveNodeServers(),
-      web.stopService(),
+      weB.stopService(),
       mqtt.stopService(),
       db.stopService(),
       process.exit(0)

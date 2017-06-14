@@ -11,41 +11,41 @@ const SettingsSchema = mongoose.Schema({
 		type: String,
 		default: 'polyglot'
 	},
-	'isyusername': {
+	'ISY_USERNAME': {
 		type: String,
-		default: 'admin'
+		default: process.env.ISY_USERNAME
 	},
-  'isypassword': {
+  'ISY_PASSWORD': {
     type: String,
-    default: null
+    default: process.env.ISY_PASSWORD
   },
-  'isyport': {
+  'ISY_PORT': {
     type: Number,
-    default: 80
+    default: process.env.ISY_PORT
   },
-  'isyaddress': {
+  'ISY_HOST': {
     type: String,
-    default: null
+    default: process.env.ISY_HOST
   },
-  'isyhttps': {
+  'ISY_HTTPS': {
     type: Boolean,
-    default: false
+    default: process.env.ISY_HTTPS
   },
-  'isyversion': {
+  'ISY_VERSION': {
     type: String,
     default: '0.0.0'
   },
-  'mqttaddress': {
+  'MQTT_HOST': {
     type: String,
-    default: '127.0.0.1'
+    default: process.env.MQTT_HOST
   },
-  'mqttport': {
+  'MQTT_PORT': {
     type: Number,
-    default: 1883
+    default: process.env.MQTT_PORT
   },
-	'mqttwsport': {
+	'MQTT_WSPORT': {
     type: Number,
-    default: 8083
+    default: process.env.MQTT_WSPORT
   }
 })
 
@@ -88,13 +88,13 @@ SettingsSchema.statics = {
 		const query = {name: 'polyglot'}
 		return SettingsModel.findOne(query, callback)
 	},
-
+	/*
 	resetToDefault (callback){
 		const newSettings = new SettingsModel()
 		const query = {name: 'polyglot'}
 		const options = {overwrite: true, new: true, upsert: true}
 		var upsertData = newSettings.toObject()
-		delete upsertData._id
+		upsertData._id = undefined
 		SettingsModel.findOneAndUpdate(query, upsertData, options, callback)
 	}
 

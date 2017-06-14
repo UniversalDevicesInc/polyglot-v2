@@ -580,7 +580,7 @@ NodeServerSchema.methods = {
 					nsuser: 'polyglot',
 					nspwd: 'gTmZznSGe9Es6FTJ',
 					isyusernum: 0,
-					port: process.env.LISTEN_PORT,
+					port: process.env.HOST_PORT,
 					timeout: 0,
 					ssl: process.env.USE_HTTPS,
 					enabled: true

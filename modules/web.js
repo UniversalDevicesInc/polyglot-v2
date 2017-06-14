@@ -10,6 +10,7 @@ const config = require('../config/config')
 const passport = require('passport')
 const compression = require('compression')
 const logger = require('./logger')
+const helpers = require('./helpers')
 
 module.exports = {
   Server: null,
@@ -72,6 +73,7 @@ module.exports = {
       this.Server.listen(port, '0.0.0.0', () => {
         logger.info('Secure Server started on port ' + port)
       })
+
     }
   },
 

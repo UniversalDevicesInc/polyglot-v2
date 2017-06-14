@@ -130,13 +130,12 @@ router.post('/addns', passport.authenticate('jwt', {session: false}), (req, res,
 		})
 	})
 
+*/
 	router.get('/settings', passport.authenticate('jwt', {session: false}), (req, res, next) => {
 		cleanSettings = JSON.parse(JSON.stringify(config.settings))
 		cleanSettings.isypassword = undefined
-		cleanSettings._id = undefined
-		cleanSettings.name = undefined
 		return res.json(cleanSettings)
-	}) */
+	})
 
 	router.get('/nodeservers', passport.authenticate('jwt', {session: false}), (req, res, next) => {
 		NodeServerModel.getAllNodeServers((err, docs) => {
