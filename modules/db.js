@@ -14,6 +14,10 @@ module.exports = {
 	Server: null,
 
 	startService(callback) {
+		if (process.env.MONGO_URI === undefined) {
+			logger.error('Could not find DB URI...')
+			if (callback) return callback('shutdown')
+		}
 		if (!this.Server) {
 			// Connect to database
 			opts = {

@@ -8,25 +8,19 @@ module.exports = {
 
 		startService(callback) {
 			if (this.Client) { if (callback) return callback() }
+			this.clientId = 'polyglot'
 			var options = {
 				keepalive: 60,
 				clean: true,
-				clientId: 'polyglot',
+				clientId: this.clientId,
 				reconnectPeriod: 5000,
-				will: {retain: true}
+				will: { retain: true }
 			}
 			if(!process.env.MQTT_HOST || !process.env.MQTT_PORT) {
 				logger.error('MQTT Address or Port not set... Check your Settings.')
 				return
 			}
 
-			this.clientId = 'polyglot'
-			options['clientId'] = this.clientId
-			/*
-			Set the Last Will and Testament for the Nodeserver. Allows NodeServers to be notified
-			in case	of catastrophic failure. This message is automatically stored and sent by the
-			broker if ungraceful disconnection occurs or the keepalive is exceeded.
-			*/
 			options['will']['topic'] = 'udi/polyglot/connections/polyglot'
 			options['will']['payload'] = new Buffer(JSON.stringify({node: this.clientId, 'connected': false}))
 			this.Client = mqtt.connect('mqtt://'+ process.env.MQTT_HOST + ':' + process.env.MQTT_PORT, options)
@@ -40,6 +34,7 @@ module.exports = {
 					payload = JSON.parse(payload.toString())
 				} catch (e) {
 					logger.error('MQTT: Badly formatted JSON input received. ' + e)
+					return
 				}
 				this.parse(topic, payload)
 			})
@@ -124,7 +119,6 @@ module.exports = {
         var response = {'node': 'polyglot'}
         response[command] = message
       } catch (e) {
-				console.log(e)
          var response = {
           'node': 'polyglot',
           'data': {
@@ -152,27 +146,32 @@ module.exports = {
 				return
 			}
 			logger.debug('MQTT Message: ' + topic + ": " + JSON.stringify(message))
-			if (topic.substring(0,25) === 'udi/polyglot/connections/') {
-				if (message.node.substring(0,18) === 'polyglot_frontend-') {
-					logger.info('MQTT: Frontend Websockets interface ' + (message.connected ? ' Connected.' : ' Disconnected.'))
-				} else if (message.node === config.nodeServers[message.node].profileNum) {
+			try {
+				if (topic.substring(0,25) === 'udi/polyglot/connections/') {
+					if (message.node.toString().substring(0,18) === 'polyglot_frontend-') {
+						logger.info('MQTT: Frontend Websockets interface ' + (message.connected ? ' Connected.' : ' Disconnected.'))
+					} else if (message.node === config.nodeServers[message.node].profileNum) {
+							try {
+								config.nodeServers[message.node].checkCommand(message)
+							} catch (e) {
+								logger.error(`MQTT CheckCommand Error: ${e}`)
+							}
+					}
+				} else if ((topic.substring(0,16) === 'udi/polyglot/ns/') && (topic.slice(-1) === message.node)) {
+					if (message.node === config.nodeServers[message.node].profileNum) {
 						try {
 							config.nodeServers[message.node].checkCommand(message)
 						} catch (e) {
 							logger.error(`MQTT CheckCommand Error: ${e}`)
 						}
-				}
-			} else if ((topic.substring(0,16) === 'udi/polyglot/ns/') && (topic.slice(-1) === message.node)) {
-				if (message.node === config.nodeServers[message.node].profileNum) {
-					try {
-						config.nodeServers[message.node].checkCommand(message)
-					} catch (e) {
-						logger.error(`MQTT CheckCommand Error: ${e}`)
 					}
+				} else {
+					logger.debug('MQTT: Did not match any parse filters. Ignoring. This usually means ' +
+					 'the node value is incorrect. Make sure it matches an active NodeServer and you are publishing to the correct topic. ' + message)
 				}
-			} else {
-				logger.debug('MQTT: Did not match any parse filters. Ignoring. This usually means ' +
-				 'the node value is incorrect. Make sure it matches an active NodeServer and you are publishing to the correct topic. ' + message)
+			} catch (err) {
+				logger.error('MQTT Parse Error: ' + err)
 			}
+
 		}
 }

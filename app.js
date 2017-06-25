@@ -1,6 +1,7 @@
 'use strict'
-const dotenv = require('dotenv')
-dotenv.load()
+const os = require('os')
+const dotenv = require('dotenv').config({path: os.homedir() + '/.polyglot/.env'})
+//dotenv.load()
 const logger = require('./modules/logger')
 const config = require('./config/config')
 const db = require('./modules/db')
@@ -14,7 +15,8 @@ logger.info('Starting Polyglot version 2.0')
 const CONCURRENCY = process.env.WEB_CONCURRENCY || 1
 
 function main() {
-  db.startService(() => {
+  db.startService((err) => {
+    if (err === 'shutdown') { return helpers.shutdown() }
     web.startService()
     mqtt.startService()
   })

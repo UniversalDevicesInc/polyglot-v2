@@ -163,7 +163,7 @@ module.exports = {
 
     restStatus(req, res) {
       let message = {
-        address: req.params.nodeAddress === "0" ? all : req.params.nodeAddress
+        address: req.params.nodeAddress === "0" ? 'all' : req.params.nodeAddress
       }
       mqtt.makeResponse(req.params.id, req.params.command, message)
       if (req.query.requestId) {
@@ -184,6 +184,14 @@ module.exports = {
     },
 
     restCommand(req, res) {
-      console.log(req.params, req.query)
+      logger.debug(`Sending ${req.params.command} to ${req.params.nodeAddress}`)
+  		command = {
+  			address: req.params.nodeAddress.slice(5),
+  			cmd: req.params.command,
+  			value: req.params.value || undefined,
+  			uom: req.params.uom || undefined,
+        query: req.query || undefined
+  		}
+  		mqtt.makeResponse(req.params.id, 'command', command)
     }
 }

@@ -280,7 +280,7 @@ NodeServerSchema.methods = {
 								success = true
 								this.save(() => {
 									let reason = `${data.address} ${data.driver} set sucessfully to ${data.value}`
-									this.sendResult(command, result, true, reason, {address: data.address})
+									//this.sendResult(command, result, true, reason, {address: data.address})
 									logger.info(`${this.logPrefix} ${reason}`)
 									NodeServerModel.sendUpdate()
 								})
@@ -336,14 +336,14 @@ NodeServerSchema.methods = {
 			}
 		}
 		async.each(primaryNodes, (node, callback) => {
-			this.doNodeAdd(node, command, (err) => {
+			this.doNodeAdd(node, command, data, (err) => {
 				if (err) { callback(err)
 				} else { callback()	}
 			})
 		}, (err) => {
 			if (err) {logger.error(`${this.logPrefix} Error adding primary node: ${err}`)}
 			async.each(data.nodes, (node, callback) => {
-				this.doNodeAdd(node, command, (err) => {
+				this.doNodeAdd(node, command, data, (err) => {
 					if (err) { callback(err)
 					} else { callback()	}
 				})
@@ -354,12 +354,13 @@ NodeServerSchema.methods = {
 				else {
 					logger.info(`${this.logPrefix} completed adding node(s).`)
 					NodeServerModel.sendUpdate()
+					this.config()
 				}
 			})
 		})
 	},
 
-	doNodeAdd(node, command, finishcb){
+	doNodeAdd(node, command, data, finishcb){
 			if (!Array.isArray(node.drivers)) {
 				let reason = `${node.address} drivers must be an array.`
 				this.sendResult(command, results, false, reason, {address: node.address})
@@ -372,7 +373,7 @@ NodeServerSchema.methods = {
 						else { return callback(null, result) } })
 				}.bind(this),
 				function (result, callback) {
-					isy.handleRequest(this.profileNum, {api: 'nodes/' + isy.addNodePrefix(this.profileNum, node.address)}, 'restcall', false, (results) => {
+					isy.handleRequest(this.profileNum, {api: 'nodes/' + isy.addNodePrefix(this.profileNum, node.address), seq: data.seq ? data.seq : false}, 'restcall', false, (results) => {
 						if (results.statusCode !== 404) {
 							let reason = `${node.address} already exists on ISY`
 							this.sendResult(command, results, false, reason, {address: node.address})
@@ -399,7 +400,8 @@ NodeServerSchema.methods = {
 						name: node.name,
 						node_def_id: node.node_def_id,
 						primary: node.primary,
-						drivers: node.drivers
+						drivers: node.drivers,
+						seq: data.seq ? data.seq : false
 					}
 					let primaryFound = false
 					if (node.address === node.primary) {
@@ -687,7 +689,7 @@ NodeServerSchema.methods = {
 		})
 	},
 
-	config(data, command) {
+	config(data = null, command = null) {
 		// Hack to deepcopy this.nodes
 		var parseConfig = this.toJSON()
 		parseConfig._id = undefined
@@ -697,20 +699,22 @@ NodeServerSchema.methods = {
 				driver._id = undefined
 			})
 		})
-		mqtt.makeResponse(this.profileNum, 'manifest', parseConfig)
+		mqtt.makeResponse(this.profileNum, 'config', parseConfig)
 	},
 
 	connected(data, command) {
 		this.isConnected = data
 		this.save(() => {
 			logger.info(`${this.logPrefix} NodeServer ${(data ? 'Connected.' : 'Disconnected.')}`)
+			this.config(data, command)
 			NodeServerModel.sendUpdate()
 		})
 	},
 
 	notfound(data, command) {
 		logger.info(`${this.logPrefix} command not found: ${command}`)
-	},
+	}
+
 
 }
 NodeServerModel = mongoose.model('NodeServer', NodeServerSchema)
