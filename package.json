@@ -1,11 +1,14 @@
 {
   "name": "polyglot-v2",
-  "version": "2.0.0",
+  "version": "2.0.0b1",
   "description": "UDI Polyglot Version 2",
+  "bin": {
+    "polyglot-v2": "bin/polyglot-v2.js"
+  },
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app",
+    "start": "node bin/polyglot-v2",
     "start:prod": "NODE_ENV=production npm start",
     "start:dev": "NODE_ENV=development nodemon ."
   },

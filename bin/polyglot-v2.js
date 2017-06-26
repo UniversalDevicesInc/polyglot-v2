@@ -1,13 +1,15 @@
+#!/usr/bin/env node
+
 'use strict'
 const os = require('os')
 const dotenv = require('dotenv').config({path: os.homedir() + '/.polyglot/.env'})
 //dotenv.load()
-const logger = require('./modules/logger')
-const config = require('./config/config')
-const db = require('./modules/db')
-const web = require('./modules/web')
-const mqtt = require('./modules/mqtt')
-const helpers = require('./modules/helpers')
+const logger = require('../lib/modules/logger')
+const config = require('../lib/config/config')
+const db = require('../lib/modules/db')
+const web = require('../lib/modules/web')
+const mqtt = require('../lib/modules/mqtt')
+const helpers = require('../lib/modules/helpers')
 
 logger.info('Starting Polyglot version 2.0')
 
