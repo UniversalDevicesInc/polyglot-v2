@@ -1,6 +1,6 @@
 {
   "name": "polyglot-v2",
-  "version": "2.0.3",
+  "version": "2.0.2",
   "description": "UDI Polyglot Version 2",
   "bin": {
     "polyglot-v2": "bin/polyglot-v2.js"
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "async": "^2.4.1",
-    "bcrypt": "*",
+    "bcryptjs": "*",
     "body-parser": "*",
     "compression": "*",
     "cors": "*",
