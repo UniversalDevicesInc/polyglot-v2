@@ -21,7 +21,7 @@
     "dotenv": "4.0.0",
     "express": "*",
     "jsonwebtoken": "*",
-    "mongoose": "*",
+    "mongoose": "4.10.8",
     "mqtt": "^2.7.2",
     "passport": "*",
     "passport-jwt": "*",
@@ -36,7 +36,13 @@
   ],
   "author": "Einstein.42 (milne.james@gmail.com)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Einstein42/udi-polyglotv2.git"
+  },
   "devDependencies": {
-    "@angular/cli": "^1.0.4"
+    "@angular/cli": "^1.0.4",
+    "ink-docstrap": "1.3.0",
+    "jsdoc": "3.4.3"
   }
 }

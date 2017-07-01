@@ -1,0 +1,3 @@
+#!/bin/bash
+
+jsdoc -c jsdoc.conf.json -t ../node_modules/ink-docstrap/template -d . -P ../package.json -R ../README.md -r ../lib/
