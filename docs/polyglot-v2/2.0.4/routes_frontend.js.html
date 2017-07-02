@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DocStrap Source: modules/helpers.js</title>
+	<title>DocStrap Source: routes/frontend.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,98 +72,198 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: modules/helpers.js</h1>
+		<h1 class="page-title">Source: routes/frontend.js</h1>
     
 <section>
     <article>
         <pre
-            class="sunlight-highlight-javascript linenums">const logger = require('../modules/logger')
-const config = require('../config/config')
+            class="sunlight-highlight-javascript linenums">const express = require('express')
+const router = express.Router()
+const passport = require('passport')
+const jwt = require('jsonwebtoken')
+const UserModel = require('../models/user')
 const SettingsModel = require('../models/settings')
 const NodeServerModel = require('../models/nodeserver')
-const db = require('../modules/db')
+//const db = require('../modules/db')
+const config = require('../config/config')
+const helpers = require('../modules/helpers')
+const logger = require('../modules/logger')
 const mqtt = require('../modules/mqtt')
-const web = require('../modules/web')
-const async = require('async')
 
 /**
- * Generic Helpers Module that has a couple of various methods that didn't fit elsewhere.
- * @module modules/helpers
+ * Frontend Interface Module
+ * @module routes/frontend
  * @version 2.0
  */
 
-module.exports = {
-  /*
-  checkServices() {
-    if (!mqtt.Client) {
-      mqtt.startService(() => {
-          this.resyncNodesToISY()
-      })
-    } else {
-      mqtt.stopService()
-    }
-  }, */
+// Register route (unused currently)
+/*
+router.post('/register', (req, res, next) => {
+	let newUser = new UserModel({
+		username: req.body.username,
+		password: req.body.password
+	})
 
-  /**
-   * resyncNodesToISY wraps a couple of database/ISY checks to make sure the ISY and Local MongoDB are in sync.
-   * @param {function} callback - Simple callback function that returns on error or when function is complete.
-   */
-  resyncNodesToISY(callback=null) {
-    logger.info(`ReSyncing NodeServers with ISY...`)
-    async.each(config.nodeServers, (nodeServer, callback) => {
-      if (!nodeServer) { return callback() }
-      nodeServer.getNodesFromISY(() => {
-        if (callback) return callback()
-      })
-    }, (err) => {
-      if (err) {
-        logger.error(`ReSync NodeServers ERROR: ${err}`)
-        if (callback) return callback(err)
-      } else {
-        SettingsModel.sendUpdate()
-        NodeServerModel.sendUpdate()
-        if (callback) return callback()
-      }
-    })
-  },
+	UserModel.addUser(newUser, (err, user) => {
+		if(err) {
+			res.json({success: false, msg: 'Failed to register user' + err})
+		} else {
+			res.json({success: true, msg: 'User registered'})
+		}
+	})
+}) */
 
-  /**
-   * restartServices is an external function to stop then restart the MQTT service and re-initiate a NodeServer Resync
-   */
-  restartServices() {
-    mqtt.stopService(() => {
-      setTimeout(() => {
-        mqtt.startService(() => {
-          this.resyncNodesToISY()
-        })
-      },1000)
-    })
-  },
 
-  /**
-   * shutdown is the program stop function to terminate the application gracefully.
-   */
-  shutdown() {
-    async.series([
-      this.saveNodeServers(),
-      //web.stopService(),
-      mqtt.stopService(),
-      db.stopService(),
-      process.exit(0)
-    ])
-  },
+/**
+ Headers: Content-Type: application/json
+ Body: {"username": "admin", "password": "admin"}
+ Response: {"success": true, "token": "JWT TOKEN", "user": {"username": "e42"}}
+ * @name authenticate
+ * @route {POST} /frontend/authenticate
+ */
+router.post('/authenticate', (req, res, next) => {
+	const username = req.body.username
+	const password = req.body.password
 
-  /**
-   * saveNodeServers will cycle through all the NodeServers and save the current state to MongoDB. This occurrs automatically before shutdown.
-   */
-  saveNodeServers(callback) {
-    config.nodeServers.forEach((nodeServer) => {
-      logger.debug(`Saving NodeServer ${nodeServer.name} to database.`)
-      nodeServer.save()
-      if (callback) { return callback() }
-    })
-  }
-}
+	UserModel.getUserByUsername(username, (err, user) => {
+	  if (err) { return next(err) }
+		if (!user) {
+			return res.json({success: false, msg: 'User not found'})
+		}
+		UserModel.comparePassword(password, user.password, (err, isMatch) => {
+			if (err) { return next(err) }
+			if (isMatch) {
+				logger.info('Successful login by ' + user.username)
+				const token = jwt.sign(user, process.env.SECRET, {
+					expiresIn: 604800 // 1 week
+				})
+				res.json({
+					success:true,
+					token: 'JWT ' + token,
+					user: {
+						id: user._id,
+						username: user.username
+					}
+				})
+			} else {
+				return res.json({success: false, msg: 'Wrong Password'})
+			}
+		})
+	})
+})
+
+/**
+ Headers: Content-Type: application/json
+ Authorization: JWT token
+ Body: None
+ Response: {"user": {"username": "e42", "password": "$2a$10$fvKDD9EGoRrLUbfE7ypw9.DRPGmwbPoR.Zz7WecsKX4bb2UCZiZ22",}}
+ * @name profile
+ * @route {GET} /frontend/profile
+ */
+router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+	res.json({
+		user: req.user
+	})
+})
+
+/**
+ Headers: Content-Type: application/json
+ Authorization: JWT Token
+ Body: {"name": "Test123", "profileNum": 5}
+ Response: {"success": true,"msg": "Installed into ISY sucessfully. Reboot the ISY and upload the profile.zip", "nodeserver": {"name": "Test123", "profileNum": "5"}}
+ * @name addns
+ * @route {POST} /frontend/addns
+ */
+router.post('/addns', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+	NodeServerModel.addns(req.body.name, req.body.profileNum, (err, response) => {
+		if (err) return next(err)
+		else res.json(response)
+	})
+})
+
+/**
+ Headers: Content-Type: application/json
+ Authorization: JWT Token
+ Body: {"profileNum": 5}
+ Response: {"success":true,"msg":"Test123(5): Succesfully removed NodeServer. You must reboot the ISY."}
+ * @name delns
+ * @route {POST} /frontend/delns
+ */
+router.post('/delns', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+		let profileNum = req.body.profileNum
+		let currentNS = config.nodeServers[profileNum]
+		if (currentNS) {
+			currentNS.deleteNodeServer((err, message) => {
+				if (err) {
+					logger.error(`DeleteNodeServer: ${err}`)
+					res.json({success: false, msg: err})
+				} else {
+					mqtt.delSubscription(profileNum)
+					NodeServerModel.sendUpdate()
+					return res.json({success: true, msg: message})
+				}
+			})
+			} else {
+				let message = `NodeServer with Profile Number ${profileNum} does not exist.`
+				logger.error(`${message}`)
+				return res.json({success: false, msg: message})
+			}
+	})
+
+// Settings routes
+/*
+	router.post('/settings', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+		let newSettings = {updatesettings: req.body}
+		SettingsModel.updateSettings(newSettings, (err, settings) => {
+			if (err) { return next(err) }
+			settings._id = undefined
+			settings.name = undefined
+			config.settings = settings
+			if (settings) {
+				logger.debug('Settings updated.')
+				helpers.restartServices()
+				return res.json({success: true, msg: ''})
+			} else {
+				return res.json({success: false, msg: 'Unable to save settings.'})
+			}
+		})
+	})
+
+	router.get('/settings/reset', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+		SettingsModel.resetToDefault(newSettings, (err, settings) => {
+			if (err) { return next(err) }
+			if (settings) {
+				helpers.restartServices()
+				settings = JSON.parse(JSON.stringify(settings))
+				delete settings._id
+				return res.json(settings)
+			}
+		})
+	})
+*/
+
+/**
+ Headers: Content-Type: application/json
+ Authorization: JWT token
+ Body: None
+ Response: {"isyHost":"10.0.0.14","isyPort":"80","isyUsername":"admin","isyPassword":"admin","isyHttps":"false","mqttHost":"10.0.0.17","mqttPort":"1883","mqttWSPort":"8083"}
+ * @name settings
+ * @route {GET} /frontend/settings
+ */
+	router.get('/settings', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+		cleanSettings = JSON.parse(JSON.stringify(config.settings))
+		cleanSettings.isypassword = undefined
+		return res.json(cleanSettings)
+	})
+
+	router.get('/nodeservers', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+		NodeServerModel.getAllNodeServers((err, docs) => {
+			res.json(JSON.parse(JSON.stringify(docs)))
+		})
+
+	})
+
+module.exports = router
 </pre>
     </article>
 </section>

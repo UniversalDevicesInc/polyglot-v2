@@ -43,6 +43,7 @@
   "devDependencies": {
     "@angular/cli": "^1.0.4",
     "ink-docstrap": "1.3.0",
-    "jsdoc": "3.4.3"
+    "jsdoc": "3.4.3",
+    "jsdoc-route-plugin": "0.1.0"
   }
 }

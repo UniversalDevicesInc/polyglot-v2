@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DocStrap Source: modules/helpers.js</title>
+	<title>DocStrap Source: routes/rest.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,98 +72,111 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: modules/helpers.js</h1>
+		<h1 class="page-title">Source: routes/rest.js</h1>
     
 <section>
     <article>
         <pre
-            class="sunlight-highlight-javascript linenums">const logger = require('../modules/logger')
+            class="sunlight-highlight-javascript linenums">const express = require('express')
+const router = express.Router()
+const passport = require('passport')
+const jwt = require('jsonwebtoken')
+const logger = require('../modules/logger')
+const isy = require('../modules/isy')
+//const NodeServerModel = require('../models/nodeserver')
 const config = require('../config/config')
-const SettingsModel = require('../models/settings')
-const NodeServerModel = require('../models/nodeserver')
-const db = require('../modules/db')
-const mqtt = require('../modules/mqtt')
-const web = require('../modules/web')
-const async = require('async')
+
 
 /**
- * Generic Helpers Module that has a couple of various methods that didn't fit elsewhere.
- * @module modules/helpers
+ * REST API Interface Module
+ * @module routes/rest
  * @version 2.0
  */
 
-module.exports = {
-  /*
-  checkServices() {
-    if (!mqtt.Client) {
-      mqtt.startService(() => {
-          this.resyncNodesToISY()
-      })
-    } else {
-      mqtt.stopService()
+// Incoming from ISY
+router.param('id', (req, res, next, id) => {
+  next()
+})
+
+/**
+* Not Implemented yet
+* @name install
+* @route {GET} rest/id/install/profileNum
+*/
+router.get('/:id/install/:profileNum', (req, res, next) => {
+  logger.debug(`REST: Received Install`)
+  isy.restInstall(req, res)
+  return res.json({success: true})
+})
+
+/**
+* base/nodes/nodeAddress/query[?requestId=requestId]
+* base/nodes/nodeAddress/status[?requestId=requestId]
+* nodeAddress of 0 means query all nodes
+* @name status
+* @route {GET} rest/id/nodes/nodeAddress/command
+*/
+router.get('/:id/nodes/:nodeAddress/:command', (req, res, next) => {
+  logger.debug(`REST: ${req.params.command} recieved from ISY`)
+  isy.restStatus(req, res)
+  return res.json({success: true})
+})
+
+/**
+* base/add/nodes[?requestId=requestId]
+* @name addnodes
+* @route {GET} rest/id/add/nodes
+*/
+router.get('/:id/add/nodes', (req, res, next) => {
+  logger.debug(`REST: Add Nodes`)
+  return res.json({success: true})
+})
+
+//&lt;base>/nodes/&lt;nodeAddress>/report/remove
+//&lt;base>/nodes/&lt;nodeAddress>/report/rename?name=&lt;nodeName>
+//&lt;base>/nodes/&lt;nodeAddress>/report/enable
+//&lt;base>/nodes/&lt;nodeAddress>/report/disable
+//&lt;base>/nodes/&lt;nodeAddress>/report/add/&lt;nodeDefId>?primary=&lt;nodeAddress>&amp;name=&lt;nodeName>
+/**
+* base/id//nodes/report/command/nodeDefId/[?requestId=requestId]
+* @name report
+* @route {GET} base/id//nodes/report/command/nodeDefId/[?requestId=requestId]
+*/
+router.get('/:id/nodes/:nodeAddress/report/:command/:nodeDefId?', (req, res, next) => {
+  logger.debug(`REST: report`)
+  isy.restReport(req, res)
+  return res.json({success: true})
+})
+
+//&lt;base>/nodes/&lt;nodeAddress>/cmd/&lt;command>
+//&lt;base>/nodes/&lt;nodeAddress>/cmd/&lt;command>/&lt;value>
+//&lt;base>/nodes/&lt;nodeAddress>/cmd/&lt;command>/&lt;value>/&lt;uom>
+//[?&lt;p1>.&lt;uom1>=&lt;val1>&amp;&lt;p2>...][requestId=&lt;requestId>]
+/**
+* rest/id/nodeAddress/cmd/command/value/uom
+* @name command
+* @route {GET} rest/id/nodeAddress/cmd/command/value/uom
+*/
+router.get('/:id/nodes/:nodeAddress/cmd/:command/:value?/:uom?', (req, res, next) => {
+  logger.debug(`REST: ${req.params.command} Command received from ISY for ${req.params.nodeAddress}`)
+  isy.restCommand(req, res)
+  if (req.query.requestId) {
+    let data = {
+      requestId: req.query.requestId,
+      success: true
     }
-  }, */
-
-  /**
-   * resyncNodesToISY wraps a couple of database/ISY checks to make sure the ISY and Local MongoDB are in sync.
-   * @param {function} callback - Simple callback function that returns on error or when function is complete.
-   */
-  resyncNodesToISY(callback=null) {
-    logger.info(`ReSyncing NodeServers with ISY...`)
-    async.each(config.nodeServers, (nodeServer, callback) => {
-      if (!nodeServer) { return callback() }
-      nodeServer.getNodesFromISY(() => {
-        if (callback) return callback()
-      })
-    }, (err) => {
-      if (err) {
-        logger.error(`ReSync NodeServers ERROR: ${err}`)
-        if (callback) return callback(err)
-      } else {
-        SettingsModel.sendUpdate()
-        NodeServerModel.sendUpdate()
-        if (callback) return callback()
-      }
-    })
-  },
-
-  /**
-   * restartServices is an external function to stop then restart the MQTT service and re-initiate a NodeServer Resync
-   */
-  restartServices() {
-    mqtt.stopService(() => {
-      setTimeout(() => {
-        mqtt.startService(() => {
-          this.resyncNodesToISY()
-        })
-      },1000)
-    })
-  },
-
-  /**
-   * shutdown is the program stop function to terminate the application gracefully.
-   */
-  shutdown() {
-    async.series([
-      this.saveNodeServers(),
-      //web.stopService(),
-      mqtt.stopService(),
-      db.stopService(),
-      process.exit(0)
-    ])
-  },
-
-  /**
-   * saveNodeServers will cycle through all the NodeServers and save the current state to MongoDB. This occurrs automatically before shutdown.
-   */
-  saveNodeServers(callback) {
-    config.nodeServers.forEach((nodeServer) => {
-      logger.debug(`Saving NodeServer ${nodeServer.name} to database.`)
-      nodeServer.save()
-      if (callback) { return callback() }
-    })
+    isy.handleRequest(req.params.id, data, 'request')
   }
-}
+  return res.json({success: true})
+})
+
+router.get('*', (req, res, next) => {
+  logger.debug('REST: hit the catch all... should not happen.')
+  logger.debug(req.params, req.query)
+  return res.json({success: true})
+})
+
+module.exports = router
 </pre>
     </article>
 </section>

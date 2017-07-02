@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DocStrap Module: modules/web</title>
+	<title>DocStrap Module: routes/rest</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,7 +72,7 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Module: modules/web</h1>
+	<h1 class="page-title">Module: routes/rest</h1>
 <section>
 
 <header>
@@ -84,7 +84,7 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>REST Web Interface Module</p></div>
+            <div class="description"><p>REST API Interface Module</p></div>
         
 
         
@@ -129,8 +129,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="modules_web.js.html">modules/web.js</a>,
-				 <a href="modules_web.js.html#sunlight-1-line-16">line 16</a>
+				<a href="routes_rest.js.html">routes/rest.js</a>,
+				 <a href="routes_rest.js.html#sunlight-1-line-11">line 11</a>
 			</li>
 		</ul>
 	</dd>
@@ -159,31 +159,31 @@
     
 
     
-
-    
-        <h3 class="subsection-title">Methods</h3>
+        <h3 class="subsection-title">Members</h3>
 
         <dl>
             
 <hr>
-<dt>
-    <h4 class="name" id=".startService"><span class="type-signature">&lt;static> </span>startService()</h4>
-    
+<dt class="name" id="addnodes">
+    <h4 id="addnodes"><span class="type-signature">&lt;route> </span>addnodes<span class="type-signature"></span></h4>
+
     
 </dt>
 <dd>
-
     
     <div class="description">
-        <p>Express Start Web API Service and add routes.</p>
+        <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">GET</td>
+                            <td class="name last">rest/id/add/nodes</td>
+                            </tr>
+                            </table>
+                            <p>base/add/nodes[?requestId=requestId]</p>
     </div>
     
 
-    
-
-    
-
-    
     
 
     
@@ -221,8 +221,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="modules_web.js.html">modules/web.js</a>,
-				 <a href="modules_web.js.html#sunlight-1-line-29">line 29</a>
+				<a href="routes_rest.js.html">routes/rest.js</a>,
+				 <a href="routes_rest.js.html#sunlight-1-line-46">line 46</a>
 			</li>
 		</ul>
 	</dd>
@@ -235,18 +235,6 @@
 	
 </dl>
 
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
 
     
 </dd>
@@ -254,73 +242,25 @@
         
             
 <hr>
-<dt>
-    <h4 class="name" id=".stopService"><span class="type-signature">&lt;static> </span>stopService(callback)</h4>
-    
+<dt class="name" id="command">
+    <h4 id="command"><span class="type-signature">&lt;route> </span>command<span class="type-signature"></span></h4>
+
     
 </dt>
 <dd>
-
     
     <div class="description">
-        <p>Express Stop Web API Service and add routes. This is run on shutdown.</p>
+        <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">GET</td>
+                            <td class="name last">rest/id/nodeAddress/cmd/command/value/uom</td>
+                            </tr>
+                            </table>
+                            <p>rest/id/nodeAddress/cmd/command/value/uom</p>
     </div>
     
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Callback when complete.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
     
 
@@ -359,8 +299,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="modules_web.js.html">modules/web.js</a>,
-				 <a href="modules_web.js.html#sunlight-1-line-96">line 96</a>
+				<a href="routes_rest.js.html">routes/rest.js</a>,
+				 <a href="routes_rest.js.html#sunlight-1-line-76">line 76</a>
 			</li>
 		</ul>
 	</dd>
@@ -375,6 +315,42 @@
 
 
     
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="install">
+    <h4 id="install"><span class="type-signature">&lt;route> </span>install<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">GET</td>
+                            <td class="name last">rest/id/install/profileNum</td>
+                            </tr>
+                            </table>
+                            <p>Not Implemented yet</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
 
     
 
@@ -384,12 +360,200 @@
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="routes_rest.js.html">routes/rest.js</a>,
+				 <a href="routes_rest.js.html#sunlight-1-line-22">line 22</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
     
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="report">
+    <h4 id="report"><span class="type-signature">&lt;route> </span>report<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">GET</td>
+                            <td class="name last">base/id//nodes/report/command/nodeDefId/[?requestId</td>
+                            </tr>
+                            </table>
+                            <p>base/id//nodes/report/command/nodeDefId/[?requestId=requestId]</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="routes_rest.js.html">routes/rest.js</a>,
+				 <a href="routes_rest.js.html#sunlight-1-line-61">line 61</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="status">
+    <h4 id="status"><span class="type-signature">&lt;route> </span>status<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">GET</td>
+                            <td class="name last">rest/id/nodes/nodeAddress/command</td>
+                            </tr>
+                            </table>
+                            <p>base/nodes/nodeAddress/query[?requestId=requestId]<br>base/nodes/nodeAddress/status[?requestId=requestId]<br>nodeAddress of 0 means query all nodes</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="routes_rest.js.html">routes/rest.js</a>,
+				 <a href="routes_rest.js.html#sunlight-1-line-33">line 33</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
 
     
 </dd>
 
         </dl>
+    
+
     
 
     

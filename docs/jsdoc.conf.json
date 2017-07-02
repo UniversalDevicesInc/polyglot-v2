@@ -1,8 +1,9 @@
 {
   "tags": {
-    "allowUnknownTags": true
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc", "closure"]
   },
-  "plugins": ["plugins/markdown"],
+  "plugins": ["plugins/markdown", "../node_modules/jsdoc-route-plugin"],
   "templates": {
     "logoFile": "",
     "cleverLinks": false,
