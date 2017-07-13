@@ -228,6 +228,8 @@ sudo systemctl status polyglot-v2.service
 Jul 13 04:38:53 raspberrypi systemd[1]: Started polyglot-v2.
 ```
 
+Default username and password are both `admin`
+
 Logs are located at `~/.polyglot/log/debug.log`
 ```
 # Watch the logs real-time

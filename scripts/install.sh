@@ -86,7 +86,7 @@ echo "ISY_PORT = $isyport" >> ~/.polyglot/.env
 echo "ISY_USERNAME = $isyusername" >> ~/.polyglot/.env
 echo "ISY_PASSWORD = $isypassword" >> ~/.polyglot/.env
 echo "MQTT_HOST = `hostname -I | awk '{print $1}'`" >> ~/.polyglot/.env
-wget https://github.com/Einstein42/udi-polyglotv2/blob/master/scripts/dot.env
+wget https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/dot.env
 cat dot.env >> ~/.polyglot/.env
 rm dot.env
 chmod 600 ~/.polyglot/.env
@@ -102,4 +102,7 @@ $SUDO mv ./polyglot-v2.service /lib/systemd/system/
 $SUDO systemctl enable polyglot-v2
 $SUDO systemctl start polyglot-v2
 
-echo "DONE! Please go to http://$hostip:$hostport"
+echo "###################################################################################"
+echo "DONE! Login to Polyglot v2 at http://$hostip:$hostport"
+echo "Username: admin"
+echo "Password: admin"
