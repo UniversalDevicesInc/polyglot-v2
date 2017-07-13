@@ -37,15 +37,18 @@ else
 fi
 
 ############ MONGODB and MOSQUITTO
-$SUDO wget http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
+wget http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
 $SUDO apt-key add mosquitto-repo.gpg.key
+rm mosquitto-repo.gpg.key
 $SUDO wget http://repo.mosquitto.org/debian/mosquitto-jessie.list -P /etc/apt/sources.list.d/
 $SUDO apt-get update -qy
-$SUDO apt-get install mongodb-server mosquitto python3 python3-dev -qy
-$SUDO cp ./mosquitto.conf /etc/mosquitto/conf.d/local.conf
+$SUDO apt-get install mongodb-server mosquitto python3 python3-dev python3-pip -qy
+$SUDO wget https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/mosquitto.conf -O /etc/mosquitto/conf.d/local.conf
 $SUDO systemctl restart mosquitto
 $SUDO pip3 install -U pip
+wget https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/user.json
 mongoimport --host localhost --db polyglot --collection users --type json --file ./user.json
+rm user.json
 # Websockets3 if necessary.
 # http://ftp.us.debian.org/debian/pool/main/libw/libwebsockets/libwebsockets3_1.2.2-1_armhf.deb
 
@@ -83,7 +86,9 @@ echo "ISY_PORT = $isyport" >> ~/.polyglot/.env
 echo "ISY_USERNAME = $isyusername" >> ~/.polyglot/.env
 echo "ISY_PASSWORD = $isypassword" >> ~/.polyglot/.env
 echo "MQTT_HOST = `hostname -I | awk '{print $1}'`" >> ~/.polyglot/.env
+wget https://github.com/Einstein42/udi-polyglotv2/blob/master/scripts/dot.env
 cat dot.env >> ~/.polyglot/.env
+rm dot.env
 chmod 600 ~/.polyglot/.env
 
 ############ Polyglot v2
@@ -92,7 +97,8 @@ $SUDO npm install -g polyglot-v2
 
 ############ Install Start-Up script
 echo "Installing Polyglot v2 To Start on Boot"
-$SUDO cp ./polyglot-v2.service /lib/systemd/system/
+$SUDO wget https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/polyglot-v2.service
+$SUDO mv ./polyglot-v2.service /lib/systemd/system/
 $SUDO systemctl enable polyglot-v2
 $SUDO systemctl start polyglot-v2
 

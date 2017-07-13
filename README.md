@@ -17,7 +17,19 @@ This Polyglot below documentation is meant to be used in order to help others to
 
 ### Installation instructions
 
-Since Polyglot is an enterprise level application there are several steps to get it up and running, this will be an ongoing process in order to simplify it. These steps are outlined directly for the Raspberry Pi, specifically the 3 or 3b models which were used to test. This has also worked on the original Raspberry Pi (Armv6) as well. A pre-built script is [here](google.com) to do all the heavy lifting for you. This install procedure was tested using a clean install of [Rasbian Jessie Lite](https://www.raspberrypi.org/downloads/raspbian/). Version **July 2017** at time of writing.
+Since Polyglot is an enterprise level application there are several steps to get it up and running, this will be an ongoing process in order to simplify it. These steps are outlined directly for the Raspberry Pi, specifically the 3 or 3b models which were used to test. This has also worked on the original Raspberry Pi (Armv6) as well. A pre-built script is [here](https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/install.sh) to do all the heavy lifting for you. This install procedure was tested using a clean install of [Rasbian Jessie Lite](https://www.raspberrypi.org/downloads/raspbian/). Version **July 2017** at time of writing.
+
+To Install Using the script:
+```
+# Get the Install Script
+wget https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/install.sh
+
+# Make it executable
+chmod 755 install.sh
+
+# Run it (go make some coffee it'll take a bit)
+./install.sh
+```
 
 If you don't use Raspbian or a Debian derivative the manual steps are listed here as well.
 
