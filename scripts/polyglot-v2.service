@@ -1,0 +1,14 @@
+[Unit]
+Description=polyglot-v2
+After=network-online.target mongodb.service
+
+[Service]
+Type=simple
+WorkingDirectory=~/.polyglot/
+ExecStart=/usr/local/bin/polyglot-v2
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
+
