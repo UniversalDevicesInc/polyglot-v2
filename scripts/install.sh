@@ -40,7 +40,7 @@ fi
 wget http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
 $SUDO apt-key add mosquitto-repo.gpg.key
 rm mosquitto-repo.gpg.key
-$SUDO wget http://repo.mosquitto.org/debian/mosquitto-jessie.list -P /etc/apt/sources.list.d/
+$SUDO wget http://repo.mosquitto.org/debian/mosquitto-stretch.list -P /etc/apt/sources.list.d/
 $SUDO apt-get update -qy
 $SUDO apt-get install mongodb-server mosquitto python3 python3-dev python3-pip -qy
 $SUDO wget https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/mosquitto.conf -O /etc/mosquitto/conf.d/local.conf
@@ -97,7 +97,7 @@ $SUDO npm install -g polyglot-v2
 
 ############ Install Start-Up script
 echo "Installing Polyglot v2 To Start on Boot"
-$SUDO wget https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/polyglot-v2.service
+wget https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/polyglot-v2.service
 $SUDO mv ./polyglot-v2.service /lib/systemd/system/
 $SUDO systemctl enable polyglot-v2
 $SUDO systemctl start polyglot-v2
