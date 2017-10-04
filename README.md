@@ -70,16 +70,7 @@ To verify issue the command  `node -v` and you should see version **v6.11.0** or
 [MongoDB](https://www.mongodb.com/) and [Mosquitto](http://mosquitto.org/download/)
 
 ```
-# Get the Mosquito Debian Repository GPG Key
-wget http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
-
-# Install the Mosquitto GPG Key to Apt
-sudo apt-key add mosquitto-repo.gpg.key
-
-# Get the Mosquitto Repository entry
-sudo wget http://repo.mosquitto.org/debian/mosquitto-jessie.list -P /etc/apt/sources.list.d/
-
-# Update your sources to get the Mosquitto repository you just Installed
+# Update your sources
 sudo apt-get update -qy
 
 # Install the MongoDB Server / Mosquitto / Python3 and Python3-dev
@@ -103,7 +94,7 @@ sudo systemctl restart mosquitto
 sudo pip3 install -U pip
 
 # Create MongoDB Seed File (default user for Polyglot)
-echo '{"username": "admin","password": "$2a$10$rhI5QUbz/fsMXEFNMxy.senzW8c2nLvd.JmK1HnJZrhviUBRtKTeC"}' > seed.json
+echo '{"username": "admin","password": "$2a$04$jbFSWw6pSp5bww/fWjE5JuXb7oAfxyNN3PeIkaubQFsHYpGllyea6"}' > seed.json
 
 # Import Seed file to MongoDB
 mongoimport --host localhost --db polyglot --collection users --type json --file ./seed.json

@@ -37,10 +37,10 @@ else
 fi
 
 ############ MONGODB and MOSQUITTO
-wget http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
-$SUDO apt-key add mosquitto-repo.gpg.key
-rm mosquitto-repo.gpg.key
-$SUDO wget http://repo.mosquitto.org/debian/mosquitto-stretch.list -P /etc/apt/sources.list.d/
+#wget http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
+#$SUDO apt-key add mosquitto-repo.gpg.key
+#rm mosquitto-repo.gpg.key
+#$SUDO wget http://repo.mosquitto.org/debian/mosquitto-stretch.list -P /etc/apt/sources.list.d/
 $SUDO apt-get update -qy
 $SUDO apt-get install mongodb-server mosquitto python3 python3-dev python3-pip -qy
 $SUDO wget https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/mosquitto.conf -O /etc/mosquitto/conf.d/local.conf
