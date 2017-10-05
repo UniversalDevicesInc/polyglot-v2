@@ -47,6 +47,6 @@
     "jsdoc-route-plugin": "0.1.0"
   },
   "pkg": {
-    "assets": "source/*"
+    "assets": "public/**/*"
   }
 }
