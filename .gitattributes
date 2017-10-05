@@ -1,2 +1,2 @@
-binaries/* filter=lfs diff=lfs merge=lfs -text
+binaries/polyglot-v2-linux-x64 filter=lfs diff=lfs merge=lfs -text
 binaries/polyglot-v2-linux-armv7 filter=lfs diff=lfs merge=lfs -text
