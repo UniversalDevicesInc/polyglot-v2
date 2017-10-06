@@ -17,7 +17,7 @@ const logger = require('../lib/modules/logger')
 const config = require('../lib/config/config')
 const db = require('../lib/modules/db')
 const web = require('../lib/modules/web')
-const mqtt = require('../lib/modules/mqtt')
+const mqttc = require('../lib/modules/mqttc')
 const helpers = require('../lib/modules/helpers')
 
 logger.info('Starting Polyglot version 2.0')
@@ -30,7 +30,7 @@ function main() {
   db.startService((err) => {
     if (err === 'shutdown') { return helpers.shutdown() }
     web.startService()
-    mqtt.startService()
+    mqttc.startService()
   })
 }
 
