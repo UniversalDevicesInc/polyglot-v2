@@ -7,30 +7,47 @@
  */
 'use strict'
 const os = require('os')
+const fs = require('fs')
 /**
 * All Polyglot config is loaded via the file ~/.polyglot/.env
 * This allows for easy access to configuration for multiple co-resident nodeservers if necessary
 * All nodeservers use this same file to get their base config parameters.
 */
-const dotenv = require('dotenv').config({path: os.homedir() + '/.polyglot/.env'})
+/**
+  * Create ~/.polyglot if it does not exist
+  */
+const polyDir = os.homedir() + '/.polyglot/'
+if (!fs.existsSync(polyDir)) {
+	fs.mkdirSync(polyDir)
+}
+
+/**
+  * Create ~/.polyglot/nodeservers if it does not exist
+  */
+if (!fs.existsSync(polyDir + 'nodeservers')) {
+	fs.mkdirSync(polyDir + 'nodeservers')
+}
+
 const logger = require('../lib/modules/logger')
 const config = require('../lib/config/config')
+config.dotenv = require('dotenv').config({path: polyDir + '.env'})
 const db = require('../lib/modules/db')
 const web = require('../lib/modules/web')
+const mqtts = require('../lib/modules/mqtts')
 const mqttc = require('../lib/modules/mqttc')
 const helpers = require('../lib/modules/helpers')
 
 logger.info('Starting Polyglot version 2.0')
 
-/* Clustering support */
-const CONCURRENCY = process.env.WEB_CONCURRENCY || 1
-
 /* Initial Startup */
 function main() {
   db.startService((err) => {
     if (err === 'shutdown') { return helpers.shutdown() }
-    web.startService()
-    mqttc.startService()
+    mqtts.startService((err) => {
+      if (err) { return helpers.shutdown() }
+      web.startService()
+      mqttc.startService()
+    })
   })
 }
 
