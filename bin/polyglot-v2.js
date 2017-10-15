@@ -2,7 +2,7 @@
 
 /**
  * Polyglot Version 2
- * Documentation at <todo>
+ * Documentation at https://github.com/Einstein42/udi-polyglotv2
  * Written by James Milne(milne.james@gmail.com)
  */
 'use strict'
@@ -26,6 +26,13 @@ if (!fs.existsSync(polyDir)) {
   */
 if (!fs.existsSync(polyDir + 'nodeservers')) {
 	fs.mkdirSync(polyDir + 'nodeservers')
+}
+
+/**
+  * Create ~/.polyglot/ssl if it does not exist
+  */
+if (!fs.existsSync(polyDir + 'ssl')) {
+	fs.mkdirSync(polyDir + 'ssl')
 }
 
 const logger = require('../lib/modules/logger')
