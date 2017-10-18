@@ -43,6 +43,7 @@ const web = require('../lib/modules/web')
 const mqtts = require('../lib/modules/mqtts')
 const mqttc = require('../lib/modules/mqttc')
 const helpers = require('../lib/modules/helpers')
+const ns = require('../lib/models/nodeserver')
 
 logger.info('Starting Polyglot version 2.0')
 
@@ -54,6 +55,7 @@ function main() {
       if (err) { return helpers.shutdown() }
       web.startService()
       mqttc.startService()
+			ns.loadNodeServers()
     })
   })
 }
