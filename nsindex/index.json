@@ -1,7 +1,7 @@
 [{
   "name": "LiFX",
   "desc": "Add LIFX control to the ISY994.",
-  "url": "https://github.com/Einstein42/udi-polyglotv2.git",
+  "url": "https://github.com/Einstein42/udi-lifx-poly.git",
   "language": "python3",
   "author": "e42"
   }]
