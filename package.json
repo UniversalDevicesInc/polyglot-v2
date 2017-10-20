@@ -27,6 +27,7 @@
     "cors": "2.8.4",
     "dotenv": "4.0.0",
     "express": "4.16.1",
+    "fs-extra": "4.0.2",
     "ip": "1.1.5",
     "jsonwebtoken": "8.0.1",
     "jszip": "3.1.4",
