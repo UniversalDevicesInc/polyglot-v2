@@ -11,9 +11,9 @@
     "start": "node bin/polyglot-v2",
     "start:prod": "NODE_ENV=production npm start",
     "start:dev": "NODE_ENV=development nodemon .",
-    "build:armv7": "pkg -t node6-linux-armv7 package.json -o binaries/polyglot-v2-linux-armv7",
-    "build:armv6": "pkg -t node6-linux-armv6 package.json -o binaries/polyglot-v2-linux-armv6",
-    "build:x64": "pkg -t node6-linux-x64 package.json -o binaries/polyglot-v2-linux-x64",
+    "build:armv7": "pkg -t node6-linux-armv7 package.json -o binaries/polyglot-v2-linux-armv7; gzip -9 binaries/polyglot-v2-linux-armv7",
+    "build:armv6": "pkg -t node6-linux-armv6 package.json -o binaries/polyglot-v2-linux-armv6; gzip -9 binaries/polyglot-v2-linux-armv6",
+    "build:x64": "pkg -t node6-linux-x64 package.json -o binaries/polyglot-v2-linux-x64; gzip -9 binaries/polyglot-v2-linux-x64",
     "build:x86": "pkg -t node6-linux-x86 package.json -o binaries/polyglot-v2-linux-x86",
     "build:freebsd": "pkg -t node6-freebsd-x64 package.json -o binaries/polyglot-v2-linux-freebsd",
     "build:macos": "pkg -t node6-macos-x64 package.json -o binaries/polyglot-v2-linux-macos"
