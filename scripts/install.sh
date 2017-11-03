@@ -5,8 +5,8 @@ if [ $EUID != 0 ]; then
     SUDO='sudo'
 fi
 
-$SUDO apt-get update -qy
-$SUDO apt-get install mongodb-server git python3-pip -qy curl
+$SUDO apt-get -qy update
+$SUDO apt-get -qqy install mongodb-server git python3-pip curl
 [ ! -d polyglot ] && mkdir polyglot
 cd polyglot
 
