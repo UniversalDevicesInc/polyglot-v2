@@ -42,11 +42,10 @@ $SUDO systemctl daemon-reload
 $SUDO systemctl enable polyglot-v2.service
 $SUDO systemctl start polyglot-v2.service
 
-
+cd ..
 hostip=$(hostname -I | awk '{print $1}')
 hostport="3000"
 echo "###################################################################################"
 echo "DONE! Login to Polyglot v2 at http://$hostip:$hostport"
 echo "Username: admin"
 echo "Password: admin"
-cd ..
