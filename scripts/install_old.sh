@@ -97,7 +97,7 @@ $SUDO npm install -g polyglot-v2
 
 ############ Install Start-Up script
 echo "Installing Polyglot v2 To Start on Boot"
-wget https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/polyglot-v2.service
+wget -qhttps://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/polyglot-v2.service
 $SUDO mv ./polyglot-v2.service /lib/systemd/system/
 $SUDO systemctl enable polyglot-v2
 $SUDO systemctl start polyglot-v2
