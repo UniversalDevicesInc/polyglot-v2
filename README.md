@@ -19,14 +19,16 @@ This Polyglot below documentation is meant to be used in order to help others to
 
 Since Polyglot is an enterprise level application there are several steps to get it up and running, this will be an ongoing process in order to simplify it. These steps are outlined directly for the Raspberry Pi, specifically the 3 or 3b models which were used to test. This has also worked on the original Raspberry Pi (Armv6) as well. A pre-built script is [here](https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/install.sh) to do all the heavy lifting for you. This install procedure was tested using a clean install of [Rasbian Stretch Lite](https://www.raspberrypi.org/downloads/raspbian/). Version **September 2017** at time of writing.
 
-To Install Using the script:
+To Install Using the script (This will do EVERYTHING for you):
 ```
 # Run the Install Script
 wget -qO - https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/install.sh | bash
 
 ```
 
-If you don't use Raspbian or a Debian derivative the manual steps are listed here as well.
+You do NOT need to proceed with theses instructions if you ran the script above. This is all done for you.
+
+The manual steps are listed here as well.
 
 Steps overview:
  - Install MongoDB
@@ -40,56 +42,9 @@ Steps overview:
 # Update your sources
 sudo apt-get update -qy
 
-# Install the MongoDB Server / Mosquitto / Python3 and Python3-dev
-sudo apt-get install mongodb-server git python3 python3-dev python3-pip -qy
+# Install the MongoDB Server / git / Python3 / Curl
+sudo apt-get -qqy install mongodb-server git python3-pip python3-dev curl
 
-# Add Polyglot Specific configuration to Mosquitto
-sudo nano /etc/mosquitto/conf.d/local.conf
-
-# Paste in the following lines:
-connection_messages true
-log_timestamp true
-listener 1883
-listener 8083
-protocol websockets
-# Save and Exit
-
-# Restart Mosquitto to enable the changes
-sudo systemctl restart mosquitto
-
-# Upgrade Python3 PIP (Needed later)
-sudo pip3 install -U pip
-
-# Create MongoDB Seed File (default user for Polyglot)
-echo '{"username": "admin","password": "$2a$04$jbFSWw6pSp5bww/fWjE5JuXb7oAfxyNN3PeIkaubQFsHYpGllyea6"}' > seed.json
-
-# Import Seed file to MongoDB
-mongoimport --host localhost --db polyglot --collection users --type json --file ./seed.json
-```
-
-At this point lets just make sure all the pre-requisites are good to go:
-```
-# Check Node version
-node -v
-
-v6.11.1
-```
-
-```
-# Check Mosquitto Status
-systemctl status mosquitto
-
-● mosquitto.service - Mosquitto MQTT Broker
-   Loaded: loaded (/lib/systemd/system/mosquitto.service; disabled)
-   Active: active (running) since Thu 2017-07-13 03:40:45 UTC; 20min ago
-     Docs: man:mosquitto(8)
-           https://mosquitto.org/
- Main PID: 857 (mosquitto)
-   CGroup: /system.slice/mosquitto.service
-           └─857 /usr/sbin/mosquitto -c /etc/mosquitto/mosquitto.conf
-```
-
-```
 # Check MongoDB Status
 systemctl status mongodb
 
@@ -107,67 +62,44 @@ systemctl status mongodb
 Now the good stuff. Let's install Polyglot! Login as the user that is going to run Polyglot (pi or whatever you choose). Polyglot does NOT need to be run as root! (PLEASE DO NOT RUN POLYGLOT AS ROOT)
 
 ```
-# Make Polyglot log and configuration directories.
-mkdir -p ~/.polyglot/log
+# Create a polyglot directory
+mkdir polyglot
 
-# Create Polyglot Config File
-nano ~/.polyglot/.env
+# Enter polyglot directory
+cd polyglot
 
-# Change HOST_IP to the ip address Polyglot will serve from
-# Change HOST_PORT to the port you want Polyglot to listen on
-# Change MQTT_HOST to the MQTT Broker IP address (Usually the same as the HOST_IP, however doesn't have to be)
-# Change ISY_HOST to the ISY address
-# Change ISY_USERNAME and ISY_PASSWORD the their respective values
-# Everything else should be fine to leave as the default.
-# Then paste in the following to the file.
-HOST_IP = 192.168.1.25
-HOST_PORT = 3000
-ISY_HOST = 192.168.1.20
-ISY_PORT = 80
-ISY_USERNAME = admin
-ISY_PASSWORD = password
-MQTT_HOST = 192.168.1.25
-MQTT_PORT = 1883
-MQTT_WSPORT = 8083
-# ISY_HTTPS = false
-MONGO_URI = 'mongodb://localhost:27017/polyglot'
-SECRET = 'udi-polyglot'
-NODE_ENV = production
-# End of Paste
+# Get the Polyglot binary. This example is for armv7 Raspberry Pi 3/3b. (armv6 is RPi 1/Nano and x64 is most x86 linux boxes)
+# If you don't know which one to get run the command 'lscpu' and look at the top line. 'Architecture'
+wget -q https://github.com/Einstein42/udi-polyglotv2/raw/master/binaries/polyglot-v2-linux-armv7.tar.gz
 
-# Change the permissions of the Polyglot config file so that only this user account can read it since it does have the ISY password in it.
-chmod 600 ~/.polyglot/.env
+# Extract the archive
+tar -zxf polyglot-v2-linux-armv7.tar.gz
 
-# Install Polyglot via NPM (This will take a bit)
-sudo npm install -g polyglot-v2
+# Run Polyglot normally:
+./polyglot-v2-linux-armv7
+
+# Run Polyglot with debug logging turned on:
+NODE_ENV=development ./polyglot-v2-linux-armv7
 ```
 
 To start Polyglot on Boot do the following:
 ```
-# Create the service file
-sudo nano /lib/systemd/system/polyglot-v2.service
+# Get base systemd script from the GitHub repository
+wget -q https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/polyglot-v2.service
 
-#Paste in the following
-#Edit the User to be the user you want to run Polyglot
-[Unit]
-Description=polyglot-v2
-After=network-online.target mongodb.service
+# Edit it for your system
+nano polyglot-v2.service
 
-[Service]
-Type=simple
-WorkingDirectory=~/.polyglot/
-ExecStart=/usr/local/bin/polyglot-v2
-Restart=always
-User=pi
+# Modify the following sections in the polyglot-v2.service file
+# Replace <PWD> with the current directory that the polyglot binary resides in.
+# Replace <USER> with the user you want polyglot to run as
+# Replace <FILE> with the FULL path to the polyglot binary. e.g. /home/pi/polyglot/polyglot-v2-linux-armv7
 
-[Install]
-WantedBy=multi-user.target
-# End Paste
+# One the above changes are done to the polyglot-v2.service file, move it to the systemd unit folder
+sudo mv polyglot-v2.service /lib/systemd/system/
 
-# Enable the service file
+# Add the service then start polyglot-v2
 sudo systemctl enable polyglot-v2
-
-# Start Polyglot v2!
 sudo systemctl start polyglot-v2
 ```
 
