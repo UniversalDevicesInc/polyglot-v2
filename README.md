@@ -21,60 +21,27 @@ Since Polyglot is an enterprise level application there are several steps to get
 
 To Install Using the script:
 ```
-# Get the Install Script
-wget https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/install.sh
+# Run the Install Script
+wget -qO - https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/install.sh | bash
 
-# Make it executable
-chmod 755 install.sh
-
-# Run it (go make some coffee it'll take a bit)
-./install.sh
 ```
 
 If you don't use Raspbian or a Debian derivative the manual steps are listed here as well.
 
 Steps overview:
- - Install Node.JS LTS (Stable Release)
  - Install MongoDB
- - Install Mosquitto (MQTT Broker)
  - Install Polyglot-v2
 
 ##### Prerequisites
 
-[Node.JS](https://nodejs.org/en/download/)  
-```
-# Get the NodeJS package (Rasbian Jessie currently has a old version in their package repository)
-wget "https://nodejs.org/dist/v6.11.1/node-v6.11.1-linux-armv7l.tar.xz"
-
-# Unpack the binary
-tar -xf node-v6.11.1-linux-armv7l.tar.xz
-
-# Enter the package directory
-cd node-v6.11.1-linux-armv7l
-
-# Remove any un-needed files from the package
-find . -maxdepth 1 -type f -delete
-
-# Install Node.JS to recommended location
-sudo cp -R * /usr/local/
-
-# Back out of the NodeJS Package directory
-cd ..
-
-# Remove the Package folder
-rm -Rf node-v6.11.1-linux-armv7l
-```
-
-To verify issue the command  `node -v` and you should see version **v6.11.0** or higher. If you see version 0.10.\*, then you have an old version and need to try the steps again.
-
-[MongoDB](https://www.mongodb.com/) and [Mosquitto](http://mosquitto.org/download/)
+[MongoDB](https://www.mongodb.com/)
 
 ```
 # Update your sources
 sudo apt-get update -qy
 
 # Install the MongoDB Server / Mosquitto / Python3 and Python3-dev
-sudo apt-get install mongodb-server mosquitto python3 python3-dev python3-pip -qy
+sudo apt-get install mongodb-server git python3 python3-dev python3-pip -qy
 
 # Add Polyglot Specific configuration to Mosquitto
 sudo nano /etc/mosquitto/conf.d/local.conf
