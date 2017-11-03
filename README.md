@@ -75,6 +75,8 @@ tar -zxf polyglot-v2-linux-armv7.tar.gz
 # Run Polyglot normally:
 ./polyglot-v2-linux-armv7
 
+# OR
+
 # Run Polyglot with debug logging turned on:
 NODE_ENV=development ./polyglot-v2-linux-armv7
 ```
