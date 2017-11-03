@@ -4,11 +4,10 @@ After=network-online.target mongodb.service
 
 [Service]
 Type=simple
-WorkingDirectory=~/.polyglot/
-ExecStart=/usr/local/bin/polyglot-v2
+WorkingDirectory=<PWD>
+ExecStart=<FILE>
 Restart=always
-User=pi
+User=<USER>
 
 [Install]
 WantedBy=multi-user.target
-
