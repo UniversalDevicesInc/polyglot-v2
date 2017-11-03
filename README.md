@@ -12,9 +12,6 @@ Using these tools, along with the [MQTT](http://mqtt.org/) messaging protocol, w
 
 While most of the previous code had been written in Python, the event loop driven Node.JS was chosen for this platform due to its asynchronous nature. Python or ANY language can still be used to develop a NodeServer with the standard API interface available.
 
-This Polyglot below documentation is meant to be used in order to help others to understand the code and continue the development from a community perspective.
-
-
 ### Installation instructions
 
 Since Polyglot is an enterprise level application there are several steps to get it up and running, this will be an ongoing process in order to simplify it. These steps are outlined directly for the Raspberry Pi, specifically the 3 or 3b models which were used to test. This has also worked on the original Raspberry Pi (Armv6) as well. A pre-built script is [here](https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/install.sh) to do all the heavy lifting for you. This install procedure was tested using a clean install of [Rasbian Stretch Lite](https://www.raspberrypi.org/downloads/raspbian/). Version **September 2017** at time of writing.
