@@ -134,6 +134,16 @@ tail -f ~/.polyglot/log/debug.log
 7/13/2017, 4:24:39 AM - info: MQTT: Frontend Websockets interface  Connected.
 ```
 
+Enable debug logging for Polyglot
+```
+# Edit the ~/.polyglot/.env file
+nano ~/.polyglot/.env
+
+# Add or modify the NODE_ENV variable
+NODE_ENV=development
+
+```
+
 ### Development Documentation
 
 It is pre-built in the docs folder [Found Here](https://github.com/Einstein42/udi-polyglotv2) on GitHub in HTML format if you clone the repository or available in the
