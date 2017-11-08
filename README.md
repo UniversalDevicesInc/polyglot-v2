@@ -119,7 +119,7 @@ Jul 13 04:38:53 raspberrypi systemd[1]: Started polyglot-v2.
 
 Default username and password are both `admin`
 
-Logs are located at `~/.polyglot/log/debug.log`
+Logs are located at `~/.polyglot/log/debug.log` or you can use the frontend web interface to watch them in real-time.
 ```
 # Watch the logs real-time
 tail -f ~/.polyglot/log/debug.log
@@ -134,7 +134,7 @@ tail -f ~/.polyglot/log/debug.log
 7/13/2017, 4:24:39 AM - info: MQTT: Frontend Websockets interface  Connected.
 ```
 
-##### Enable debug logging for Polyglot
+#### Enable debug logging for Polyglot
 ```
 # Edit the ~/.polyglot/.env file
 nano ~/.polyglot/.env
@@ -142,6 +142,40 @@ nano ~/.polyglot/.env
 # Add or modify the NODE_ENV variable
 NODE_ENV=development
 
+```
+
+#### Configuration Overrides for Polyglot
+These configuration overrides are available in the ~/.polyglot/.env file. Most of them can be updated via the web interface and are all saved to the database, so these are typically not required unless you have a specific reason. These WILL override existing database settings, even if you change them and save in the frontend. Remember these are OVERRIDES.
+```
+# Overrides the IP address Polyglot listens on the local machine.
+HOST_IP='192.168.1.2'
+
+# Overrides the Port that Polyglot listens on for its frontend interface.
+HOST_PORT='3000'
+
+# Username used to login to the ISY.
+ISY_USERNAME='admin'
+
+# Password used to login to the ISY. Careful this is clear text, I wouldn't recommend setting this here.
+ISY_PASSWORD='password'
+
+# ISY IP address. This is automatically discovered on the initial run of Polyglot if you are on the same network. If you have multiple you can update it on the settings page of the frontend, or override it here.
+ISY_HOST='192.168.1.10'
+
+# ISY Port
+ISY_PORT='80'
+
+# ISY HTTPS: True/False This isn't fully tested so beware HTTPS at the moment.
+ISY_HTTPS='false'
+
+# MQTT Host is the IP address of the host running a MQTT server. This is built in to Polyglot so you won't need this unless you'd prefer an external MQTT server.
+MQTT_HOST='127.0.0.1'
+
+# MQTT Port is the port used to connect to the MQTT server. Default is 1883
+MQTT_PORT='1883'
+
+# MQTT Websockets Port. The Frontend interface is currently MQTT over Websockets. The default port is 8083
+MQTT_WSPORT='8083'
 ```
 
 ### Development Documentation
