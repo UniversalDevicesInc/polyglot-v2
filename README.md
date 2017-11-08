@@ -176,6 +176,15 @@ MQTT_PORT='1883'
 
 # MQTT Websockets Port. The Frontend interface is currently MQTT over Websockets. The default port is 8083
 MQTT_WSPORT='8083'
+
+# URI to access MongoDB. You might need this if you have an off-box Mongo instance.
+MONGO_URI='mongodb://localhost:27017/'
+
+# Secret is the key used to encrypt the passwords (and future MQTT data) in the database.
+SECRET='udi-polyglot'
+
+# To enable debug logging set the NODE_ENV override to 'development'
+NODE_ENV='development'
 ```
 
 ### Development Documentation
