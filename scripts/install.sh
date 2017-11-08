@@ -47,6 +47,6 @@ echo "##########################################################################
 echo "DONE! Login to Polyglot v2 at http://$hostip:$hostport"
 echo "Username: admin"
 echo "Password: admin"
-echo "Be patient. I may take up to two minutes for the interface to be available while"
+echo "Be patient. It may take up to three minutes for the interface to be available while"
 echo "MongoDB and Polyglot start up for the first time."
 echo "###################################################################################"
