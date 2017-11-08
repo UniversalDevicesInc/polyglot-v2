@@ -12,8 +12,8 @@ $SUDO apt-get -qy update
 $SUDO apt-get -qqy install mongodb-server git python3-pip python3-dev curl
 echo "########################################################################################"
 echo "Moving to polyglot directory ......"
-[ ! -d polyglot ] && mkdir polyglot
-cd polyglot
+[ ! -d ~/polyglot ] && mkdir ~/polyglot
+cd ~/polyglot
 armVer=$(lscpu | head -1 | awk '{print $2}')
 if [ "$armVer" = "armv6l" ]; then
   file_string="polyglot-v2-linux-armv6"

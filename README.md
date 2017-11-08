@@ -19,7 +19,7 @@ The steps are outlined directly for the Raspberry Pi, specifically the 3 or 3b m
 To Install Using the script (This will do EVERYTHING for you):
 ```
 # Run the Install Script
-wget -qO - https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/install.sh | bash
+wget -qO - https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/install.sh | bash -e
 
 ```
 
