@@ -189,6 +189,8 @@ NODE_ENV='development'
 
 ### Development Documentation
 
+First check the [Wiki](https://github.com/Einstein42/udi-polyglotv2/wiki/Creating-a-NodeServer) for how to build a NodeServer. 
+
 It is pre-built in the docs folder [Found Here](https://github.com/Einstein42/udi-polyglotv2) on GitHub in HTML format if you clone the repository or available in the
 [Online Documentation Found Here](https://doclets.io/Einstein42/udi-polyglotv2/master/overview).
 
