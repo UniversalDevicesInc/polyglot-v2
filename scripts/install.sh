@@ -14,8 +14,6 @@ echo "##########################################################################
 echo "Moving to polyglot directory ......"
 [ ! -d polyglot ] && mkdir polyglot
 cd polyglot
-
-echo "########################################################################################"
 armVer=$(lscpu | head -1 | awk '{print $2}')
 if [ "$armVer" = "armv6l" ]; then
   file_string="polyglot-v2-linux-armv6"
@@ -25,7 +23,7 @@ else
   file_string="polyglot-v2-linux-x64"
 fi
 echo "CPU Type is $armVer"
-echo "Removing existing version of polyglot"
+echo "Removing existing version of polyglot if it exists."
 [ -f $file_string.tar.gz ] && rm $file_string.tar.gz
 [ -f $file_string ] && rm $file_string
 echo "Getting $file_string from GitHub"
@@ -49,3 +47,6 @@ echo "##########################################################################
 echo "DONE! Login to Polyglot v2 at http://$hostip:$hostport"
 echo "Username: admin"
 echo "Password: admin"
+echo "Be patient. I may take up to two minutes for the interface to be available while"
+echo "MongoDB and Polyglot start up for the first time."
+echo "###################################################################################"
