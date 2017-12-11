@@ -21,4 +21,6 @@ __Legend:__
 - Write Store functionality > probably separate system
 * Encryption by default
 * MQTT TLS
+- Move Polls to Polyglot instead of API interface
+- Add poll timer configuration to NodeServer Control page default 10/30 seconds
 ```
