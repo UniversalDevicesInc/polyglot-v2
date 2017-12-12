@@ -1,5 +1,14 @@
 # __Changelog for Polyglot v2__
 
+### Version 2.0.26
+
+* Moved polling mechanism for NodeServers from client to server side
+* Created NodeServer template for python2/3
+* Added shortPoll/longPoll initial configurable timers in server.json
+* Fixed frontend bug finds
+* Updated polyinterface to be python2 and 3 compatible
+* Added 'localhost' to certificate SANs for Python2 compatibility
+
 ### Version 2.0.25
 
 * TLS/SSL End to end by default.
