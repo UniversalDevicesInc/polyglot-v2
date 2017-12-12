@@ -3,5 +3,22 @@
   "desc": "Add LIFX control to the ISY994.",
   "url": "https://github.com/Einstein42/udi-lifx-poly.git",
   "language": "python3",
-  "author": "e42"
+  "author": "e42",
+  "version": "2.0.0"
+  },
+  {
+    "name": "Sonos",
+    "desc": "Sonos Speaker Control",
+    "url": "https://github.com/Einstein42/udi-sonos-poly.git",
+    "language": "python",
+    "author": "e42",
+    "version": "2.0.1"
+  },
+  {
+    "name": "PythonTemplate",
+    "desc": "A Template to build Python 2/3 NodeServers",
+    "url": "https://github.com/Einstein42/udi-poly-template-python.git",
+    "language": "python",
+    "author": "e42",
+    "version": "2.0.0"
   }]

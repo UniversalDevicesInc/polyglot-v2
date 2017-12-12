@@ -1,5 +1,12 @@
 # __Changelog for Polyglot v2__
 
+### Version 2.0.27
+
+* Added Automatic NodeServer controller ST variable updates into Polyglot itself upon connection/disconnection to reflect realtime state in ISY
+* Cleaned up some for loops and moved to the more efficient array.find
+* Cleaned up database field names to proper camelCase
+* Fixed multiple files in profile.zip bug
+
 ### Version 2.0.26
 
 * Moved polling mechanism for NodeServers from client to server side
