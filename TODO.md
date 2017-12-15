@@ -12,7 +12,7 @@ __Legend:__
 ! Auto-create ISY status variables for NS/Polyglot 'state'
 * Run process.spawn for local nodeservers STDIN>STDOUT
 * NodeServer/Remote NodeServer log display in frontent
-- Fully update documentation/install guide
+* Fully update documentation/install guide
 * Find place to store binaries
 - In-place Upgrade for Polyglot itself
 - Rediscover ISY from settings page
@@ -21,6 +21,8 @@ __Legend:__
 - Write Store functionality > probably separate system
 * Encryption by default
 * MQTT TLS
-- Move Polls to Polyglot instead of API interface
+* Move Polls to Polyglot instead of API interface
 - Add poll timer configuration to NodeServer Control page default 10/30 seconds
+- Add customParams addition and deletion api in polyinterface to allow nodeservers to store data in mongodb.
+- Oauth flow integration for NodeServers like Nest into frontend? Not sure if possible.
 ```
