@@ -1,5 +1,10 @@
 # __Changelog for Polyglot v2__
 
+### Version 2.0.28
+
+* SSL Generation bug addressed for some users. TLS x509 v3 Subject Alternate Name Type 7
+* Added development environment document
+
 ### Version 2.0.27
 
 * Added Automatic NodeServer controller ST variable updates into Polyglot itself upon connection/disconnection to reflect realtime state in ISY
