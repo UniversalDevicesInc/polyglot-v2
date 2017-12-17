@@ -44,7 +44,7 @@ cd ..
 hostip=$(hostname -I | awk '{print $1}')
 hostport="3000"
 echo "###################################################################################"
-echo "DONE! Login to Polyglot v2 at http://$hostip:$hostport"
+echo "DONE! Login to Polyglot v2 at https://$hostip:$hostport"
 echo "Username: admin"
 echo "Password: admin"
 echo "Be patient. It may take up to three minutes for the interface to be available while"
