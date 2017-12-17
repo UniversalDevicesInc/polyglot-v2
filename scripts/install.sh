@@ -9,7 +9,7 @@ echo "##########################################################################
 echo "Staring Polyglot Install ......"
 echo "Updating System and installing MongoDB, git, python3, curl and relevant dependencies"
 $SUDO apt-get -qy update
-$SUDO apt-get -qqy install mongodb-server git python3-pip python3-dev curl
+$SUDO apt-get -qqy install mongodb-server git python3-pip python3-dev python2.7-dev python-pip curl
 echo "########################################################################################"
 echo "Moving to polyglot directory ......"
 [ ! -d ~/polyglot ] && mkdir ~/polyglot
