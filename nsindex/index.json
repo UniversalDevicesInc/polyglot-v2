@@ -1,6 +1,6 @@
 [{
   "name": "LiFX",
-  "desc": "Add LIFX control to the ISY994.",
+  "desc": "LIFX Bulb Control",
   "url": "https://github.com/Einstein42/udi-lifx-poly.git",
   "language": "python3",
   "author": "e42",
@@ -29,4 +29,13 @@
     "language": "python",
     "author": "e42",
     "version": "2.0.0"
-  }]
+  },
+  {
+    "name": "Hue",
+    "desc": "Hue Bulb Control",
+    "url": "https://github.com/Einstein42/udi-nest-poly.git",
+    "language": "python3",
+    "author": "xKing",
+    "version": "0.0.1"
+  }
+]
