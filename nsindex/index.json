@@ -33,7 +33,7 @@
   {
     "name": "Hue",
     "desc": "Hue Bulb Control",
-    "url": "https://github.com/Einstein42/udi-nest-poly.git",
+    "url": "https://github.com/exking/udi-hue-poly",
     "language": "python3",
     "author": "xKing",
     "version": "0.0.1"
