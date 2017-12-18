@@ -1,5 +1,9 @@
 # __Changelog for Polyglot v2__
 
+### Version 2.0.29
+* Fixed customParams deletion of last key from frontend
+* Verified port override works in .env
+
 ### Version 2.0.28
 
 * SSL Generation bug addressed for some users. TLS x509 v3 Subject Alternate Name Type 7

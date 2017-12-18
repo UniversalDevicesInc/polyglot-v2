@@ -25,4 +25,5 @@ __Legend:__
 - Add poll timer configuration to NodeServer Control page default 10/30 seconds
 - Add customParams addition and deletion api in polyinterface to allow nodeservers to store data in mongodb.
 - Oauth flow integration for NodeServers like Nest into frontend? Not sure if possible.
+- Add websocket disconnection notification mechanism in frontend
 ```
