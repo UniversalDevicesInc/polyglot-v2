@@ -3,10 +3,16 @@
 ### Version 2.0.29
 * Fixed customParams deletion of last key from frontend
 * Verified port override works in .env
+* Added better connection handling to frontend
+* Prominent disconnect notice from backend
+* Better reconnection and recovery mechanism for Frontend
+* Added shortPoll/longPoll configuration items
+* Renamed Custom Params to Configuration to house all future frontend config options
 
 ### Version 2.0.28
 
 * SSL Generation bug addressed for some users. TLS x509 v3 Subject Alternate Name Type 7
+* SSL Generation bug ended up being type 7 ip instead of type 7 value
 * Added development environment document
 
 ### Version 2.0.27
