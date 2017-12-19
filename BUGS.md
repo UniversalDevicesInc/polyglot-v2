@@ -7,8 +7,11 @@ __Legend:__
 ! unable/impossible
 ```
 
+### 2.0.29
+* customParams deletion of final key from frontend
+
 ### 2.0.28
-- Check overrides with TLS enabled by default. Report of port override not working
+* Check overrides with TLS enabled by default. Report of port override not working
 
 ### 2.0.27
 * TLS certificate generation failure
