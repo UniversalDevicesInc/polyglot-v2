@@ -26,7 +26,7 @@ cd ~/polyglot
 wget https://github.com/Einstein42/udi-polyglotv2/raw/master/binaries/curl https://github.com/Einstein42/udi-polyglotv2/raw/master/binaries/polyglot-v2-osx-x64.tar.gz
 tar zxf polyglot-v2-osx-x64.tar.gz
 
-#### wget plist
+wget https://raw.githubusercontent.com/Einstein42/udi-polyglotv2/master/scripts/com.universal-devices.polyglot.plist
 sudo cp com.universal-devices.polyglot.plist /Library/LaunchDaemon
 sudo launchctl load com.universal-devices.polyglot
 
