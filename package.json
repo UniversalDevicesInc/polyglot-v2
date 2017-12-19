@@ -16,7 +16,7 @@
     "build:x64": "pkg -t node6-linux-x64 package.json -o binaries/polyglot-v2-linux-x64; chmod +x binaries/polyglot-v2-linux-x64; cd binaries; GZIP=-9 tar cvzf polyglot-v2-linux-x64.tar.gz polyglot-v2-linux-x64 --remove-files",
     "build:x86": "pkg -t node6-linux-x86 package.json -o binaries/polyglot-v2-linux-x86",
     "build:freebsd": "pkg -t node6-freebsd-x64 package.json -o binaries/polyglot-v2-linux-freebsd",
-    "build:macos": "pkg -t node6-macos-x64 package.json -o binaries/polyglot-v2-linux-macos"
+    "build:osx": "pkg -t node8-osx-x64 package.json -o binaries/polyglot-v2-osx-x64; chmod +x binaries/polyglot-v2-osx-x64; cd binaries; GZIP=-9 tar cvzf polyglot-v2-osx-x64.tar.gz polyglot-v2-osx-x64; rm polyglot-v2-osx-x64"
   },
   "dependencies": {
     "async": "^2.4.1",
