@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.universal-devices.polyglot</string>
+  <key>Program</key>
+  <string>/Users/e42/polyglot/polyglot-v2-osx-x64</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+  	<key>NODE_ENV</key>
+  	<string>development</string>
+  </dict>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+  <key>WorkingDirectory</key>
+  <string>/Users/e42/polyglot/</string>
+  <key>UserName</key>
+  <string>e42</string>
+  <key>GroupName</key>
+  <string>staff</string>
+  <key>InitGroups</key>
+  <true/>
+</dict>
+</plist>
