@@ -44,7 +44,8 @@ wget https://github.com/Einstein42/udi-polyglotv2/raw/master/binaries/curl https
 tar zxf polyglot-v2-osx-x64.tar.gz
 
 wget https://raw.githubusercontent.com/Einstein42/udi-polyglotv2/master/scripts/com.universal-devices.polyglot.plist
-sudo cp com.universal-devices.polyglot.plist /Library/LaunchDaemon
+# Edit the plist and modify the Program/WorkingDirectory/UserName and GroupName keys to your system.
+sudo cp com.universal-devices.polyglot.plist /Library/LaunchDaemons/
 sudo launchctl load com.universal-devices.polyglot
 ```
 
