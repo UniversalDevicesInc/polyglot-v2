@@ -8,9 +8,9 @@ __Legend:__
 ```
 
 ### 2.0.29
-* customParams deletion of final key from frontend
 
 ### 2.0.28
+* customParams deletion of final key from frontend
 * Check overrides with TLS enabled by default. Report of port override not working
 
 ### 2.0.27

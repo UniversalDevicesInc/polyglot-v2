@@ -8,6 +8,8 @@
 * Better reconnection and recovery mechanism for Frontend
 * Added shortPoll/longPoll configuration items
 * Renamed Custom Params to Configuration to house all future frontend config options
+* Added fix for mongoose and mogodb 3.6.0+ $pushAll deprecation
+* Added OSX binary and instructions
 
 ### Version 2.0.28
 
