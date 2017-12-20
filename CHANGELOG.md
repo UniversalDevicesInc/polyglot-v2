@@ -10,6 +10,11 @@
 * Renamed Custom Params to Configuration to house all future frontend config options
 * Added fix for mongoose and mogodb 3.6.0+ $pushAll deprecation
 * Added OSX binary and instructions
+* Cleaned up localStorage from frontend
+* Fixed ISY HTTPS connection issues
+* Fixed issue with NodeServer 10 not getting commands properly
+* Added delete call from Polyglot to NodeServer to allow for cleanup if necessary
+
 
 ### Version 2.0.28
 
