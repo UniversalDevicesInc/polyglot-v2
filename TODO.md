@@ -20,8 +20,9 @@ __Legend:__
 * Move Polls to Polyglot instead of API interface
 * Add poll timer configuration to NodeServer Configuration page default 10/30 seconds
 * Add websocket disconnection notification mechanism in frontend
+* In-place Upgrade for Polyglot itself
+- Verify pool of threads for HTTP
 - Return node validation errors (stupid dashes)
-- In-place Upgrade for Polyglot itself
 - Rediscover ISY from settings page
 - Add nodeserver versions from store. Existing vs available.
 - Write Store functionality > probably separate system

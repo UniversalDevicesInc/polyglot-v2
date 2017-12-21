@@ -1,6 +1,7 @@
 # __Changelog for Polyglot v2__
 
 ### Version 2.0.29
+
 * Fixed customParams deletion of last key from frontend
 * Verified port override works in .env
 * Added better connection handling to frontend
@@ -14,6 +15,8 @@
 * Fixed ISY HTTPS connection issues
 * Fixed issue with NodeServer 10 not getting commands properly
 * Added delete call from Polyglot to NodeServer to allow for cleanup if necessary
+* Added Automated In-Place Upgrade process
+* Moved to NodeJS 8 for binary packaging
 
 
 ### Version 2.0.28
