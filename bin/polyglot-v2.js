@@ -13,6 +13,7 @@ const fs = require('fs')
 * This allows for easy access to configuration for multiple co-resident nodeservers if necessary
 * All nodeservers use this same file to get their base config parameters.
 */
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
 /**
   * Create ~/.polyglot if it does not exist
   */
