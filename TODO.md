@@ -18,14 +18,15 @@ __Legend:__
 * Encryption by default
 * MQTT TLS
 * Move Polls to Polyglot instead of API interface
-* Add poll timer configuration to NodeServer Configuration page default 10/30 seconds
+* Add poll timer configuration to NodeServer Configuration page default 10/60 seconds
 * Add websocket disconnection notification mechanism in frontend
 * In-place Upgrade for Polyglot itself
+- NodeServer update mechansim to allow re-upload of profile.zip if wanted
 - Verify pool of threads for HTTP
 - Return node validation errors (stupid dashes)
 - Rediscover ISY from settings page
 - Add nodeserver versions from store. Existing vs available.
-- Write Store functionality > probably separate system
+- Write Store functionality > probably separate system AWS lambda
 - Add customParams addition and deletion api in polyinterface to allow nodeservers to store data in mongodb.
 - Oauth flow integration for NodeServers like Nest into frontend? Not sure if possible.
 ```
