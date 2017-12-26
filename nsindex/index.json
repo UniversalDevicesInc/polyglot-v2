@@ -37,5 +37,13 @@
     "language": "python3",
     "author": "xKing",
     "version": "0.0.1"
+  },
+  {
+    "name": "Somfy",
+    "desc": "Somfy Shade Control",
+    "url": "https://github.com/fahrer16/udi-somfy-poly.git",
+    "language": "python3",
+    "author": "gewehrschuss",
+    "version": "1.0.0"
   }
 ]
