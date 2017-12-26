@@ -33,10 +33,10 @@
   {
     "name": "Hue",
     "desc": "Hue Bulb Control",
-    "url": "https://github.com/exking/udi-hue-poly",
+    "url": "https://github.com/exking/udi-hue-poly.git",
     "language": "python3",
     "author": "xKing",
-    "version": "0.0.1"
+    "version": "0.1.0"
   },
   {
     "name": "Somfy",
