@@ -6,7 +6,15 @@ __Legend:__
 - TODO
 ! unable/impossible
 ```
+
 ```
+Improve from 2.0.30:
+- Logout on upgrade
+- Restart NodeServer automatically after update from Store
+```
+
+```
+Wishlist:
 * Install nodeserver easily from github/store
 * Profile.zip install from frontend automatically
 ! Auto-create ISY status variables for NS/Polyglot 'state'
