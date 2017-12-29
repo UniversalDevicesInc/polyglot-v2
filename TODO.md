@@ -21,8 +21,8 @@ __Legend:__
 * Add poll timer configuration to NodeServer Configuration page default 10/60 seconds
 * Add websocket disconnection notification mechanism in frontend
 * In-place Upgrade for Polyglot itself
-- NodeServer update mechansim to allow re-upload of profile.zip if wanted
-- Verify pool of threads for HTTP
+* NodeServer update mechansim to allow re-upload of profile.zip if wanted
+* Verify pool of threads for HTTP(S) - Verified by default, pooling, increased max connection pool size.
 - Return node validation errors (stupid dashes)
 - Rediscover ISY from settings page
 - Add nodeserver versions from store. Existing vs available.

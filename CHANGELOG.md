@@ -1,5 +1,12 @@
 # __Changelog for Polyglot v2__
 
+### Version 2.0.30
+
+* Fixed spacing on NodeServer Store page
+* Skip Auto-Detection of ISY if ISY_HOST is defined in .env
+* Added prompt to update profile and reboot on NodeServer git update
+* Cleaned up some frontend message parsing
+
 ### Version 2.0.29
 
 * Fixed customParams deletion of last key from frontend
