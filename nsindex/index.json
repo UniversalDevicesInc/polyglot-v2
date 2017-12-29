@@ -23,12 +23,12 @@
     "version": "2.0.0"
   },
   {
-    "name": "Nest",
+    "name": "Nest2",
     "desc": "Nest Thermostat Control",
     "url": "https://github.com/Einstein42/udi-nest-poly.git",
-    "language": "python",
-    "author": "e42",
-    "version": "2.0.0"
+    "language": "python3",
+    "author": "xKing",
+    "version": "0.0.1"
   },
   {
     "name": "Hue",
