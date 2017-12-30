@@ -13,7 +13,8 @@ Improve from 2.0.30:
 * Custom SSL Certificates for frontend
 - Logout on upgrade
 - Restart NodeServer automatically after update from Store
-- Dynamic node driver frontend update
+- Dynamic node driver update
+- Multiple primaries
 ```
 
 ```
