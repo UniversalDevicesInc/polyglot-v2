@@ -11,6 +11,8 @@ __Legend:__
 Improve from 2.0.30:
 - Logout on upgrade
 - Restart NodeServer automatically after update from Store
+- Prevent duplicate nodes
+- Dynamic node driver frontend update
 ```
 
 ```
