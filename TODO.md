@@ -9,9 +9,10 @@ __Legend:__
 
 ```
 Improve from 2.0.30:
+* Prevent duplicate nodes
+* Custom SSL Certificates for frontend
 - Logout on upgrade
 - Restart NodeServer automatically after update from Store
-- Prevent duplicate nodes
 - Dynamic node driver frontend update
 ```
 
@@ -33,10 +34,12 @@ Wishlist:
 * In-place Upgrade for Polyglot itself
 * NodeServer update mechansim to allow re-upload of profile.zip if wanted
 * Verify pool of threads for HTTP(S) - Verified by default, pooling, increased max connection pool size.
+- Profile upload API in polyinterface to initiate a profile.zip upload (without reboot)
 - Return node validation errors (stupid dashes)
 - Rediscover ISY from settings page
 - Add nodeserver versions from store. Existing vs available.
 - Write Store functionality > probably separate system AWS lambda
 - Add customParams addition and deletion api in polyinterface to allow nodeservers to store data in mongodb.
 - Oauth flow integration for NodeServers like Nest into frontend? Not sure if possible.
+- NodeServer initiate profile upload
 ```

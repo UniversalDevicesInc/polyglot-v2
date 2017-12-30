@@ -1,5 +1,9 @@
 # __Changelog for Polyglot v2__
 
+### Version 2.0.31
+
+* Added custom certificate ability, see README
+
 ### Version 2.0.30
 
 * Fixed spacing on NodeServer Store page

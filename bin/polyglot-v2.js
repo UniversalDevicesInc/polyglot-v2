@@ -35,6 +35,9 @@ if (!fs.existsSync(polyDir + 'nodeservers')) {
 if (!fs.existsSync(polyDir + 'ssl')) {
 	fs.mkdirSync(polyDir + 'ssl')
 }
+if (!fs.existsSync(polyDir + 'ssl/custom')) {
+	fs.mkdirSync(polyDir + 'ssl/custom')
+}
 const config = require('../lib/config/config')
 config.dotenv = require('dotenv').config({path: polyDir + '.env'})
 const logger = require('../lib/modules/logger')
