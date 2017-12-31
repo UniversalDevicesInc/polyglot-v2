@@ -47,6 +47,7 @@ const mqtts = require('../lib/modules/mqtts')
 const mqttc = require('../lib/modules/mqttc')
 const helpers = require('../lib/modules/helpers')
 const ns = require('../lib/models/nodeserver')
+const SettingsModel = require('../lib/models/settings')
 
 logger.info('Starting Polyglot....')
 
@@ -57,7 +58,9 @@ function main() {
     mqtts.startService((err) => {
       if (err) { return helpers.shutdown() }
       web.startService()
-      mqttc.startService()
+      mqttc.startService(() => {
+        SettingsModel.sendUpdate()
+      })
 			ns.loadNodeServers()
     })
   })
