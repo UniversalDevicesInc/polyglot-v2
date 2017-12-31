@@ -10,7 +10,7 @@
 
 ##### Install NodeJS Packages
 * npm install
-* sudo npm install pkg -g
+* sudo npm install pkg nodemon -g
 
 ##### Run Polyglot
 * npm run start:dev
