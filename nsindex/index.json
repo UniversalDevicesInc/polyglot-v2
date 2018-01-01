@@ -53,5 +53,13 @@
       "language": "python3",
       "author": "gewehrschuss",
       "version": "2.0.0"
+  },
+  {
+      "name": "Roomba",
+      "desc": "Roomba Control",
+      "url": "https://github.com/fahrer16/udi-roomba-poly.git",
+      "language": "python3",
+      "author": "gewehrschuss",
+      "version": "1.0.0"
   }
 ]
