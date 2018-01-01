@@ -1,5 +1,13 @@
 # __Changelog for Polyglot v2__
 
+### Version 2.0.31
+
+* Added custom certificate ability, see README
+* Fixed addnode bug where duplicates were possible
+* Fixed removenode callback bug
+* Multiple primaries can now be added (requires polyinterface 2.0.6+)
+* Dynamic updates to drivers by allowing overwrite adds to nodes
+
 ### Version 2.0.30
 
 * Fixed spacing on NodeServer Store page

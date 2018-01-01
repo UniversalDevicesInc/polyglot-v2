@@ -35,6 +35,9 @@ if (!fs.existsSync(polyDir + 'nodeservers')) {
 if (!fs.existsSync(polyDir + 'ssl')) {
 	fs.mkdirSync(polyDir + 'ssl')
 }
+if (!fs.existsSync(polyDir + 'ssl/custom')) {
+	fs.mkdirSync(polyDir + 'ssl/custom')
+}
 const config = require('../lib/config/config')
 config.dotenv = require('dotenv').config({path: polyDir + '.env'})
 const logger = require('../lib/modules/logger')
@@ -44,6 +47,7 @@ const mqtts = require('../lib/modules/mqtts')
 const mqttc = require('../lib/modules/mqttc')
 const helpers = require('../lib/modules/helpers')
 const ns = require('../lib/models/nodeserver')
+const SettingsModel = require('../lib/models/settings')
 
 logger.info('Starting Polyglot....')
 
@@ -54,7 +58,9 @@ function main() {
     mqtts.startService((err) => {
       if (err) { return helpers.shutdown() }
       web.startService()
-      mqttc.startService()
+      mqttc.startService(() => {
+        SettingsModel.sendUpdate()
+      })
 			ns.loadNodeServers()
     })
   })
