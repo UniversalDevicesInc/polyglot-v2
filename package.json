@@ -1,6 +1,6 @@
 {
   "name": "polyglot-v2",
-  "version": "2.0.30",
+  "version": "2.0.31",
   "description": "UDI Polyglot Version 2",
   "bin": {
     "polyglot-v2": "bin/polyglot-v2.js"
@@ -41,6 +41,7 @@
     "request": "^2.83.0",
     "request-progress": "3.0.0",
     "selfsigned": "^1.10.1",
+    "split-ca": "1.0.1",
     "tail": "^1.2.2",
     "websocket-stream": "^5.0.1",
     "winston": "^2.4.0",

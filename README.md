@@ -179,7 +179,19 @@ MONGO_URI='mongodb://localhost:27017/'
 
 # To enable debug logging set the NODE_ENV override to 'development'
 NODE_ENV='development'
+
+# To enable Custom SSL Certificates
+CUSTOM_SSL=true
 ```
+
+#### Custom SSL Certificates for Polyglot
+If you want to use your own SSL certificates instead of the self-signed certificates that Polyglot auto generates for you, then place the certificates in the ~/.polyglot/ssl/custom/ folder. There should be three files present as outlined below. The custom.key file is read then encrypted in the database, the other two are simply read and stored since they are public certs. If the CUSTOM_SSL .env override is set to true, polyglot attempts to read the following files:
+
+* custom.key: this is your private key file
+* custom.crt: this is your public cert file
+* custom.ca: this file can contain multiple ca certificates, otherwise known as the trust chain, this file will have any intermediate and root certificates
+
+Polyglot will attempt to read these files on startup EVERY TIME that CUSTOM_SSL is enabled. If you allow Polyglot to read the files once, you can then delete the custom files and Polyglot will continue to use the saved values from the database. DO NOT DELETE THE ~/.polyglot/ssl/ client/polyglot certificates, these are used for MQTT encryption and authentication. Polyglot will spit them back out on startup even if you accidentally delete them. 
 
 ### Development Documentation
 
