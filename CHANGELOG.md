@@ -1,5 +1,8 @@
 # __Changelog for Polyglot v2__
 
+### Version 2.0.32
+* Fixed duplicate node bug
+
 ### Version 2.0.31
 
 * Added custom certificate ability, see README
