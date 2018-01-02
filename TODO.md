@@ -8,13 +8,13 @@ __Legend:__
 ```
 
 ```
-Improve from 2.0.30:
+Improve from 2.0.33:
 * Prevent duplicate nodes
 * Custom SSL Certificates for frontend
 * Logout on upgrade
-- Restart NodeServer automatically after update from Store
 * Dynamic node driver update
 * Multiple primaries
+- Restart NodeServer automatically after update from Store
 ```
 
 ```
@@ -44,6 +44,5 @@ Wishlist:
 - Write Store functionality > probably separate system AWS lambda
 - Add customParams addition and deletion api in polyinterface to allow nodeservers to store data in mongodb.
 - Oauth flow integration for NodeServers like Nest into frontend? Not sure if possible.
-
-
+- logger discards some messages on the frontend?
 ```
