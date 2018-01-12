@@ -1,7 +1,13 @@
 # __Changelog for Polyglot v2__
 
-### Version 2.0.32
-* Fixed duplicate node bug
+### Version 2.0.34
+
+* Completely re-wrote the addnode functions to not be terrible, moved to ES7+
+* Started code cleanup and unit testing
+
+### Version 2.0.32 - 33
+
+* Worked on duplicate node bug
 
 ### Version 2.0.31
 
