@@ -43,7 +43,7 @@
     "desc": "Somfy Shade Control",
     "url": "https://github.com/fahrer16/udi-somfy-poly.git",
     "language": "python3",
-    "author": "fahrer16",
+    "author": "gewehrschuss",
     "version": "1.0.0"
   },
   {
@@ -51,7 +51,7 @@
       "desc": "Rachio Sprinkler Control",
       "url": "https://github.com/fahrer16/udi-rachio-poly.git",
       "language": "python3",
-      "author": "fahrer16",
+      "author": "gewehrschuss",
       "version": "2.0.0"
   },
   {
@@ -59,15 +59,7 @@
       "desc": "Roomba Control",
       "url": "https://github.com/fahrer16/udi-roomba-poly.git",
       "language": "python3",
-      "author": "fahrer16",
+      "author": "gewehrschuss",
       "version": "1.0.0"
-  },
-  {
-      "name": "MagicHome",
-      "desc": "MagicHome LED Control",
-      "url": "https://github.com/fahrer16/udi-magichome-poly.git",
-      "language": "python3",
-      "author": "fahrer16",
-      "version": "2.0.0"
   }
 ]
