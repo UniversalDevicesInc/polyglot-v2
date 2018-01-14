@@ -69,5 +69,13 @@
       "language": "python3",
       "author": "fahrer16",
       "version": "2.0.0"
+  },
+  {
+      "name": "BlueIris",
+      "desc": "BlueIris Camera Control",
+      "url": "https://github.com/fahrer16/udi-blue-iris-poly.git",
+      "language": "python3",
+      "author": "fahrer16",
+      "version": "1.0.0"
   }
 ]

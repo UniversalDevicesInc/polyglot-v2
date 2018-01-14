@@ -2,7 +2,10 @@
 
 ### Version 2.0.34
 
-* Completely re-wrote the addnode functions to not be terrible, moved to ES7+
+* Completely re-wrote the addnode functions to not be terrible, moved to ES7+ async await
+* Added NodeServer customdata API
+* Implemented inQ's per NodeServer to throttle inbound traffic
+* Implemented outQ to ISY for concurrency to hopefully help connection stability
 * Started code cleanup and unit testing
 
 ### Version 2.0.32 - 33
