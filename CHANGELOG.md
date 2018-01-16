@@ -1,7 +1,23 @@
 # __Changelog for Polyglot v2__
 
+<<<<<<< HEAD
 ### Version 2.0.32
 * Fixed duplicate node bug
+=======
+### Version 2.0.35
+
+* Completely re-wrote the addnode functions to not be terrible, moved to ES7+ async await
+* Added NodeServer customdata API
+* Implemented inQ's per NodeServer to throttle inbound traffic
+* Implemented outQ to ISY for concurrency to help connection stability
+* Started code cleanup and unit testing
+* Restores deleted ISY nodes on NodeServer restart
+* Handles retries to ISY for connection errors
+
+### Version 2.0.32 - 34
+
+* Worked on duplicate node bug
+>>>>>>> edev
 
 ### Version 2.0.31
 

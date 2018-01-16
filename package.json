@@ -1,6 +1,10 @@
 {
   "name": "polyglot-v2",
+<<<<<<< HEAD
   "version": "2.0.33",
+=======
+  "version": "2.0.35",
+>>>>>>> edev
   "description": "UDI Polyglot Version 2",
   "bin": {
     "polyglot-v2": "bin/polyglot-v2.js"
@@ -38,8 +42,10 @@
     "mqtt": "^=2.13.0",
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.0",
+    "queue": "4.4.2",
     "request": "^2.83.0",
     "request-progress": "3.0.0",
+    "request-promise-native": "1.0.5",
     "selfsigned": "^1.10.1",
     "split-ca": "1.0.1",
     "tail": "^1.2.2",
