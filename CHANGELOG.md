@@ -2,6 +2,7 @@
 
 ### Version 2.0.35
 
+* Moved to UDI github Repo
 * Completely re-wrote the addnode functions to not be terrible, moved to ES7+ async await
 * Added NodeServer customdata API
 * Implemented inQ's per NodeServer to throttle inbound traffic
