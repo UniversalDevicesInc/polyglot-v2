@@ -1,9 +1,5 @@
 # __Changelog for Polyglot v2__
 
-<<<<<<< HEAD
-### Version 2.0.32
-* Fixed duplicate node bug
-=======
 ### Version 2.0.35
 
 * Completely re-wrote the addnode functions to not be terrible, moved to ES7+ async await
@@ -17,7 +13,7 @@
 ### Version 2.0.32 - 34
 
 * Worked on duplicate node bug
->>>>>>> edev
+
 
 ### Version 2.0.31
 
