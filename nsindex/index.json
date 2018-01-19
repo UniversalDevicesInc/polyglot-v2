@@ -1,81 +1,98 @@
-[{
-  "name": "LiFX",
-  "desc": "LIFX Bulb Control",
-  "url": "https://github.com/Einstein42/udi-lifx-poly.git",
-  "language": "python3",
-  "author": "e42",
-  "version": "2.0.0"
-  },
-  {
-    "name": "Sonos",
-    "desc": "Sonos Speaker Control",
-    "url": "https://github.com/Einstein42/udi-sonos-poly.git",
-    "language": "python",
-    "author": "e42",
-    "version": "2.0.1"
-  },
-  {
-    "name": "PythonTemplate",
-    "desc": "A Template to build Python 2/3 NodeServers",
-    "url": "https://github.com/Einstein42/udi-poly-template-python.git",
-    "language": "python",
-    "author": "e42",
-    "version": "2.0.0"
-  },
-  {
-    "name": "Nest2",
-    "desc": "Nest Thermostat Control",
-    "url": "https://github.com/exking/udi-nest2-poly.git",
-    "language": "python3",
-    "author": "xKing",
-    "version": "0.0.1"
-  },
-  {
-    "name": "Hue",
-    "desc": "Hue Bulb Control",
-    "url": "https://github.com/exking/udi-hue-poly.git",
-    "language": "python3",
-    "author": "xKing",
-    "version": "0.1.0"
-  },
-  {
-    "name": "Somfy",
-    "desc": "Somfy Shade Control",
-    "url": "https://github.com/fahrer16/udi-somfy-poly.git",
-    "language": "python3",
-    "author": "fahrer16",
-    "version": "1.0.0"
-  },
-  {
-      "name": "Rachio",
-      "desc": "Rachio Sprinkler Control",
-      "url": "https://github.com/fahrer16/udi-rachio-poly.git",
-      "language": "python3",
-      "author": "fahrer16",
-      "version": "2.0.0"
-  },
-  {
-      "name": "Roomba",
-      "desc": "Roomba Control",
-      "url": "https://github.com/fahrer16/udi-roomba-poly.git",
-      "language": "python3",
-      "author": "fahrer16",
-      "version": "1.0.0"
-  },
-  {
-      "name": "MagicHome",
-      "desc": "MagicHome LED Control",
-      "url": "https://github.com/fahrer16/udi-magichome-poly.git",
-      "language": "python3",
-      "author": "fahrer16",
-      "version": "2.0.0"
-  },
-  {
-      "name": "BlueIris",
-      "desc": "BlueIris Camera Control",
-      "url": "https://github.com/fahrer16/udi-blue-iris-poly.git",
-      "language": "python3",
-      "author": "fahrer16",
-      "version": "1.0.0"
-  }
+[
+    {
+        "name": "BlueIris",
+        "desc": "BlueIris Camera Control",
+        "url": "https://github.com/fahrer16/udi-blue-iris-poly.git",
+        "language": "python3",
+        "author": "fahrer16",
+        "version": "1.0.0"
+    },
+    {
+        "name": "HarmonyHub",
+        "desc": "Harmony Hub Control",
+        "url": "https://github.com/jimboca/udi-harmony-poly.git",
+        "language": "python3",
+        "author": "JimBoCA",
+        "version": "2.0.0"
+    },
+    {
+        "name": "Hue",
+        "desc": "Hue Bulb Control",
+        "url": "https://github.com/exking/udi-hue-poly.git",
+        "language": "python3",
+        "author": "xKing",
+        "version": "0.1.0"
+    },
+    {
+        "name": "LiFX",
+        "desc": "LIFX Bulb Control",
+        "url": "https://github.com/Einstein42/udi-lifx-poly.git",
+        "language": "python3",
+        "author": "e42",
+        "version": "2.0.0"
+    },
+    {
+        "name": "MagicHome",
+        "desc": "MagicHome LED Control",
+        "url": "https://github.com/fahrer16/udi-magichome-poly.git",
+        "language": "python3",
+        "author": "fahrer16",
+        "version": "2.0.0"
+    },
+    {
+        "name": "MyQ",
+        "desc": "MyQ Door Control",
+        "url": "https://github.com/Goose66/myq-polyglotv2.git",
+        "language": "python",
+        "author": "kingwr",
+        "version": "1.0.0"
+    },
+    {
+        "name": "Nest2",
+        "desc": "Nest Thermostat Control",
+        "url": "https://github.com/exking/udi-nest2-poly.git",
+        "language": "python3",
+        "author": "xKing",
+        "version": "0.0.1"
+    },
+    {
+        "name": "PythonTemplate",
+        "desc": "A Template to build Python 2/3 NodeServers",
+        "url": "https://github.com/Einstein42/udi-poly-template-python.git",
+        "language": "python",
+        "author": "e42",
+        "version": "2.0.0"
+    },
+    {
+        "name": "Rachio",
+        "desc": "Rachio Sprinkler Control",
+        "url": "https://github.com/fahrer16/udi-rachio-poly.git",
+        "language": "python3",
+        "author": "fahrer16",
+        "version": "2.0.0"
+    },
+    {
+        "name": "Roomba",
+        "desc": "Roomba Control",
+        "url": "https://github.com/fahrer16/udi-roomba-poly.git",
+        "language": "python3",
+        "author": "fahrer16",
+        "version": "1.0.0"
+    },
+    {
+        "name": "Somfy",
+        "desc": "Somfy Shade Control",
+        "url": "https://github.com/fahrer16/udi-somfy-poly.git",
+        "language": "python3",
+        "author": "fahrer16",
+        "version": "1.0.0"
+    },
+    {
+        "name": "Sonos",
+        "desc": "Sonos Speaker Control",
+        "url": "https://github.com/Einstein42/udi-sonos-poly.git",
+        "language": "python",
+        "author": "e42",
+        "version": "2.0.1"
+    }
 ]
