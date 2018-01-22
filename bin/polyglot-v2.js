@@ -67,18 +67,14 @@ function main() {
 }
 
 /* Catch SIGINT/SIGTERM and exit gracefully */
-process.once('SIGINT', function () {
+process.once('SIGINT', async () => {
   logger.info('Caught SIGINT Shutting down.')
-  helpers.shutdown(() => {
-    process.exit(0)
-  })
+  await helpers.shutdown()
 })
 
-process.once('SIGTERM', function () {
+process.once('SIGTERM', async () => {
   logger.info('Caught SIGTERM Shutting down.')
-  helpers.shutdown(() => {
-    process.exit(0)
-  })
+  helpers.shutdown()
 })
 
 process.once('exit', (code) => {
