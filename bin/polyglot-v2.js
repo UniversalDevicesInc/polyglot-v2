@@ -82,9 +82,10 @@ process.once('exit', (code) => {
   logger.info('Polyglot shutdown complete with code: ' + code)
 })
 
+/*
 process.on('unhandledRejection', (err) => {
   logger.error(`Unhandled Promise Rejection: ${err}`)
   process.exit(1)
-})
+}) */
 
 main()
