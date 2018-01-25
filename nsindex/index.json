@@ -75,6 +75,7 @@
         "version": "0.1.0",
         "url": "https://github.com/therealmysteryman/udi-nanoleaf-polyglot.git",
         "name": "NanoLeaf",
+        "language": "python3",
         "author": "automationgeek",
         "desc": "Nanoleaf Polyglot V2 Node Server",
         "status": "active"
