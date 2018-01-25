@@ -19,24 +19,24 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
   */
 const polyDir = os.homedir() + '/.polyglot/'
 if (!fs.existsSync(polyDir)) {
-	fs.mkdirSync(polyDir)
+  fs.mkdirSync(polyDir)
 }
 
 /**
   * Create ~/.polyglot/nodeservers if it does not exist
   */
 if (!fs.existsSync(polyDir + 'nodeservers')) {
-	fs.mkdirSync(polyDir + 'nodeservers')
+  fs.mkdirSync(polyDir + 'nodeservers')
 }
 
 /**
   * Create ~/.polyglot/ssl if it does not exist
   */
 if (!fs.existsSync(polyDir + 'ssl')) {
-	fs.mkdirSync(polyDir + 'ssl')
+  fs.mkdirSync(polyDir + 'ssl')
 }
 if (!fs.existsSync(polyDir + 'ssl/custom')) {
-	fs.mkdirSync(polyDir + 'ssl/custom')
+  fs.mkdirSync(polyDir + 'ssl/custom')
 }
 const config = require('../lib/config/config')
 config.dotenv = require('dotenv').config({path: polyDir + '.env'})
@@ -47,38 +47,44 @@ const mqtts = require('../lib/modules/mqtts')
 const mqttc = require('../lib/modules/mqttc')
 const helpers = require('../lib/modules/helpers')
 const ns = require('../lib/models/nodeserver')
+const child = require('../lib/modules/children')
 const SettingsModel = require('../lib/models/settings')
 
 logger.info('Starting Polyglot....')
 
 /* Initial Startup */
-function main() {
-  db.startService((err) => {
-    if (err === 'shutdown') { return helpers.shutdown() }
-    mqtts.startService((err) => {
-      if (err) { return helpers.shutdown() }
-      web.startService()
-      mqttc.startService(() => {
-        SettingsModel.sendUpdate()
-      })
-			ns.loadNodeServers()
-    })
-  })
+async function main() {
+  try {
+    await db.startService()
+  } catch (err) {
+    logger.error(`MongoDB startup error shutting down: ${err} `)
+    process.exit(1)
+  }
+  await mqtts.startService()
+  web.startService()
+  mqttc.startService()
+  SettingsModel.sendUpdate()
+  ns.loadNodeServers()
 }
 
 /* Catch SIGINT/SIGTERM and exit gracefully */
-process.once('SIGINT', async () => {
+process.once('SIGINT', () => {
   logger.info('Caught SIGINT Shutting down.')
-  await helpers.shutdown()
+  helpers.shutdown()
 })
 
-process.once('SIGTERM', async () => {
+process.once('SIGTERM', () => {
   logger.info('Caught SIGTERM Shutting down.')
   helpers.shutdown()
 })
 
 process.once('exit', (code) => {
   logger.info('Polyglot shutdown complete with code: ' + code)
+})
+
+process.on('unhandledRejection', (err) => {
+  logger.error(`Unhandled Promise Rejection: ${err}`)
+  process.exit(1)
 })
 
 main()

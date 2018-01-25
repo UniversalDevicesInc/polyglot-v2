@@ -65,4 +65,3 @@ ssl/
 test/
 .env
 .env-dev
-binaries/

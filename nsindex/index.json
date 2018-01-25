@@ -1,128 +1,136 @@
 [
     {
-        "name": "BlueIris",
-        "desc": "BlueIris Camera Control",
+        "version": "1.0.0",
+        "status": "active",
         "url": "https://github.com/fahrer16/udi-blue-iris-poly.git",
+        "name": "BlueIris",
         "language": "python3",
         "author": "fahrer16",
-        "version": "1.0.0",
-        "status": "active"
+        "desc": "BlueIris Camera Control"
     },
     {
-        "name": "GPIO",
-        "desc": "Raspberry Pi GPIO Control",
+        "version": "0.0.1",
+        "status": "active",
         "url": "https://github.com/exking/udi-gpio-poly.git",
+        "name": "GPIO",
         "language": "python3",
         "author": "xKing",
-        "version": "0.0.1",
-        "status": "new"
+        "desc": "Raspberry Pi GPIO Control"
     },
     {
-        "name": "HarmonyHub",
-        "desc": "Harmony Hub Control",
+        "version": "2.0.0",
+        "status": "active",
         "url": "https://github.com/jimboca/udi-harmony-poly.git",
+        "name": "HarmonyHub",
         "language": "python3",
         "author": "JimBoCA",
-        "version": "2.0.0",
-        "status": "active"
+        "desc": "Harmony Hub Control"
     },
     {
-        "name": "Hue",
-        "desc": "Hue Bulb Control",
+        "version": "0.1.0",
+        "status": "active",
         "url": "https://github.com/exking/udi-hue-poly.git",
+        "name": "Hue",
         "language": "python3",
         "author": "xKing",
-        "version": "0.1.0",
-        "status": "active"
+        "desc": "Hue Bulb Control"
     },
     {
-        "name": "LiFX",
-        "desc": "LIFX Bulb Control",
+        "version": "2.0.0",
+        "status": "active",
         "url": "https://github.com/Einstein42/udi-lifx-poly.git",
+        "name": "LiFX",
         "language": "python3",
         "author": "e42",
-        "version": "2.0.0",
-        "status": "active"
+        "desc": "LIFX Bulb Control"
     },
     {
-        "name": "MagicHome",
-        "desc": "MagicHome LED Control",
+        "version": "2.0.0",
+        "status": "active",
         "url": "https://github.com/fahrer16/udi-magichome-poly.git",
+        "name": "MagicHome",
         "language": "python3",
         "author": "fahrer16",
-        "version": "2.0.0",
-        "status": "active"
+        "desc": "MagicHome LED Control"
     },
     {
-        "name": "MiLight",
-        "desc": "MiLight v6 Protocol Control",
+        "version": "0.1.0",
+        "status": "active",
         "url": "https://github.com/therealmysteryman/udi-milight-polyglot.git",
+        "name": "MiLight",
         "language": "python3",
         "author": "automationgeek",
-        "version": "0.1.0",
-        "status": "active"
+        "desc": "MiLight v6 Protocol Control"
     },
     {
-        "name": "MyQ",
-        "desc": "MyQ Door Control",
+        "version": "1.0.0",
+        "status": "active",
         "url": "https://github.com/Goose66/myq-polyglotv2.git",
+        "name": "MyQ",
         "language": "python",
         "author": "kingwr",
-        "version": "1.0.0",
+        "desc": "MyQ Door Control"
+    },
+    {
+        "version": "0.1.0",
+        "url": "https://github.com/therealmysteryman/udi-nanoleaf-polyglot.git",
+        "name": "NanoLeaf",
+        "author": "automationgeek",
+        "desc": "Nanoleaf Polyglot V2 Node Server",
         "status": "active"
     },
     {
-        "name": "Nest2",
-        "desc": "Nest Thermostat Control",
+        "version": "0.0.1",
+        "status": "active",
         "url": "https://github.com/exking/udi-nest2-poly.git",
+        "name": "Nest2",
         "language": "python3",
         "author": "xKing",
-        "version": "0.0.1",
-        "status": "active"
+        "desc": "Nest Thermostat Control"
     },
     {
-        "name": "PythonTemplate",
-        "desc": "A Template to build Python 2/3 NodeServers",
+        "version": "2.0.0",
+        "status": "active",
         "url": "https://github.com/Einstein42/udi-poly-template-python.git",
+        "name": "PythonTemplate",
         "language": "python",
         "author": "e42",
-        "version": "2.0.0",
-        "status": "active"
+        "desc": "A Template to build Python 2/3 NodeServers"
     },
     {
-        "name": "Rachio",
-        "desc": "Rachio Sprinkler Control",
+        "version": "2.0.0",
+        "status": "active",
         "url": "https://github.com/fahrer16/udi-rachio-poly.git",
+        "name": "Rachio",
         "language": "python3",
         "author": "fahrer16",
-        "version": "2.0.0",
-        "status": "active"
+        "desc": "Rachio Sprinkler Control"
     },
     {
-        "name": "Roomba",
-        "desc": "Roomba Control",
+        "version": "1.0.0",
+        "status": "active",
         "url": "https://github.com/fahrer16/udi-roomba-poly.git",
+        "name": "Roomba",
         "language": "python3",
         "author": "fahrer16",
-        "version": "1.0.0",
-        "status": "active"
+        "desc": "Roomba Control"
     },
     {
-        "name": "Somfy",
-        "desc": "Somfy Shade Control",
+        "version": "1.0.0",
+        "status": "active",
         "url": "https://github.com/fahrer16/udi-somfy-poly.git",
+        "name": "Somfy",
         "language": "python3",
         "author": "fahrer16",
-        "version": "1.0.0",
-        "status": "active"
+        "desc": "Somfy Shade Control"
     },
     {
-        "name": "Sonos",
-        "desc": "Sonos Speaker Control",
+        "version": "2.0.1",
+        "status": "active",
         "url": "https://github.com/Einstein42/udi-sonos-poly.git",
+        "name": "Sonos",
         "language": "python",
         "author": "e42",
-        "version": "2.0.1",
-        "status": "active"
+        "desc": "Sonos Speaker Control"
     }
 ]
