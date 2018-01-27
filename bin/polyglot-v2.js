@@ -38,17 +38,19 @@ if (!fs.existsSync(polyDir + 'ssl')) {
 if (!fs.existsSync(polyDir + 'ssl/custom')) {
   fs.mkdirSync(polyDir + 'ssl/custom')
 }
+
 const config = require('../lib/config/config')
 config.dotenv = require('dotenv').config({path: polyDir + '.env'})
 const logger = require('../lib/modules/logger')
+
 const db = require('../lib/modules/db')
 const web = require('../lib/modules/web')
 const mqtts = require('../lib/modules/mqtts')
 const mqttc = require('../lib/modules/mqttc')
 const helpers = require('../lib/modules/helpers')
-const ns = require('../lib/models/nodeserver')
-const child = require('../lib/modules/children')
+const NodeServerModel = require('../lib/models/nodeserver')
 const SettingsModel = require('../lib/models/settings')
+const UserModel = require('../lib/models/user')
 
 logger.info('Starting Polyglot....')
 
@@ -60,11 +62,13 @@ async function main() {
     logger.error(`MongoDB startup error shutting down: ${err} `)
     process.exit(1)
   }
+  await SettingsModel.loadSettings()
+  await UserModel.verifyDefaultUser()
   await mqtts.startService()
   web.startService()
   mqttc.startService()
   SettingsModel.sendUpdate()
-  ns.loadNodeServers()
+  NodeServerModel.loadNodeServers()
 }
 
 /* Catch SIGINT/SIGTERM and exit gracefully */
