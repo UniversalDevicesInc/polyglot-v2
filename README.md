@@ -1,5 +1,7 @@
 # UDI Polyglot v2
 
+[![Build Status](https://travis-ci.org/UniversalDevicesInc/polyglot-v2.svg?branch=master)](https://travis-ci.org/UniversalDevicesInc/polyglot-v2)
+
 Polyglot is a Middleware between the [Universal Devices ISY Home Automation device](http://www.universal-devices.com/) and any number of external devices and services.
 
 Polyglot v2 is built on the [MEAN](http://mean.io/) stack which is a production ready enterprise level code stack that includes:
@@ -145,7 +147,7 @@ NODE_ENV=development
 ```
 
 #### Configuration Overrides for Polyglot
-These configuration overrides are available in the ~/.polyglot/.env file. Most of them can be updated via the web interface and are all saved to the database, so these are typically not required unless you have a specific reason. These WILL override existing database settings, even if you change them and save in the frontend. Remember these are OVERRIDES.
+These configuration overrides are available in the ~/.polyglot/.env file. It is not required so you may have to create it. Most of them can be updated via the web interface and are all saved to the database, so these are typically not required unless you have a specific reason. These WILL override existing database settings, even if you change them and save in the frontend. Remember these are OVERRIDES.
 ```
 # Overrides the IP address Polyglot listens on the local machine.
 HOST_IP='192.168.1.2'
@@ -191,7 +193,7 @@ If you want to use your own SSL certificates instead of the self-signed certific
 * custom.crt: this is your public cert file
 * custom.ca: this file can contain multiple ca certificates, otherwise known as the trust chain, this file will have any intermediate and root certificates
 
-Polyglot will attempt to read these files on startup EVERY TIME that CUSTOM_SSL is enabled. If you allow Polyglot to read the files once, you can then delete the custom files and Polyglot will continue to use the saved values from the database. DO NOT DELETE THE ~/.polyglot/ssl/ client/polyglot certificates, these are used for MQTT encryption and authentication. Polyglot will spit them back out on startup even if you accidentally delete them. 
+Polyglot will attempt to read these files on startup EVERY TIME that CUSTOM_SSL is enabled. If you allow Polyglot to read the files once, you can then delete the custom files and Polyglot will continue to use the saved values from the database. DO NOT DELETE THE ~/.polyglot/ssl/ client/polyglot certificates, these are used for MQTT encryption and authentication. Polyglot will spit them back out on startup even if you accidentally delete them.
 
 ### Development Documentation
 
