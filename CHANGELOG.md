@@ -1,5 +1,19 @@
 # __Changelog for Polyglot v2__
 
+### Version 2.0.36
+
+* Binaries moved to S3 (will remove from git completely in 2.0.37)
+* Dynamic lamdba Store and added NodeServer version support
+* Fixed per nodeserver queue for stability and rate limits
+* Re-wrote majority of functions into es2017 async/await structures
+* Re-wrote startup functions
+* Re-structured dependencies
+* Overhaul of all intrinsic mqtt functions to me more efficient
+* Changed store layout
+* Added customData for nodeserver storage
+* Removed auto-reboot functions as they are no longer necessary
+
+
 ### Version 2.0.35
 
 * Moved to UDI github Repo
