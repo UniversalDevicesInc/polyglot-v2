@@ -26,8 +26,8 @@ echo "CPU Type is $armVer"
 echo "Removing existing version of polyglot if it exists."
 [ -f $file_string.tar.gz ] && rm $file_string.tar.gz
 [ -f $file_string ] && rm $file_string
-echo "Getting $file_string from GitHub"
-wget -q https://github.com/Einstein42/udi-polyglotv2/raw/master/binaries/$file_string.tar.gz
+echo "Getting $file_string from S3"
+wget -q https://s3.amazonaws.com/3csolutions/udi/polyglotv2/binaries/$file_string.tar.gz
 echo "Extracting $file_string.tar.gz..."
 tar -zxf $file_string.tar.gz
 echo "Complete..."
