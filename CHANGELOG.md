@@ -1,5 +1,10 @@
 # __Changelog for Polyglot v2__
 
+### Version 2.0.37
+
+* Fixed graceful shutdowns and error catches to properly (and cleanly) shut down.
+* Binaries moved to UDI AWS S3 bucket. Removed from github completely
+
 ### Version 2.0.36
 
 * Binaries moved to S3 (will remove from git completely in 2.0.37)

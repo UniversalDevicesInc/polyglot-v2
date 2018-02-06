@@ -47,12 +47,14 @@ const db = require('../lib/modules/db')
 const web = require('../lib/modules/web')
 const mqtts = require('../lib/modules/mqtts')
 const mqttc = require('../lib/modules/mqttc')
-const helpers = require('../lib/modules/helpers')
+//const helpers = require('../lib/modules/helpers')
+const shutdown = require('../lib/modules/shutdown')
 const NodeServerModel = require('../lib/models/nodeserver')
 const SettingsModel = require('../lib/models/settings')
 const UserModel = require('../lib/models/user')
 
 logger.info('Starting Polyglot....')
+var shuttingDown = false
 
 /* Initial Startup */
 async function main() {
@@ -71,25 +73,35 @@ async function main() {
   NodeServerModel.loadNodeServers()
 }
 
-/* Catch SIGINT/SIGTERM and exit gracefully */
-process.once('SIGINT', () => {
-  logger.info('Caught SIGINT Shutting down.')
-  helpers.shutdown()
-})
+function gracefulShutdown() {
+  if (!shuttingDown) {
+    shuttingDown = true
+    logger.info('Caught SIGTERM/SIGINT Shutting down.')
+    shutdown.now()
+    // If processes fail to shut down, force exit after 3 seconds
+    setTimeout(function() {
+      process.exit()
+    },3*1000)
+  }
+}
 
-process.once('SIGTERM', () => {
-  logger.info('Caught SIGTERM Shutting down.')
-  helpers.shutdown()
-})
+/* Catch SIGINT/SIGTERM and exit gracefully */
+process.on('SIGINT', gracefulShutdown)
+
+process.on('SIGTERM', gracefulShutdown)
 
 process.once('exit', (code) => {
   logger.info('Polyglot shutdown complete with code: ' + code)
 })
 
-/*
+process.on('uncaughtException', (err) => {
+  logger.error(`uncaughtException REPORT THIS!: ${err.stack}`)
+  gracefulShutdown()
+})
+
 process.on('unhandledRejection', (err) => {
-  logger.error(`Unhandled Promise Rejection: ${err}`)
-  process.exit(1)
-}) */
+  logger.error(`unhandledRejection REPORT THIS!: ${err.stack}`)
+  gracefulShutdown()
+})
 
 main()
