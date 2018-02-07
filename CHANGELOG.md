@@ -4,6 +4,9 @@
 
 * Fixed graceful shutdowns and error catches to properly (and cleanly) shut down.
 * Binaries moved to UDI AWS S3 bucket. Removed from github completely
+* Fixed update node not pulling the new version correctly
+* Fixed uninstall nodeserver failing
+* Restructured most of the project in prep for unit testing
 
 ### Version 2.0.36
 
