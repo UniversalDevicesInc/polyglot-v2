@@ -1,16 +1,19 @@
 # __Changelog for Polyglot v2__
 
-### Version 2.0.37
+### Version 2.1.0
 
 * Fixed graceful shutdowns and error catches to properly (and cleanly) shut down.
 * Binaries moved to UDI AWS S3 bucket. Removed from github completely
 * Fixed update node not pulling the new version correctly
 * Fixed uninstall nodeserver failing
 * Restructured most of the project in prep for unit testing
+* Added check for ISY firmware > 5.0.0
+* Changed to read profile directly instead of profile.zip
+* Moved from Mosca MQTT Server to Aedes
 
 ### Version 2.0.36
 
-* Binaries moved to S3 (will remove from git completely in 2.0.37)
+* Binaries moved to S3 (will remove from git completely in 2.1.0)
 * Dynamic lamdba Store and added NodeServer version support (thanks xKing)
 * Fixed per nodeserver queue for stability and rate limits
 * Re-wrote majority of functions into es2017 async/await structures
