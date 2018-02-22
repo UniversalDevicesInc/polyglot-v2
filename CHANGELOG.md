@@ -10,6 +10,9 @@
 * Added check for ISY firmware > 5.0.0
 * Changed to read profile directly instead of profile.zip
 * Moved from Mosca MQTT Server to Aedes
+* Major update to startup/shutdown and data flows
+* Added NodeServer self-service addition button
+* Added documentation link to github repo for each NodeServer
 
 ### Version 2.0.36
 
