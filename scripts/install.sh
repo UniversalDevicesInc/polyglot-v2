@@ -27,12 +27,12 @@ echo "Removing existing version of polyglot if it exists."
 [ -f $file_string.tar.gz ] && rm $file_string.tar.gz
 [ -f $file_string ] && rm $file_string
 echo "Getting $file_string from S3"
-wget -q https://s3.amazonaws.com/3csolutions/udi/polyglotv2/binaries/$file_string.tar.gz
+wget -q https://s3.amazonaws.com/polyglotv2/binaries/$file_string.tar.gz
 echo "Extracting $file_string.tar.gz..."
 tar -zxf $file_string.tar.gz
 echo "Complete..."
 echo "Retrieving Systemd startup scripts from GitHub"
-wget -q https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/polyglot-v2.service
+wget -q https://raw.githubusercontent.com/UniversalDevicesInc/polyglot-v2/master/scripts/polyglot-v2.service
 sed -i "s|<PWD>|$(pwd)|g;s|<USER>|$(whoami)|g;s|<FILE>|$(realpath $file_string)|g" polyglot-v2.service
 [ -f /lib/systemd/system/polyglot-v2.service ] && $SUDO systemctl stop polyglot-v2
 $SUDO mv -f polyglot-v2.service /lib/systemd/system/
