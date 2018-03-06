@@ -1,5 +1,10 @@
 # __Changelog for Polyglot v2__
 
+### Version 2.1.1
+
+* Upgraded to Angular 5 for Frontend interface
+* Migrated from Paho to MQTT.JS for Frontend MQTT Client
+
 ### Version 2.1.0
 
 * Fixed graceful shutdowns and error catches to properly (and cleanly) shut down.
