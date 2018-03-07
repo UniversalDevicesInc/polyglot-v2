@@ -4,6 +4,9 @@
 
 * Upgraded to Angular 5 for Frontend interface
 * Migrated from Paho to MQTT.JS for Frontend MQTT Client
+* Fixed Angular 5 Modal
+* Added Uptime/Started At Frontend messages
+* Fixed MQTT inconsistencies with Aedes
 
 ### Version 2.1.0
 
