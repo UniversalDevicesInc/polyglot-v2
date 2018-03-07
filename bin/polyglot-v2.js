@@ -79,6 +79,7 @@ async function start() {
 
 /* Shutdown */
 async function shutdown() {
+  config.shutdown = true
   await killChildren()
   await saveNodeServers()
   await mqttc.stop()
