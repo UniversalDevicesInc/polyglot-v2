@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "aedes": "0.33.0",
+    "aedes-logging": "2.0.1",
     "aedes-persistence-mongodb": "4.2.1",
     "async": "2.6.0",
     "bcryptjs": "^2.4.3",
