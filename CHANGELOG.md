@@ -7,6 +7,13 @@
 * Fixed Angular 5 Modal
 * Added Uptime/Started At Frontend messages
 * Fixed MQTT inconsistencies with Aedes
+* Completely re-wrote the db calls
+* Moved to ISY Keep-alive for increased speed
+* Increased overall speed roughly 3000% on adds/driver updates
+* Dropped CPU/mem usage by roughly 60%
+* Drivers automatically sync to ISY on node add for 'initialization'
+* Drivers automatically sync to ISY on startup from previously save values
+* Restructured database, no breaking changes at the moment, eventually moving to multi-add interface
 
 ### Version 2.1.0
 
