@@ -66,3 +66,4 @@ test/
 .env
 .env-dev
 binaries/
+backup/
