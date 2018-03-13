@@ -14,6 +14,8 @@
 * Drivers automatically sync to ISY on node add for 'initialization'
 * Drivers automatically sync to ISY on startup from previously save values
 * Restructured database, no breaking changes at the moment, eventually moving to multi-add interface
+* Allow HTTP non-secure configuration option
+* Specify IP to help with Docker builds
 
 ### Version 2.1.0
 
