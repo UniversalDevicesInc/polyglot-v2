@@ -16,12 +16,12 @@ While most of the previous code had been written in Python, the event loop drive
 
 ### Installation instructions
 
-The steps are outlined directly for the Raspberry Pi, specifically the 3 or 3b models which were used to test. This has also worked on the original Raspberry Pi (Armv6) as well. A pre-built script is [here](https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/install.sh) to do all the heavy lifting for you. This install procedure was tested using a clean install of [Rasbian Stretch Lite](https://www.raspberrypi.org/downloads/raspbian/). Version **September 2017** at time of writing.
+The steps are outlined directly for the Raspberry Pi, specifically the 3 or 3b models which were used to test. This has also worked on the original Raspberry Pi (Armv6) as well. A pre-built script is [here](https://raw.githubusercontent.com/UniversalDevicesInc/polyglot-v2/master/scripts/install.sh) to do all the heavy lifting for you. This install procedure was tested using a clean install of [Rasbian Stretch Lite](https://www.raspberrypi.org/downloads/raspbian/). Version **September 2017** at time of writing.
 
 To Install Using the script (This will do EVERYTHING for you):
 ```
 # Run the Install Script
-wget -qO - https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/install.sh | bash -e
+wget -qO - https://raw.githubusercontent.com/UniversalDevicesInc/polyglot-v2/master/scripts/install.sh | bash -e
 
 ```
 
@@ -69,7 +69,7 @@ cd polyglot
 
 # Get the Polyglot binary. This example is for armv7 Raspberry Pi 3/3b. (armv6 is RPi 1/Nano and x64 is most x86 linux boxes)
 # If you don't know which one to get run the command 'lscpu' and look at the top line. 'Architecture'
-wget -q https://github.com/Einstein42/udi-polyglotv2/raw/master/binaries/polyglot-v2-linux-armv7.tar.gz
+wget -q https://s3.amazonaws.com/polyglotv2/binaries/polyglot-v2-linux-armv7.tar.gz
 
 # Extract the archive
 tar -zxf polyglot-v2-linux-armv7.tar.gz
@@ -86,7 +86,7 @@ NODE_ENV=development ./polyglot-v2-linux-armv7
 To start Polyglot on Boot do the following:
 ```
 # Get base systemd script from the GitHub repository
-wget -q https://github.com/Einstein42/udi-polyglotv2/raw/master/scripts/polyglot-v2.service
+wget -q https://raw.githubusercontent.com/UniversalDevicesInc/polyglot-v2/edev/scripts/polyglot-v2.service
 
 # Edit it for your system
 nano polyglot-v2.service
@@ -202,6 +202,6 @@ First check the [Wiki](https://github.com/Einstein42/udi-polyglotv2/wiki/Creatin
 It is pre-built in the docs folder [Found Here](https://github.com/Einstein42/udi-polyglotv2) on GitHub in HTML format if you clone the repository or available in the
 [Online Documentation Found Here](https://doclets.io/Einstein42/udi-polyglotv2/master/overview).
 
-Prebuilt Python3 interface API for building NodeServers is [here](https://github.com/Einstein42/udi-polyglot-interface).
+Prebuilt Python3 interface API for building NodeServers is [here](https://github.com/UniversalDevicesInc/polyglot-v2-python-interface).
 
 NodeJS interface API for building NodeServers is coming soon.
