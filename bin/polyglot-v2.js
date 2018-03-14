@@ -47,12 +47,15 @@ const logger = require('../lib/modules/logger')
 const mongoose = require('mongoose')
 require('../lib/models/settings')
 require('../lib/models/user')
+require('../lib/models/node')
 require('../lib/models/nodeserver')
 var Settings = mongoose.model('Settings')
 var User = mongoose.model('User')
 var NodeServer = mongoose.model('NodeServer')
 
 const db = require('../lib/services/db')
+const dbmaint = require('../lib/modules/dbmaint')
+const nodeserver = require('../lib/modules/nodeserver')
 const mqtts = require('../lib/services/mqtts')
 const web = require('../lib/services/web')
 const mqttc = require('../lib/services/mqttc')
@@ -69,18 +72,20 @@ async function start() {
     process.exit(1)
   }
   await Settings.loadSettings()
+  await dbmaint.check()
   await mqtts.start()
   web.start()
   mqttc.start()
   await User.verifyDefaultUser()
   Settings.sendUpdate()
-  NodeServer.loadNodeServers()
+  nodeserver.loadNodeServers()
 }
 
 /* Shutdown */
 async function shutdown() {
+  config.shutdown = true
   await killChildren()
-  await saveNodeServers()
+  //await saveNodeServers()
   await mqttc.stop()
   await web.stop()
   await mqtts.stop()
@@ -100,10 +105,10 @@ async function saveNodeServers() {
 
 /* Kill all Children */
 async function killChildren() {
-  for (let i = 0; i < config.nodeServers.length; i++) {
-    if (config.nodeServers[i]) {
-      if (config.nodeServers[i].type === 'local') {
-        await config.nodeServers[i].stop()
+  for (let ns in config.nodeServers) {
+    if (ns) {
+      if (config.nodeServers[ns].type === 'local') {
+        await nodeserver.stop(ns)
       }
     }
   }

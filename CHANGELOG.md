@@ -1,5 +1,22 @@
 # __Changelog for Polyglot v2__
 
+### Version 2.1.1
+
+* Upgraded to Angular 5 for Frontend interface
+* Migrated from Paho to MQTT.JS for Frontend MQTT Client
+* Fixed Angular 5 Modal
+* Added Uptime/Started At Frontend messages
+* Fixed MQTT inconsistencies with Aedes
+* Completely re-wrote the db calls
+* Moved to ISY Keep-alive for increased speed
+* Increased overall speed roughly 3000% on adds/driver updates
+* Dropped CPU/mem usage by roughly 60%
+* Drivers automatically sync to ISY on node add for 'initialization'
+* Drivers automatically sync to ISY on startup from previously save values
+* Restructured database, no breaking changes at the moment, eventually moving to multi-add interface
+* Allow HTTP non-secure configuration option
+* Specify IP to help with Docker builds
+
 ### Version 2.1.0
 
 * Fixed graceful shutdowns and error catches to properly (and cleanly) shut down.
