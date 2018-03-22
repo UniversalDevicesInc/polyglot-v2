@@ -86,7 +86,7 @@ NODE_ENV=development ./polyglot-v2-linux-armv7
 To start Polyglot on Boot do the following:
 ```
 # Get base systemd script from the GitHub repository
-wget -q https://raw.githubusercontent.com/UniversalDevicesInc/polyglot-v2/edev/scripts/polyglot-v2.service
+wget -q https://raw.githubusercontent.com/UniversalDevicesInc/polyglot-v2/master/scripts/polyglot-v2.service
 
 # Edit it for your system
 nano polyglot-v2.service
@@ -155,6 +155,9 @@ HOST_IP='192.168.1.2'
 # Overrides the Port that Polyglot listens on for its frontend interface.
 HOST_PORT='3000'
 
+# Overrides the default mode of HTTPS
+USE_HTTPS=false
+
 # Username used to login to the ISY.
 ISY_USERNAME='admin'
 
@@ -168,7 +171,7 @@ ISY_HOST='192.168.1.10'
 ISY_PORT='80'
 
 # ISY HTTPS: True/False This isn't fully tested so beware HTTPS at the moment.
-ISY_HTTPS='false'
+ISY_HTTPS=false
 
 # MQTT Host is the IP address of the host running a MQTT server. This is built in to Polyglot so you won't need this unless you'd prefer an external MQTT server.
 MQTT_HOST='127.0.0.1'
@@ -184,6 +187,9 @@ NODE_ENV='development'
 
 # To enable Custom SSL Certificates
 CUSTOM_SSL=true
+
+# Enable Beta Software Updates
+USE_BETA=true
 ```
 
 #### Custom SSL Certificates for Polyglot
@@ -197,9 +203,9 @@ Polyglot will attempt to read these files on startup EVERY TIME that CUSTOM_SSL 
 
 ### Development Documentation
 
-First check the [Wiki](https://github.com/Einstein42/udi-polyglotv2/wiki/Creating-a-NodeServer) for how to build a NodeServer.
+First check the [Wiki](https://github.com/UniversalDevicesInc/polyglot-v2/wiki/Creating-a-NodeServer) for how to build a NodeServer.
 
-It is pre-built in the docs folder [Found Here](https://github.com/Einstein42/udi-polyglotv2) on GitHub in HTML format if you clone the repository or available in the
+It is pre-built in the docs folder [Found Here](https://github.com/UniversalDevicesInc/polyglot-v2) on GitHub in HTML format if you clone the repository or available in the
 [Online Documentation Found Here](https://doclets.io/Einstein42/udi-polyglotv2/master/overview).
 
 Prebuilt Python3 interface API for building NodeServers is [here](https://github.com/UniversalDevicesInc/polyglot-v2-python-interface).
