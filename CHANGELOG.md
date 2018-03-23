@@ -1,5 +1,14 @@
 # __Changelog for Polyglot v2__
 
+### Version 2.1.2
+
+* Moved addNode/updateNode logic into Polyglot removed from polyinterfaces
+* Added update script to run on all future upgrades to automatically upgrade polyinterfaces
+* Added change nodeDef call if nodeDefId is changed for a node
+* Added change API for ns to change nodeDefId if necessary
+* sendResult bug fix where sometimes node.start() wasn't called
+* Documentation updates
+
 ### Version 2.1.1
 
 * Upgraded to Angular 5 for Frontend interface
