@@ -45,7 +45,7 @@
     "split-ca": "^1.0.1",
     "tail": "^1.2.2",
     "websocket-stream": "5.1.2",
-    "winston": "3.0.0-rc3",
+    "winston": "2.4.1",
     "xml2json-light": "1.0.6"
   },
   "keywords": [
