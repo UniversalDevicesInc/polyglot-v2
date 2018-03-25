@@ -22,4 +22,4 @@ make -j4
 take a nap, this will take 5+ hours
 
 #### Copy binary to pkg's cache for use in builds
-cp node ~/.pkg-cache/v2.5/fetched-v8.9.0-linux-armv6`
+cp node ~/.pkg-cache/v2.5/fetched-v8.9.0-linux-armv6
