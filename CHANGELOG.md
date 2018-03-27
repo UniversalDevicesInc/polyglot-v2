@@ -1,5 +1,11 @@
 # __Changelog for Polyglot v2__
 
+### Version 2.1.3
+
+* NodeJS 9.1.2
+* Frontend changes to support log package and log downloading
+* Cleaned up log windows with scrolling
+
 ### Version 2.1.2
 
 * Moved addNode/updateNode logic into Polyglot removed from polyinterfaces

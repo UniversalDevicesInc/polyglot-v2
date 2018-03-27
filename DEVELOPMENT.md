@@ -1,16 +1,16 @@
 ### Setup development environment
 
-##### Add support for multi-arch
-* sudo dpkg --add-architecture i386
-* sudo apt-get install -y libc6:i386 libstdc++6:i386 gcc-8-base:i386 libgcc1:i386
-
-##### Install NodeJS 8.x
-* curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
+##### Install NodeJS 9.x
+* curl -sL https://deb.nodesource.com/setup_9.x | sudo bash -
 * sudo apt-get install -y nodejs
 
+##### Manual NodeJS install
+* wget https://nodejs.org/download/release/v9.2.0/node-v9.2.0-linux-armv6l.tar.gz
+* sudo tar -xf node-v9.2.0-linux-armv6l.tar.gz --directory /usr/local --strip-components 1
+
 ##### Clone the Polyglot-v2 repository
-* git clone git@github.com:Einstein42/udi-polyglotv2.git
-* cd udi-polyglotv2
+* git clone https://github.com/UniversalDevicesInc/polyglot-v2.git
+* cd polyglotv2
 
 ##### Install NodeJS Packages
 * npm install
