@@ -1,10 +1,13 @@
 # __Changelog for Polyglot v2__
 
-### Version 2.1.3
+### Version 2.2.0
 
 * NodeJS 9.1.2
 * Frontend changes to support log package and log downloading
+* Frontend organization cleanup
+* Added Polyglot restart button
 * Cleaned up log windows with scrolling
+* Fixed several nodeservers not showing acurate status
 
 ### Version 2.1.2
 
