@@ -67,3 +67,4 @@ test/
 .env-dev
 binaries/
 backup/
+.DS_Store
