@@ -150,6 +150,9 @@ NODE_ENV=development
 These configuration overrides are available in the ~/.polyglot/.env file. It is not required so you may have to create it. Most of them can be updated via the web interface and are all saved to the database, so these are typically not required unless you have a specific reason. These WILL override existing database settings, even if you change them and save in the frontend. Remember these are OVERRIDES.
 ```
 # Overrides the IP address Polyglot listens on the local machine.
+BIND_IP='192.168.1.2'
+
+# Overrides the IP address Polyglot sends to ISY to accept commands
 HOST_IP='192.168.1.2'
 
 # Overrides the Port that Polyglot listens on for its frontend interface.
