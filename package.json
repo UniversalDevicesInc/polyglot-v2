@@ -74,6 +74,7 @@
   },
   "features": {
     "noticeByKey": "on",
-    "customParamsDoc": "on"
+    "customParamsDoc": "on",
+    "typedParams": "on"
   }
 }
