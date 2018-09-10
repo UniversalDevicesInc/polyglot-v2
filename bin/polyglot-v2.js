@@ -149,10 +149,10 @@ async function createPid(pidFile, force = true) {
 /* Remove Pid file */
 async function removePid() {
   try {
-    fs.unlinkSync(pidFile)
-    logger.debug(`Removed PID file: ${pidFile}`)
+    fs.unlinkSync(config.pidFile)
+    logger.debug(`Removed PID file: ${config.pidFile}`)
   } catch (err) {
-    logger.error(`PID file not removed: ${pidFile}`)
+    logger.error(`PID file not removed: ${config.pidFile}`)
   }
 }
 
