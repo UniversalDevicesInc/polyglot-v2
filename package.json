@@ -13,7 +13,7 @@
     "start:dev": "NODE_ENV=development PKG=false nodemon .",
     "build:armv7": "pkg -t latest-linux-armv7 package.json -o binaries/polyglot-v2-linux-armv7; chmod +x binaries/polyglot-v2-linux-armv7; cd binaries; GZIP=-9 tar cvzf polyglot-v2-linux-armv7.tar.gz polyglot-v2-linux-armv7 --remove-files",
     "build:armv6": "pkg -t node9.2.1-linux-armv6 package.json -o binaries/polyglot-v2-linux-armv6; chmod +x binaries/polyglot-v2-linux-armv6; cd binaries; GZIP=-9 tar cvzf polyglot-v2-linux-armv6.tar.gz polyglot-v2-linux-armv6 --remove-files",
-    "build:x64": "pkg -t latest-linux-x64 package.json -o binaries/polyglot-v2-linux-x64; chmod +x binaries/polyglot-v2-linux-x64; cd binaries; GZIP=-9 tar cvzf polyglot-v2-linux-x64.tar.gz polyglot-v2-linux-x64 --remove-files",
+    "build:x64": "time pkg package.json -o binaries/polyglot-v2-linux-x64; chmod +x binaries/polyglot-v2-linux-x64; cd binaries; tar -I 'gzip -9' -cvf polyglot-v2-linux-x64.tar.gz polyglot-v2-linux-x64 --remove-files",
     "build:x64test": "pkg -t latest-linux-x64 package.json -o ~/polyglot/polyglot-v2-linux-x64; chmod +x ~/polyglot/polyglot-v2-linux-x64",
     "build:x86": "pkg -t latest-linux-x86 package.json -o binaries/polyglot-v2-linux-x86; chmod +x binaries/polyglot-v2-linux-x86; cd binaries; GZIP=-9 tar cvzf polyglot-v2-linux-x86.tar.gz polyglot-v2-linux-x86 --remove-files",
     "build:freebsd": "/usr/local/bin/pkg -t node9.2.1-freebsd-x64 package.json -o binaries/polyglot-v2-freebsd-x64; chmod +x binaries/polyglot-v2-freebsd-x64; cd binaries; GZIP=-9 tar -cvzf polyglot-v2-freebsd-x64.tar.gz polyglot-v2-freebsd-x64; rm polyglot-v2-freebsd-x64",
@@ -40,7 +40,8 @@
     "npm": "^6.4.1",
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.1",
-    "request": "2.85.0",
+    "pkg": "4.3.7",
+    "request": "2.88.0",
     "request-progress": "^3.0.0",
     "request-promise-native": "^1.0.5",
     "selfsigned": "1.10.2",
@@ -63,7 +64,10 @@
   },
   "devDependencies": {},
   "pkg": {
-    "assets": "public/**/*"
+    "assets": "public/**/*",
+    "targets": [
+      "node10"
+    ]
   },
   "nodemonConfig": {
     "ignore": [
