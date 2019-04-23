@@ -1,18 +1,21 @@
-# Learn something new everyday
+FROM node:10-alpine
 
-FROM debian:stretch
-MAINTAINER e42
-
-# 80 = HTTP, 443 = HTTPS, 3000 = Express server(dev), 4200 = Angular2 (dev)
 EXPOSE 3000
+WORKDIR /opt/polyglot-v2/
 
-RUN apt-get update && apt-get dist-upgrade
-RUN apt-get -qqy install git python3-pip python3-dev python2.7-dev python-pip wget
+RUN apk add --no-cache --virtual .build-deps linux-headers build-base && \
+    apk add --no-cache python3 python3-dev py3-pip bash git ca-certificates wget tzdata openssl && \
+    python3 -m ensurepip && \
+    rm -r /usr/lib/python*/ensurepip && \
+    pip3 install --upgrade pip setuptools && \
+    if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
+    rm -r /root/.cache && \
+    cd /opt && \
+    git clone --depth=1 --single-branch --branch master https://github.com/UniversalDevicesInc/polyglot-v2.git && \
+    cd /opt/polyglot-v2 && \
+    apk del .build-deps
 
-RUN mkdir -p /opt/udi-polyglotv2/
-WORKDIR /opt/udi-polyglotv2/
-RUN wget -q https://github.com/Einstein42/udi-polyglotv2/raw/master/binaries/polyglot-v2-linux-x64.tar.gz
-RUN tar -zxf /opt/udi-polyglotv2/polyglot-v2-linux-x64.tar.gz
+VOLUME /root/.polyglot
 
 # Run Polyglot
-CMD /opt/udi-polyglotv2/polyglot-v2-linux-x64
+CMD npm start
