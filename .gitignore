@@ -4,7 +4,6 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-..bfg-report
 
 # Runtime data
 pids
@@ -60,6 +59,7 @@ typings/
 
 # Angular Frontend
 angular-src/
+frontend/
 
 # Project Specific
 ssl/
