@@ -59,6 +59,7 @@ typings/
 
 # Angular Frontend
 angular-src/
+frontend/
 
 # Project Specific
 ssl/
