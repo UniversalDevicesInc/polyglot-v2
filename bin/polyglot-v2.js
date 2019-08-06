@@ -8,6 +8,7 @@
 'use strict'
 const os = require('os')
 const fs = require('fs')
+const argv = require('minimist')(process.argv.slice(2))
 /**
 * All Polyglot config is loaded via the file ~/.polyglot/.env
 * This allows for easy access to configuration for multiple co-resident nodeservers if necessary
@@ -17,9 +18,35 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
 /**
   * Create ~/.polyglot if it does not exist
   */
-const polyDir = os.homedir() + '/.polyglot/'
+let customDir = false
+let polyDir = os.homedir() + '/.polyglot/'
+if (argv.hasOwnProperty('w')) {
+  customDir = true
+  polyDir = argv.w
+} else if (argv.hasOwnProperty('workDir')) {
+  customDir = true
+  polyDir = argv.workDir
+}
+if (!polyDir.endsWith('/')) {
+  polyDir += '/'
+}
+if (customDir) {
+  console.log(`Using Custom work directory: ${polyDir}`)
+}
+
 if (!fs.existsSync(polyDir)) {
-  fs.mkdirSync(polyDir)
+  if (customDir) {
+    console.log(`ERROR: ${polyDir} does not exist. Exiting.`)
+    process.kill(process.pid, "SIGINT")
+  } else {
+    fs.mkdirSync(polyDir)
+  }
+}
+let pidFile = polyDir + 'polyglot.pid'
+if (argv.hasOwnProperty('p')) {
+  pidFile = argv.p
+} else if (argv.hasOwnProperty('pidFile')) {
+  pidFile = argv.pidFile
 }
 
 /**
@@ -40,8 +67,11 @@ if (!fs.existsSync(polyDir + 'ssl/custom')) {
 }
 
 const config = require('../lib/config/config')
+config.polyDir = polyDir
+config.pidFile = pidFile
 config.dotenv = require('dotenv').config({path: polyDir + '.env'})
 const logger = require('../lib/modules/logger')
+createPid(config.pidFile)
 
 /* Import Models */
 const mongoose = require('mongoose')
@@ -90,7 +120,40 @@ async function shutdown() {
   await web.stop()
   await mqtts.stop()
   await db.stop()
+  await removePid()
   process.exit(0)
+}
+
+/* Create Pid file */
+async function createPid(pidFile, force = true) {
+  try {
+    const pid = new Buffer(process.pid + '\n')
+    const fd = fs.openSync(pidFile, force ? 'w' : 'wx')
+    let offset = 0
+  
+    while (offset < pid.length) {
+        offset += fs.writeSync(fd, pid, offset, pid.length - offset)
+    }
+    fs.closeSync(fd)
+    logger.debug(`Created PID file: ${pidFile}`)
+  } catch (err) {
+    if (err.code === 'EEXIST' || err.code === 'EACCES') {
+      logger.error(`PID file already exists or is un-writable: ${pidFile} Exiting...`)
+      process.kill(process.pid, "SIGINT")
+    } else {
+      logger.error(err)
+    }
+  }
+}
+
+/* Remove Pid file */
+async function removePid() {
+  try {
+    fs.unlinkSync(config.pidFile)
+    logger.debug(`Removed PID file: ${config.pidFile}`)
+  } catch (err) {
+    logger.error(`PID file not removed: ${config.pidFile}`)
+  }
 }
 
 /* Save NodeServers */
@@ -123,7 +186,7 @@ function gracefulShutdown() {
     shutdown()
     // If processes fail to shut down, force exit after 3 seconds
     setTimeout(function() {
-      process.exit()
+      process.exit(0)
     },3*1000)
   }
 }

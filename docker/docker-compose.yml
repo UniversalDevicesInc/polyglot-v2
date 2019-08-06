@@ -13,6 +13,8 @@ services:
         container_name: polyglotv2
         ports:
          - "3000:3000"
+        volumes:
+         - ./dot-polyglot:/root/.polyglot
         links:
          - mongo
         depends_on:
