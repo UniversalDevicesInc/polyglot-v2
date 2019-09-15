@@ -1,4 +1,4 @@
-version: '2'
+version: '2.4'
 services:
     mongo:
         image: "mongo:latest"
@@ -15,6 +15,7 @@ services:
          - "3000:3000"
         volumes:
          - ./dot-polyglot:/root/.polyglot
+         - polyglot-pkgs:/usr/lib/python3.6/site-packages
         links:
          - mongo
         depends_on:
@@ -25,3 +26,8 @@ services:
          - NODE_ENV=development
          - USEDOCKER=true
         restart: always
+
+
+volumes:
+  polyglot-pkgs:
+
