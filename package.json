@@ -17,7 +17,9 @@
     "build:x64test": "pkg -t latest-linux-x64 package.json -o ~/polyglot/polyglot-v2-linux-x64; chmod +x ~/polyglot/polyglot-v2-linux-x64",
     "build:x86": "pkg -t latest-linux-x86 package.json -o binaries/polyglot-v2-linux-x86; chmod +x binaries/polyglot-v2-linux-x86; cd binaries; GZIP=-9 tar cvzf polyglot-v2-linux-x86.tar.gz polyglot-v2-linux-x86 --remove-files",
     "build:freebsd": "/usr/local/bin/pkg -t node9.2.1-freebsd-x64 package.json -o binaries/polyglot-v2-freebsd-x64; chmod +x binaries/polyglot-v2-freebsd-x64; cd binaries; GZIP=-9 tar -cvzf polyglot-v2-freebsd-x64.tar.gz polyglot-v2-freebsd-x64; rm polyglot-v2-freebsd-x64",
-    "build:osx": "pkg -t latest-osx-x64 package.json -o binaries/polyglot-v2-osx-x64; chmod +x binaries/polyglot-v2-osx-x64; cd binaries; GZIP=-9 tar cvzf polyglot-v2-osx-x64.tar.gz polyglot-v2-osx-x64; rm polyglot-v2-osx-x64"
+    "build:osx": "pkg -t latest-osx-x64 package.json -o binaries/polyglot-v2-osx-x64; chmod +x binaries/polyglot-v2-osx-x64; cd binaries; GZIP=-9 tar cvzf polyglot-v2-osx-x64.tar.gz polyglot-v2-osx-x64; rm polyglot-v2-osx-x64",
+    "patchandrelease": "npm version patch --force",
+    "postversion": "git push && git push --tags"
   },
   "dependencies": {
     "aedes": "0.33.0",
