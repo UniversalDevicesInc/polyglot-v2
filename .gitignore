@@ -69,3 +69,4 @@ test/
 binaries/
 backup/
 .DS_Store
+docs/
