@@ -1,5 +1,20 @@
 # __Changelog for Polyglot v2__
 
+### Version 2.2.3
+
+* Angular 8
+* Added automated patch and release for versioning
+
+### Version 2.2.2
+
+* Fixed Logging
+* Hints fixed
+* Config fix refresh
+
+### Version 2.2.1
+
+* Miscellaneous bug fixes
+
 ### Version 2.2.0
 
 * NodeJS 9.1.2
@@ -110,7 +125,6 @@
 * Added delete call from Polyglot to NodeServer to allow for cleanup if necessary
 * Added Automated In-Place Upgrade process
 * Moved to NodeJS 8 for binary packaging
-
 
 ### Version 2.0.28
 
