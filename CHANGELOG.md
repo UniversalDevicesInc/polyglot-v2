@@ -4,6 +4,7 @@
 
 * Angular 8
 * Added automated patch and release for versioning
+* Dockerfile update
 
 ### Version 2.2.2
 
