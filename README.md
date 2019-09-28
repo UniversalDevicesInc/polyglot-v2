@@ -17,7 +17,7 @@ Using these tools, along with the [MQTT](http://mqtt.org/) messaging protocol, w
 
 While most of the previous code had been written in Python, the event loop driven Node.JS was chosen for this platform due to its asynchronous nature. Python or ANY language can still be used to develop a NodeServer with the standard API interface available.
 
-### Installation instructions
+## Installation instructions
 
 The steps are outlined directly for the Raspberry Pi, specifically the 3 or 3b models which were used to test. This has also worked on the original Raspberry Pi (Armv6) as well. A pre-built script is [here](https://raw.githubusercontent.com/UniversalDevicesInc/polyglot-v2/master/scripts/install.sh) to do all the heavy lifting for you. This install procedure was tested using a clean install of [Rasbian Stretch Lite](https://www.raspberrypi.org/downloads/raspbian/). Version **September 2017** at time of writing.
 
@@ -38,7 +38,7 @@ Steps overview:
 - Install MongoDB
 - Install Polyglot-v2
 
-##### Prerequisites
+### Prerequisites
 
 [MongoDB](https://www.mongodb.com/)
 
@@ -61,7 +61,7 @@ systemctl status mongodb
            └─431 /usr/bin/mongod --config /etc/mongodb.conf
 ```
 
-##### Polyglot
+### Polyglot
 
 Now the good stuff. Let's install Polyglot! Login as the user that is going to run Polyglot (pi or whatever you choose). Polyglot does NOT need to be run as root! (PLEASE DO NOT RUN POLYGLOT AS ROOT)
 
@@ -156,6 +156,7 @@ NODE_ENV=development
 ```
 
 #### Configuration Overrides for Polyglot
+
 These configuration overrides are available in the ~/.polyglot/.env file. It is not required so you may have to create it. Most of them can be updated via the web interface and are all saved to the database, so these are typically not required unless you have a specific reason. These WILL override existing database settings, even if you change them and save in the frontend. Remember these are OVERRIDES.
 
 ```bash
@@ -206,15 +207,17 @@ USE_BETA=true
 ```
 
 #### Custom SSL Certificates for Polyglot
+
 If you want to use your own SSL certificates instead of the self-signed certificates that Polyglot auto generates for you, then place the certificates in the ~/.polyglot/ssl/custom/ folder. There should be three files present as outlined below. The custom.key file is read then encrypted in the database, the other two are simply read and stored since they are public certs. If the CUSTOM_SSL .env override is set to true, polyglot attempts to read the following files:
 
-* custom.key: this is your private key file
-* custom.crt: this is your public cert file
-* custom.ca: this file can contain multiple ca certificates, otherwise known as the trust chain, this file will have any intermediate and root certificates
+- custom.key: this is your private key file
+- custom.crt: this is your public cert file
+- custom.ca: this file can contain multiple ca certificates, otherwise known as the trust chain, this file will have any intermediate and root certificates
 
 Polyglot will attempt to read these files on startup EVERY TIME that CUSTOM_SSL is enabled. If you allow Polyglot to read the files once, you can then delete the custom files and Polyglot will continue to use the saved values from the database. DO NOT DELETE THE ~/.polyglot/ssl/ client/polyglot certificates, these are used for MQTT encryption and authentication. Polyglot will spit them back out on startup even if you accidentally delete them.
 
 #### SSL Error 'ee key too small'
+
 I've had several linux users run into the error 'ee key too small' when trying to start Polyglot.
 
 `sudo nano /etc/ssl/openssl.cnf`
@@ -227,6 +230,30 @@ to
 CipherString = DEFAULT@SECLEVEL=1
 ```
 
+### Backup and Restore
+
+As of version 2.2.4+ you can now backup and restore your NodeServers and Nodes on to a different installation of Polyglot.
+Click on Settings > Settings and you will find a "Backup and Restore" section.
+
+Backup will download a .bin file to your machine that is an encrypted copy of all installed NodeServers and Nodes. This does NOT include any other settings like ISY connection settings (on purpose). So if you intend to migrate to a new installation of Polyglot here are the steps:
+
+- Download backup from existing installation
+- Install and configure ISY connection settings of new installation of Polyglot
+- Restore backup
+
+To Restore the backup, click the "Select File" button on the "Backup and Restore" section of the settings menu. Once you select the file, you will see that same button change to "Restore". Once you hover over that button you will see the selected filename that you chose to restore. Click the "Restore" button to initiate the restore process. This does the following:
+
+- Decrypts and validates the file
+- Individiually iterates through the backed up NodeServers doin the following:
+  - Verifies a NodeServer is not currently running and active on that slot (shuts it down for overwrite if there is)
+  - Overwrites or Creates the NodeServer database entry
+  - Overwrites or Creates any Nodes in the database associate with that NodeServer
+  - Overwrites or Creates the slot configuration on the ISY for that NodeServer (this includes updating the existing ISY configuration for that NodeServer to the new IP address of Polyglot, **WITHOUT** removing nodes and re-creating them, thus saving your existing programs.)
+  - Downloads or Pulls the latest code for that NodeServer automatically
+  - Installs the profile to the ISY from that freshly downloaded NodeServer code
+
+Once all NodeServers have had the previous steps completed, it will automatically shut down Polyglot. If you have systemctl set up properly (as you should), Polyglot will automatically restart and everything should be working appropriately with no further interaction necessary.
+
 ### Development Documentation
 
 First check the [Wiki](https://github.com/UniversalDevicesInc/polyglot-v2/wiki/Creating-a-NodeServer) for how to build a NodeServer.
@@ -234,6 +261,6 @@ First check the [Wiki](https://github.com/UniversalDevicesInc/polyglot-v2/wiki/C
 It is pre-built in the docs folder [Found Here](https://github.com/UniversalDevicesInc/polyglot-v2) on GitHub in HTML format if you clone the repository or available in the
 [Online Documentation Found Here](https://doclets.io/Einstein42/udi-polyglotv2/master/overview).
 
-Prebuilt Python3 interface API for building NodeServers is [here](https://github.com/UniversalDevicesInc/polyglot-v2-python-interface).
+Python3 interface API for building NodeServers is [here](https://github.com/UniversalDevicesInc/polyglot-v2-python-interface).
 
-NodeJS interface API for building NodeServers is coming soon.
+NodeJS interface API for building NodeServers is [here](https://github.com/UniversalDevicesInc/pgc-nodejs-interface).
