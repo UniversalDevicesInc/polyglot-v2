@@ -7,10 +7,11 @@ Polyglot is a Middleware between the [Universal Devices ISY Home Automation devi
 Requirements: Network Module or ISY Portal (which includes the Network Module)
 
 Polyglot v2 is built on the [MEAN](http://mean.io/) stack which is a production ready enterprise level code stack that includes:
- - MongoDB (A NoSQL database engine that stores data in JSON formated 'documents')
- - Express (NodeJS HTTP API server module)
- - Angular.JS (Frontend framework developed by Google)
- - NodeJS (Fully asynchronous server side version of Javascript)
+
+- MongoDB (A NoSQL database engine that stores data in JSON formated 'documents')
+- Express (NodeJS HTTP API server module)
+- Angular.JS (Frontend framework developed by Google)
+- NodeJS (Fully asynchronous server side version of Javascript)
 
 Using these tools, along with the [MQTT](http://mqtt.org/) messaging protocol, we have created a robust IoT powerhouse that can speak to any and every device available with open API standards using simple, straight-forward modules (NodeServers).
 
@@ -21,7 +22,8 @@ While most of the previous code had been written in Python, the event loop drive
 The steps are outlined directly for the Raspberry Pi, specifically the 3 or 3b models which were used to test. This has also worked on the original Raspberry Pi (Armv6) as well. A pre-built script is [here](https://raw.githubusercontent.com/UniversalDevicesInc/polyglot-v2/master/scripts/install.sh) to do all the heavy lifting for you. This install procedure was tested using a clean install of [Rasbian Stretch Lite](https://www.raspberrypi.org/downloads/raspbian/). Version **September 2017** at time of writing.
 
 To Install Using the script (This will do EVERYTHING for you):
-```
+
+```bash
 # Run the Install Script
 wget -qO - https://raw.githubusercontent.com/UniversalDevicesInc/polyglot-v2/master/scripts/install.sh | bash -e
 
@@ -32,14 +34,15 @@ You do NOT need to proceed with theses instructions if you ran the script above.
 The manual steps are listed here as well.
 
 Steps overview:
- - Install MongoDB
- - Install Polyglot-v2
+
+- Install MongoDB
+- Install Polyglot-v2
 
 ##### Prerequisites
 
 [MongoDB](https://www.mongodb.com/)
 
-```
+```bash
 # Update your sources
 sudo apt-get update -qy
 
@@ -62,7 +65,7 @@ systemctl status mongodb
 
 Now the good stuff. Let's install Polyglot! Login as the user that is going to run Polyglot (pi or whatever you choose). Polyglot does NOT need to be run as root! (PLEASE DO NOT RUN POLYGLOT AS ROOT)
 
-```
+```bash
 # Create a polyglot directory
 mkdir polyglot
 
@@ -86,7 +89,8 @@ NODE_ENV=development ./polyglot-v2-linux-armv7
 ```
 
 To start Polyglot on Boot do the following:
-```
+
+```bash
 # Get base systemd script from the GitHub repository
 wget -q https://raw.githubusercontent.com/UniversalDevicesInc/polyglot-v2/master/scripts/polyglot-v2.service
 
@@ -107,7 +111,8 @@ sudo systemctl start polyglot-v2
 ```
 
 Verify that Polyglot is running
-```
+
+```bash
 # Check Polyglot status
 sudo systemctl status polyglot-v2.service
 
@@ -124,7 +129,8 @@ Jul 13 04:38:53 raspberrypi systemd[1]: Started polyglot-v2.
 Default username and password are both `admin`
 
 Logs are located at `~/.polyglot/log/debug.log` or you can use the frontend web interface to watch them in real-time.
-```
+
+```bash
 # Watch the logs real-time
 tail -f ~/.polyglot/log/debug.log
 
@@ -139,7 +145,8 @@ tail -f ~/.polyglot/log/debug.log
 ```
 
 #### Enable debug logging for Polyglot
-```
+
+```bash
 # Edit the ~/.polyglot/.env file
 nano ~/.polyglot/.env
 
@@ -150,7 +157,8 @@ NODE_ENV=development
 
 #### Configuration Overrides for Polyglot
 These configuration overrides are available in the ~/.polyglot/.env file. It is not required so you may have to create it. Most of them can be updated via the web interface and are all saved to the database, so these are typically not required unless you have a specific reason. These WILL override existing database settings, even if you change them and save in the frontend. Remember these are OVERRIDES.
-```
+
+```bash
 # Overrides the IP address Polyglot listens on the local machine.
 BIND_IP='192.168.1.2'
 
@@ -205,6 +213,19 @@ If you want to use your own SSL certificates instead of the self-signed certific
 * custom.ca: this file can contain multiple ca certificates, otherwise known as the trust chain, this file will have any intermediate and root certificates
 
 Polyglot will attempt to read these files on startup EVERY TIME that CUSTOM_SSL is enabled. If you allow Polyglot to read the files once, you can then delete the custom files and Polyglot will continue to use the saved values from the database. DO NOT DELETE THE ~/.polyglot/ssl/ client/polyglot certificates, these are used for MQTT encryption and authentication. Polyglot will spit them back out on startup even if you accidentally delete them.
+
+#### SSL Error 'ee key too small'
+I've had several linux users run into the error 'ee key too small' when trying to start Polyglot.
+
+`sudo nano /etc/ssl/openssl.cnf`
+
+Change the line:
+
+```bash
+CipherString = DEFAULT@SECLEVEL=2
+to
+CipherString = DEFAULT@SECLEVEL=1
+```
 
 ### Development Documentation
 

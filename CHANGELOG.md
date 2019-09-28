@@ -1,5 +1,18 @@
 # __Changelog for Polyglot v2__
 
+### Version 2.2.4
+
+* Updated versions of all packages to latest
+* Winston 2 > 3
+* MQTT 2 > 3
+* Fixed Encryption Deprecation Warning
+* Fixed Buffer Deprecation Warning
+* Fixed Mongoose/MongoDB deprecations
+* Backup/Restore functionality through settings menu for nodeservers/nodes
+* Automatically update ip adderss on ISY for nodeservers restored to new devices
+* Fully encrypted backup files
+* Precursor to 2.3.0 for Polisy
+
 ### Version 2.2.3
 
 * Angular 8

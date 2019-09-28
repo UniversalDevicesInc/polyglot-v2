@@ -14,7 +14,8 @@ const argv = require('minimist')(process.argv.slice(2))
 * This allows for easy access to configuration for multiple co-resident nodeservers if necessary
 * All nodeservers use this same file to get their base config parameters.
 */
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
+// process.env.NODE_NO_WARNINGS=1
 /**
   * Create ~/.polyglot if it does not exist
   */
@@ -75,13 +76,14 @@ createPid(config.pidFile)
 
 /* Import Models */
 const mongoose = require('mongoose')
+mongoose.set('useCreateIndex', true)
 require('../lib/models/settings')
 require('../lib/models/user')
 require('../lib/models/node')
 require('../lib/models/nodeserver')
 var Settings = mongoose.model('Settings')
 var User = mongoose.model('User')
-var NodeServer = mongoose.model('NodeServer')
+// var NodeServer = mongoose.model('NodeServer')
 
 const db = require('../lib/services/db')
 const dbmaint = require('../lib/modules/dbmaint')
@@ -127,10 +129,10 @@ async function shutdown() {
 /* Create Pid file */
 async function createPid(pidFile, force = true) {
   try {
-    const pid = new Buffer(process.pid + '\n')
+    const pid = Buffer.from(process.pid + '\n')
     const fd = fs.openSync(pidFile, force ? 'w' : 'wx')
     let offset = 0
-  
+
     while (offset < pid.length) {
         offset += fs.writeSync(fd, pid, offset, pid.length - offset)
     }
