@@ -1,5 +1,12 @@
 # __Changelog for Polyglot v2__
 
+### Version 2.2.5
+
+* FreeBSD upgrade
+* FreeBSD Polisy upgrade (pkg)
+* Configurable ListenPort on the Settings page
+* Restore fix bug on HomeDir
+
 ### Version 2.2.4
 
 * Updated versions of all packages to latest
