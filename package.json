@@ -1,6 +1,6 @@
 {
   "name": "polyglot-v2",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "description": "UDI Polyglot Version 2",
   "bin": {
     "polyglot-v2": "bin/polyglot-v2.js"
