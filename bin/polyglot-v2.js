@@ -170,13 +170,12 @@ async function saveNodeServers() {
 
 /* Kill all Children */
 async function killChildren() {
-  for (let ns in config.nodeServers) {
-    if (ns) {
-      if (config.nodeServers[ns].type === 'local') {
-        await nodeserver.stop(ns)
-      }
+
+  await Promise.all(Object.values(config.nodeServers).map(async (ns) => {
+    if (ns.type === 'local') {
+      await nodeserver.stop(ns.profileNum)
     }
-  }
+  }))
   logger.debug(`All NodeServers stopped.`)
 }
 

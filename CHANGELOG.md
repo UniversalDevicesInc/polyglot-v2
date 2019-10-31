@@ -1,5 +1,12 @@
 # __Changelog for Polyglot v2__
 
+### Version 2.2.6
+
+* Fixed shutdown when large amount of nodeservers were installed
+* Fixed override of port on Polisy
+* Fixed Frontend redundant MQTT connection on reboot
+* Modified Log page format
+
 ### Version 2.2.5
 
 * FreeBSD upgrade
@@ -97,7 +104,6 @@
 * Changed store layout
 * Added customData for nodeserver storage
 * Removed auto-reboot functions as they are no longer necessary
-
 
 ### Version 2.0.35
 
