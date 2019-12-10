@@ -11,7 +11,7 @@
     "start": "node bin/polyglot-v2",
     "start:prod": "NODE_ENV=production npm start",
     "start:dev": "NODE_ENV=development PKG=false nodemon .",
-    "build:armv7": "pkg -t node9.2.1-linux-armv7 package.json -o binaries/polyglot-v2-linux-armv7; chmod +x binaries/polyglot-v2-linux-armv7; cd binaries; GZIP=-9 tar cvzf polyglot-v2-linux-armv7.tar.gz polyglot-v2-linux-armv7 --remove-files",
+    "build:armv7": "pkg -t node10-linux-armv7 package.json -o binaries/polyglot-v2-linux-armv7; chmod +x binaries/polyglot-v2-linux-armv7; cd binaries; GZIP=-9 tar cvzf polyglot-v2-linux-armv7.tar.gz polyglot-v2-linux-armv7 --remove-files",
     "build:armv6": "pkg -t node9.2.1-linux-armv6 package.json -o binaries/polyglot-v2-linux-armv6; chmod +x binaries/polyglot-v2-linux-armv6; cd binaries; GZIP=-9 tar cvzf polyglot-v2-linux-armv6.tar.gz polyglot-v2-linux-armv6 --remove-files",
     "build:x64": "time pkg package.json -o binaries/polyglot-v2-linux-x64; chmod +x binaries/polyglot-v2-linux-x64; cd binaries; tar -I 'gzip -9' -cvf polyglot-v2-linux-x64.tar.gz polyglot-v2-linux-x64 --remove-files",
     "build:x64test": "pkg -t latest-linux-x64 package.json -o ~/polyglot/polyglot-v2-linux-x64; chmod +x ~/polyglot/polyglot-v2-linux-x64",
@@ -53,6 +53,7 @@
     "selfsigned": "1.10.6",
     "split-ca": "^1.0.1",
     "tail": "^2.0.3",
+    "unzipper": "0.10.5",
     "websocket-stream": "5.5.0",
     "winston": "3.2.1",
     "xml2json-light": "1.0.6"
