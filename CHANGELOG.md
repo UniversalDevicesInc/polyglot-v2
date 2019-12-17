@@ -1,5 +1,12 @@
 # __Changelog for Polyglot v2__
 
+### Version 2.2.7
+
+* Zipped backup file and added persist_folder in server.json to capture nodeserver files as needed
+* Fixed remove nodeserver bug, where node database entries could persist after delete
+* Fixed log rotation bug. Logs will rotate at 1mb in size and keep 5
+* Added Polisy System Configuration GUI
+
 ### Version 2.2.6
 
 * Fixed shutdown when large amount of nodeservers were installed
