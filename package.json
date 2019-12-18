@@ -20,7 +20,7 @@
     "build:osx": "pkg -t latest-osx-x64 package.json -o binaries/polyglot-v2-osx-x64; chmod +x binaries/polyglot-v2-osx-x64; cd binaries; GZIP=-9 tar cvzf polyglot-v2-osx-x64.tar.gz polyglot-v2-osx-x64; rm polyglot-v2-osx-x64",
     "patchrelease": "npm version patch",
     "prerelease": "npm version prerelease",
-    "postversion": "git push && git push --tags && npm push",
+    "postversion": "git push && git push --tags && npm publish",
     "update:check": "ncu",
     "update:run": "ncu -u; npm install"
   },
