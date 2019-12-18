@@ -1,6 +1,6 @@
 {
   "name": "polyglot-v2",
-  "version": "2.2.8-0",
+  "version": "2.2.7-6",
   "description": "UDI Polyglot Version 2",
   "bin": {
     "polyglot-v2": "bin/polyglot-v2.js"
@@ -20,7 +20,7 @@
     "build:osx": "pkg -t latest-osx-x64 package.json -o binaries/polyglot-v2-osx-x64; chmod +x binaries/polyglot-v2-osx-x64; cd binaries; GZIP=-9 tar cvzf polyglot-v2-osx-x64.tar.gz polyglot-v2-osx-x64; rm polyglot-v2-osx-x64",
     "patchrelease": "npm version patch",
     "prepatchrelease": "npm version prepatch",
-    "postversion": "git push && git push --tags",
+    "postversion": "git push && git push --tags && npm push",
     "update:check": "ncu",
     "update:run": "ncu -u; npm install"
   },
