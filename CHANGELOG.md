@@ -1,5 +1,39 @@
 # __Changelog for Polyglot v2__
 
+### Version 2.2.7
+
+* Zipped backup file and added persist_folder in server.json to capture nodeserver files as needed
+* Fixed remove nodeserver bug, where node database entries could persist after delete
+* Fixed log rotation bug. Logs will rotate at 1mb in size and keep 5
+* Added Polisy System Configuration GUI
+
+### Version 2.2.6
+
+* Fixed shutdown when large amount of nodeservers were installed
+* Fixed override of port on Polisy
+* Fixed Frontend redundant MQTT connection on reboot
+* Modified Log page format
+
+### Version 2.2.5
+
+* FreeBSD upgrade
+* FreeBSD Polisy upgrade (pkg)
+* Configurable ListenPort on the Settings page
+* Restore fix bug on HomeDir
+
+### Version 2.2.4
+
+* Updated versions of all packages to latest
+* Winston 2 > 3
+* MQTT 2 > 3
+* Fixed Encryption Deprecation Warning
+* Fixed Buffer Deprecation Warning
+* Fixed Mongoose/MongoDB deprecations
+* Backup/Restore functionality through settings menu for nodeservers/nodes
+* Automatically update ip adderss on ISY for nodeservers restored to new devices
+* Fully encrypted backup files
+* Precursor to 2.3.0 for Polisy
+
 ### Version 2.2.3
 
 * Angular 8
@@ -77,7 +111,6 @@
 * Changed store layout
 * Added customData for nodeserver storage
 * Removed auto-reboot functions as they are no longer necessary
-
 
 ### Version 2.0.35
 
