@@ -99,18 +99,18 @@ var shuttingDown = false
 async function start() {
   try {
     await db.start()
+    await Settings.loadSettings()
+    await dbmaint.check()
+    await mqtts.start()
+    web.start()
+    mqttc.start()
+    await User.verifyDefaultUser()
+    Settings.sendUpdate()
+    nodeserver.loadNodeServers()
   } catch (err) {
-    logger.error(`MongoDB startup error shutting down: ${err} `)
+    logger.error(`Startup error. Shutting down: ${err} `)
     process.exit(1)
   }
-  await Settings.loadSettings()
-  await dbmaint.check()
-  await mqtts.start()
-  web.start()
-  mqttc.start()
-  await User.verifyDefaultUser()
-  Settings.sendUpdate()
-  nodeserver.loadNodeServers()
 }
 
 /* Shutdown */
