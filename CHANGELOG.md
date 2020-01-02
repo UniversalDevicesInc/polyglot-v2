@@ -1,16 +1,13 @@
 # __Changelog for Polyglot v2__
 
-## Version 2.2.10
-
-* Fixed Polyglot/Polisy real time detection mechanism
-* Fixed Polisy detect ISY hang
-* Added additional logging for ISY/Polisy detection routine
-
 ## Version 2.2.9
 
 * ispolisy Frontend API added, modified Polisy configuration page
 * Polisy Frontend formatting bug fixes
 * Polisy Frontend IPv6 additions
+* Fixed Polyglot/Polisy real time detection mechanism
+* Fixed Polisy detect ISY hang
+* Added additional logging for ISY/Polisy detection routine
 
 ## Version 2.2.8
 
