@@ -1,5 +1,9 @@
 # __Changelog for Polyglot v2__
 
+## Versopm 2.2.10
+
+* Updated Aedes to 0.41.0
+
 ## Version 2.2.9
 
 * ispolisy Frontend API added, modified Polisy configuration page
