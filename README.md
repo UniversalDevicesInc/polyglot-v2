@@ -2,7 +2,9 @@
 
 [![Build Status](https://travis-ci.org/UniversalDevicesInc/polyglot-v2.svg?branch=master)](https://travis-ci.org/UniversalDevicesInc/polyglot-v2)
 
-Polyglot is a Middleware between the [Universal Devices ISY Home Automation device](http://www.universal-devices.com/) and any number of external devices and services.
+Polyglot is a Middleware between the [Universal Devices ISY Home Automation device](http://www.universal-devices.com/) and any number of external devices and services. 
+
+Requirements: Network Module or ISY Portal (which includes the Network Module)
 
 Requirements: Network Module or ISY Portal (which includes the Network Module)
 
