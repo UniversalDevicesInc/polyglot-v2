@@ -3,10 +3,14 @@
 ## Version 2.2.11
 
 * Update Aedes to 0.44.2
+* Fix to create link to default debug.log name
+* Fix Download Log Package to include debug.log data instead of soft link.
 
 ## Version 2.2.10
 
 * Updated Aedes to 0.41.0
+* Change Logging date/time format to match Python interface
+* Log can be 100m, save 14 days with compression of rotated log each day
 
 ## Version 2.2.9
 
