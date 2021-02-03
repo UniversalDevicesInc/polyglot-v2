@@ -1,6 +1,6 @@
 {
   "name": "polyglot-v2",
-  "version": "2.2.8",
+  "version": "2.2.11",
   "description": "UDI Polyglot Version 2",
   "bin": {
     "polyglot-v2": "bin/polyglot-v2.js"
@@ -25,7 +25,7 @@
     "update:run": "ncu -u; npm install"
   },
   "dependencies": {
-    "aedes": "0.39.0",
+    "aedes": "0.44.2",
     "archiver": "3.1.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
@@ -35,7 +35,7 @@
     "decompress-targz": "^4.1.1",
     "dotenv": "8.1.0",
     "express": "4.17.1",
-    "express-fileupload": "1.1.6-alpha.5",
+    "express-fileupload": "1.2.0",
     "fs-extra": "^8.1.0",
     "ip": "^1.1.5",
     "jsonwebtoken": "8.5.1",
@@ -57,6 +57,7 @@
     "unzipper": "0.10.5",
     "websocket-stream": "5.5.0",
     "winston": "3.2.1",
+    "winston-daily-rotate-file": "4.5.0",
     "xml2json-light": "1.0.6"
   },
   "keywords": [
