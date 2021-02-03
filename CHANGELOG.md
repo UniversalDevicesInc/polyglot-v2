@@ -1,6 +1,10 @@
 # __Changelog for Polyglot v2__
 
-## Versopm 2.2.10
+## Version 2.2.11
+
+* Update Aedes to 0.44.2
+
+## Version 2.2.10
 
 * Updated Aedes to 0.41.0
 
