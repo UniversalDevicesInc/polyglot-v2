@@ -16,7 +16,7 @@
     "build:x64": "time pkg package.json -o binaries/polyglot-v2-linux-x64; chmod +x binaries/polyglot-v2-linux-x64; cd binaries; tar -I 'gzip -9' -cvf polyglot-v2-linux-x64.tar.gz polyglot-v2-linux-x64 --remove-files",
     "build:x64test": "pkg -t latest-linux-x64 package.json -o ~/polyglot/polyglot-v2-linux-x64; chmod +x ~/polyglot/polyglot-v2-linux-x64",
     "build:x86": "pkg -t latest-linux-x86 package.json -o binaries/polyglot-v2-linux-x86; chmod +x binaries/polyglot-v2-linux-x86; cd binaries; GZIP=-9 tar cvzf polyglot-v2-linux-x86.tar.gz polyglot-v2-linux-x86 --remove-files",
-    "build:freebsd": "node_modules/.bin/pkg -t node12-freebsd-x64 package.json -o binaries/polyglot-v2-freebsd-x64; chmod +x binaries/polyglot-v2-freebsd-x64; cd binaries; GZIP=-9 tar -cvzf polyglot-v2-freebsd-x64.tar.gz polyglot-v2-freebsd-x64; rm polyglot-v2-freebsd-x64",
+    "build:freebsd": "node_modules/.bin/pkg -t node16-freebsd-x64 package.json -o binaries/polyglot-v2-freebsd-x64; chmod +x binaries/polyglot-v2-freebsd-x64; cd binaries; GZIP=-9 tar -cvzf polyglot-v2-freebsd-x64.tar.gz polyglot-v2-freebsd-x64; rm polyglot-v2-freebsd-x64",
     "build:osx": "pkg -t latest-osx-x64 package.json -o binaries/polyglot-v2-osx-x64; chmod +x binaries/polyglot-v2-osx-x64; cd binaries; GZIP=-9 tar cvzf polyglot-v2-osx-x64.tar.gz polyglot-v2-osx-x64; rm polyglot-v2-osx-x64",
     "patchrelease": "npm version patch",
     "prerelease": "npm version prerelease",
@@ -41,7 +41,7 @@
     "jsonwebtoken": "^8.5.0",
     "lodash.isequal": "^4.5.0",
     "minimist": "^1.2.0",
-    "mongoose": "^4.13.0",
+    "mongoose": "^5.13.0",
     "mqtt": "^4.3.0",
     "multer": "^1.4.0",
     "npm": "^8.11.0",
@@ -75,7 +75,7 @@
   "pkg": {
     "assets": "public/**/*",
     "targets": [
-      "node10"
+      "node16"
     ]
   },
   "nodemonConfig": {
