@@ -42,7 +42,7 @@
     "lodash.isequal": "4.5.0",
     "minimist": "1.2.6",
     "mongoose": "4.13.19",
-    "mqtt": "3.0.0",
+    "mqtt": "4.3.7",
     "multer": "1.4.2",
     "npm": "8.11.0",
     "passport": "^0.4.0",
