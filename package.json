@@ -41,7 +41,7 @@
     "jsonwebtoken": "^8.5.0",
     "lodash.isequal": "^4.5.0",
     "minimist": "^1.2.0",
-    "mongoose": "^4.13.0",
+    "mongoose": "^5.7.5",
     "mqtt": "^4.3.0",
     "multer": "^1.4.0",
     "npm": "^8.11.0",
