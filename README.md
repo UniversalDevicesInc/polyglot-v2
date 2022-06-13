@@ -1,6 +1,6 @@
 # UDI Polyglot v2
 
-[![Build Status](https://travis-ci.org/UniversalDevicesInc/polyglot-v2.svg?branch=master)](https://travis-ci.org/UniversalDevicesInc/polyglot-v2)
+[![Node.js CI](https://github.com/UniversalDevicesInc/polyglot-v2/actions/workflows/node.js.yml/badge.svg)](https://github.com/UniversalDevicesInc/polyglot-v2/actions/workflows/node.js.yml)
 
 Polyglot is a Middleware between the [Universal Devices ISY Home Automation device](http://www.universal-devices.com/) and any number of external devices and services. 
 
