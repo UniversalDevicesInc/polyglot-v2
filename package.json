@@ -45,7 +45,7 @@
     "mqtt": "^4.3.0",
     "multer": "^1.4.0",
     "npm": "^8.11.0",
-    "passport": "^0.4.0",
+    "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
     "pkg": "^5.7.0",
     "request": "^2.88.0",
